@@ -253,7 +253,7 @@
         let bets = JSON.parse(localStorage.getItem('bets')) || []; 
         let currentBankroll = 1000;  // Bankroll initiale
 
-        // Afficher les paris dans le tableau
+        // Fonction pour afficher les paris dans le tableau
         function displayBets() {
             const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
             historyTable.innerHTML = '';
@@ -277,4 +277,21 @@
         // Ajouter un pari
         const betForm = document.getElementById('bet-form');
         betForm.addEventListener('submit', function(event) {
-            event.prevent
+            event.preventDefault();
+            const date = document.getElementById('date').value;
+            const sport = document.getElementById('sport').value;
+            const bet = document.getElementById('bet').value;
+            const stake = parseFloat(document.getElementById('stake').value);
+            const odds = parseFloat(document.getElementById('odds').value);
+
+            const newBet = {
+                date: date,
+                sport: sport,
+                bet: bet,
+                stake: stake,
+                odds: odds,
+                result: null // Résultat initialisé à "En attente"
+            };
+
+            bets.push(newBet);
+
