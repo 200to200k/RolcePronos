@@ -6,22 +6,149 @@
     <title>Historique des Paris</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .result-buttons button {
-            margin-right: 5px;
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
         }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        /* Formulaire */
+        form {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        form button {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+
+        /* Tableau */
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
+
+        table th, table td {
+            padding: 10px;
             text-align: center;
+            border: 1px solid #dee2e6;
         }
-        th {
-            background-color: #f3f3f3;
+
+        table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        table td button {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        table td button:first-child {
+            background-color: #28a745;
+            color: white;
+            margin-right: 5px;
+        }
+
+        table td button:first-child:hover {
+            background-color: #218838;
+        }
+
+        table td button:last-child {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        table td button:last-child:hover {
+            background-color: #c82333;
+        }
+
+        /* Graphique */
+        .chart-container {
+            margin: 30px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Pied de page */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: #fff;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -35,7 +162,7 @@
             <h2>Historique des Paris</h2>
 
             <!-- Graphique -->
-            <div>
+            <div class="chart-container">
                 <canvas id="bankroll-chart"></canvas>
             </div>
 
@@ -84,17 +211,12 @@
     </footer>
 
     <script>
-        // Gestion des paris avec localStorage
         const betForm = document.getElementById('bet-form');
         const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
-        let bets = JSON.parse(localStorage.getItem('bets')) || []; // Charger les paris stockés
+        let bets = JSON.parse(localStorage.getItem('bets')) || []; 
 
-        // Initialisation de la bankroll
-        let currentBankroll = 1000;
-
-        // Fonction pour afficher les paris dans le tableau
         function displayBets() {
-            historyTable.innerHTML = ''; // Réinitialiser le tableau
+            historyTable.innerHTML = '';
             bets.forEach((bet, index) => {
                 const newRow = historyTable.insertRow();
                 newRow.innerHTML = `
@@ -112,34 +234,28 @@
             });
         }
 
-        // Ajouter un pari
         betForm.addEventListener('submit', function(event) {
             event.preventDefault();
-
-            // Récupérer les valeurs du formulaire
             const newBet = {
                 date: document.getElementById('date').value,
                 sport: document.getElementById('sport').value,
                 bet: document.getElementById('bet').value,
                 stake: parseFloat(document.getElementById('stake').value),
                 odds: parseFloat(document.getElementById('odds').value),
-                result: null // Par défaut, le résultat est "En attente"
+                result: null 
             };
-
-            bets.push(newBet); // Ajouter le pari à la liste
-            localStorage.setItem('bets', JSON.stringify(bets)); // Sauvegarder dans localStorage
-            displayBets(); // Mettre à jour l'affichage
-            betForm.reset(); // Réinitialiser le formulaire
+            bets.push(newBet); 
+            localStorage.setItem('bets', JSON.stringify(bets)); 
+            displayBets(); 
+            betForm.reset();
         });
 
-        // Mettre à jour le résultat d'un pari
         function updateResult(index, result) {
             bets[index].result = result === 'win' ? 'Gagné' : 'Perdu';
-            localStorage.setItem('bets', JSON.stringify(bets)); // Sauvegarder dans localStorage
-            displayBets(); // Mettre à jour l'affichage
+            localStorage.setItem('bets', JSON.stringify(bets)); 
+            displayBets(); 
         }
 
-        // Afficher les paris au chargement de la page
         displayBets();
     </script>
 </body>
