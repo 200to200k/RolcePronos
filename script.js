@@ -99,3 +99,40 @@ betForm.addEventListener('submit', function(event) {
     // Réinitialise le formulaire
     betForm.reset();
 });
+// Fonction pour mettre à jour la date du jour
+function updateDate() {
+    const currentDateElement = document.getElementById('current-date');
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    currentDateElement.textContent = today.toLocaleDateString('fr-FR', options);
+}
+
+// Fonction pour mettre à jour la bankroll et le pourcentage gagné
+function updateBankroll() {
+    const startBankroll = parseFloat(document.getElementById('start-bankroll').textContent);
+    const currentBankrollElement = document.getElementById('current-bankroll');
+    let currentBankroll = parseFloat(currentBankrollElement.textContent);
+
+    // Ajoute 10 à la bankroll actuelle
+    currentBankroll += 10;
+    currentBankrollElement.textContent = currentBankroll.toFixed(2);
+
+    // Calcule le pourcentage gagné
+    const percentageElement = document.getElementById('percentage');
+    const percentage = ((currentBankroll - startBankroll) / startBankroll) * 100;
+    percentageElement.textContent = percentage.toFixed(2) + '%';
+
+    // Applique une classe pour la coloration conditionnelle
+    if (percentage >= 0) {
+        percentageElement.classList.add('positive');
+        percentageElement.classList.remove('negative');
+    } else {
+        percentageElement.classList.add('negative');
+        percentageElement.classList.remove('positive');
+    }
+}
+
+// Met à jour la date lors du chargement de la page
+window.onload = function() {
+    updateDate();
+};
