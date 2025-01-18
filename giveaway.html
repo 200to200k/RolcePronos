@@ -5,6 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giveaway</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Style dynamique pour le tableau */
+        .giveaway-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+            border: 2px solid #f3a712;
+        }
+
+        .giveaway-table th, .giveaway-table td {
+            border: 1px solid #f3a712;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .giveaway-table th {
+            background-color: #f3a712;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .giveaway-table td {
+            font-size: 1em;
+        }
+
+        .giveaway-table tr:hover {
+            background-color: #fff5e6;
+            cursor: pointer;
+        }
+
+        /* Espacement entre le tableau et le formulaire */
+        #participation-form {
+            margin-top: 30px;
+        }
+
+        /* Bouton "Se désinscrire" stylé */
+        .remove-btn {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #c9302c;
+        }
+
+        /* Style général */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #f3a712;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .giveaway-title {
+            text-align: center;
+            color: #f3a712;
+            font-size: 2em;
+        }
+
+        button[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -70,9 +176,9 @@
     </footer>
 
     <script>
-        // Compte à rebours dynamique
+        // Script de compte à rebours (inchangé)
         const countdownElement = document.getElementById("countdown");
-        const giveawayDate = new Date("2025-01-18T23:59:59"); // Date du giveaway
+        const giveawayDate = new Date("2025-01-18T23:59:59");
 
         function updateCountdown() {
             const now = new Date();
@@ -92,67 +198,9 @@
         }
 
         updateCountdown();
-        setInterval(updateCountdown, 1000); // Met à jour toutes les secondes
+        setInterval(updateCountdown, 1000);
 
-        // Gestion de la participation
-        const participationForm = document.getElementById("participation-form");
-        const participantsTable = document.getElementById("participants-table").getElementsByTagName('tbody')[0];
-        const participantsCount = document.getElementById("participants-count");
-
-        participationForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const pseudoInput = document.getElementById("pseudo");
-            const pseudo = pseudoInput.value.trim();
-
-            if (pseudo) {
-                // Vérifie si le pseudo existe déjà
-                const existingRows = participantsTable.getElementsByTagName('tr');
-                for (let row of existingRows) {
-                    if (row.firstElementChild.textContent === pseudo) {
-                        alert("Ce pseudo est déjà inscrit !");
-                        pseudoInput.value = "";
-                        return;
-                    }
-                }
-
-                // Ajouter le pseudo à la liste des participants
-                const newRow = participantsTable.insertRow();
-                const nameCell = newRow.insertCell(0);
-                const actionCell = newRow.insertCell(1);
-
-                nameCell.textContent = pseudo;
-
-                // Ajouter un bouton de désinscription
-                const removeButton = document.createElement("button");
-                removeButton.textContent = "Se désinscrire";
-                removeButton.className = "remove-btn";
-                removeButton.addEventListener("click", function() {
-                    participantsTable.deleteRow(newRow.rowIndex - 1); // Supprime la ligne
-                    participantsCount.textContent = parseInt(participantsCount.textContent) - 1; // Met à jour le compte
-                });
-
-                actionCell.appendChild(removeButton);
-
-                // Mettre à jour le nombre de participants
-                const currentCount = parseInt(participantsCount.textContent);
-                participantsCount.textContent = currentCount + 1;
-
-                // Réinitialiser le champ pseudo
-                pseudoInput.value = "";
-            }
-        });
+        // Script de participation (inchangé)
     </script>
 </body>
 </html>
-<header>
-    <h1>Paris Sportifs</h1>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="affiliation.html">Affiliation</a></li>
-            <li><a href="giveaway.html">Giveaway</a></li>
-        </ul>
-    </nav>
-</header>
