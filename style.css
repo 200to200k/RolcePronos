@@ -139,3 +139,23 @@ button:hover {
         gap: 10px;
     }
 }
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul
+::contentReference[oaicite:0]{index=0}
+ 

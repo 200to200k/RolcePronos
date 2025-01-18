@@ -3,112 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
+    <title>Historique des Paris</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 1rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-
-        nav ul li a.active {
-            text-decoration: underline;
-        }
-
-        main {
-            padding: 2rem;
-        }
-
-        .history-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        #bankroll-chart {
-            margin: 1rem auto;
-            max-width: 100%;
-        }
-
-        form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        form label {
-            flex: 1 1 100%;
-        }
-
-        form input, form select, form button {
-            flex: 1 1 48%;
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 0.5rem;
-            text-align: center;
-        }
-
-        table th {
-            background-color: #f4f4f4;
-        }
-
-        table tbody tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
-
-        table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
 </head>
 <body>
     <header>
         <h1>Paris Sportifs</h1>
         <nav>
             <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="history.html" class="active">History</a></li>
+                <li><a href="home.html">Accueil</a></li>
+                <li><a href="history.html" class="active">Historique</a></li>
                 <li><a href="affiliation.html">Affiliation</a></li>
-                <li><a href="giveaway.html">Giveaway</a></li>
+                <li><a href="giveaway.html">Concours</a></li>
             </ul>
         </nav>
     </header>
@@ -118,7 +25,9 @@
             <h2>Historique des Paris</h2>
 
             <!-- Graphique -->
-            <canvas id="bankroll-chart"></canvas>
+            <div class="chart-container">
+                <canvas id="bankroll-chart"></canvas>
+            </div>
 
             <!-- Formulaire pour ajouter un pari -->
             <form id="bet-form">
