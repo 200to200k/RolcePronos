@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Sportifs</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Code Secret -->
     <div id="auth">
-        <h2>Entrer le code secret</h2>
-        <input type="password" id="codeInput" placeholder="Code secret">
-        <button onclick="checkCode()">Accéder</button>
-        <p id="error" class="hidden">Code incorrect, essayez à nouveau.</p>
+        <div class="auth-box">
+            <h2>Entrer le code secret</h2>
+            <input type="password" id="codeInput" placeholder="Code secret">
+            <button onclick="checkCode()">Accéder</button>
+            <p id="error" class="hidden">Code incorrect, essayez à nouveau.</p>
+        </div>
     </div>
 
     <!-- Contenu principal -->
@@ -29,22 +32,28 @@
             </nav>
         </header>
         <main>
-            <h2>Tableau de Suivi</h2>
-            <table>
-                <tr>
-                    <th>Start Bankroll</th>
-                    <th>Current Bankroll</th>
-                    <th>% Gagné</th>
-                    <th>Objectif</th>
-                </tr>
-                <tr>
-                    <td id="start-bankroll">200</td>
-                    <td id="current-bankroll">200</td>
-                    <td id="percentage">0%</td>
-                    <td>200,000</td>
-                </tr>
-            </table>
-            <button onclick="updateBankroll()">+10 à la bankroll</button>
+            <section class="tracker">
+                <h2>Tableau de Suivi</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Start Bankroll</th>
+                            <th>Current Bankroll</th>
+                            <th>% Gagné</th>
+                            <th>Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="start-bankroll">200</td>
+                            <td id="current-bankroll">200</td>
+                            <td id="percentage">0%</td>
+                            <td>200,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick="updateBankroll()">+10 à la bankroll</button>
+            </section>
         </main>
         <footer>
             <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>

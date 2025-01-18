@@ -1,31 +1,64 @@
-/* Général */
+/* Polices et Couleurs */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
     color: #333;
     text-align: center;
 }
 
-/* Code Secret */
-#auth {
-    margin: 50px auto;
-    max-width: 300px;
+h1, h2 {
+    color: #4CAF50;
 }
 
-#auth input {
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Code Secret */
+#auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.auth-box {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.auth-box input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-}
-
-.hidden {
-    display: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 #error {
     color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
 }
 
 /* En-tête */
@@ -33,54 +66,62 @@ header {
     background-color: #4CAF50;
     color: white;
     padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-    margin: 0;
-}
-
-nav ul {
+header nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-nav ul li {
+header nav ul li {
     display: inline;
-    margin: 0 10px;
 }
 
-nav ul li a {
+header nav ul li a {
     text-decoration: none;
     color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #d4ffd8;
 }
 
 /* Tableau */
-main table {
+.tracker table {
     margin: 20px auto;
     border-collapse: collapse;
-    width: 80%;
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-main table, main th, main td {
-    border: 1px solid #ddd;
-}
-
-main th, main td {
-    padding: 10px;
+.tracker th, .tracker td {
+    padding: 15px;
     text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
-main button {
-    padding: 10px 20px;
-    margin-top: 20px;
+.tracker th {
     background-color: #4CAF50;
     color: white;
-    border: none;
-    cursor: pointer;
 }
 
-main button:hover {
-    background-color: #45a049;
+.tracker td {
+    font-size: 1rem;
+}
+
+.tracker button {
+    margin-top: 20px;
 }
 
 /* Pied de page */
@@ -88,7 +129,17 @@ footer {
     background-color: #333;
     color: white;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tracker table {
+        width: 100%;
+    }
 }
