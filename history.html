@@ -295,3 +295,53 @@
 
             bets.push(newBet);
 
+            // Sauvegarder les paris dans le localStorage
+            localStorage.setItem('bets', JSON.stringify(bets));
+
+            // Mettre à jour le tableau et le graphique
+            displayBets();
+            updateBankroll();
+
+            // Réinitialiser le formulaire
+            betForm.reset();
+        });
+
+        // Mettre à jour le résultat d'un pari
+        function updateResult(index, result) {
+            const bet = bets[index];
+            bet.result = result;
+
+            if (result === 'win') {
+                currentBankroll += bet.stake * (bet.odds - 1); // Gagner
+            } else if (result === 'lose') {
+                currentBankroll -= bet.stake; // Perdre
+            }
+
+            // Sauvegarder les paris et la bankroll dans localStorage
+            localStorage.setItem('bets', JSON.stringify(bets));
+
+            // Mettre à jour le tableau et le graphique
+            displayBets();
+            updateBankroll();
+        }
+
+        // Mettre à jour la bankroll et le graphique
+        function updateBankroll() {
+            const currentDate = new Date().toLocaleDateString();
+            bankrollData.labels.push(currentDate);
+            bankrollData.datasets[0].data.push(currentBankroll);
+
+            if (bankrollData.labels.length > 10) { // Limiter l'affichage à 10 points
+                bankrollData.labels.shift();
+                bankrollData.datasets[0].data.shift();
+            }
+
+            bankrollChart.update();
+        }
+
+        // Afficher les paris au chargement de la page
+        displayBets();
+        updateBankroll();
+    </script>
+</body>
+</html>
