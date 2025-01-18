@@ -135,6 +135,18 @@
             background-color: #c82333;
         }
 
+        table td .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table td .delete-btn:hover {
+            background-color: #c82333;
+        }
+
         /* Graphique */
         .chart-container {
             margin: 30px 0;
@@ -251,7 +263,7 @@
         });
 
         let bets = JSON.parse(localStorage.getItem('bets')) || []; 
-        let currentBankroll = 1000;  // Bankroll initiale
+        let currentBankroll = 200;  // Bankroll initiale de 200 €
 
         // Fonction pour afficher les paris dans le tableau
         function displayBets() {
@@ -267,8 +279,9 @@
                     <td>${parseFloat(bet.odds).toFixed(2)}</td>
                     <td>${bet.result || 'En attente'}</td>
                     <td class="result-buttons">
-                        <button onclick="updateResult(${index}, 'win')">Gagné</button>
-                        <button onclick="updateResult(${index}, 'lose')">Perdu</button>
+                        ${bet.result ? '' : `<button onclick="updateResult(${index}, 'win')" ${bet.result ? 'disabled' : ''}>Gagné</button>
+                        <button onclick="updateResult(${index}, 'lose')" ${bet.result ? 'disabled' : ''}>Perdu</button>`}
+                        <button class="delete-btn" onclick="deleteBet(${index})">❌</button>
                     </td>
                 `;
             });
@@ -319,6 +332,15 @@
             localStorage.setItem('bets', JSON.stringify(bets));
 
             // Mettre à jour l'affichage et le graphique
+            displayBets();
+        }
+
+        // Supprimer un pari
+        function deleteBet(index) {
+            bets.splice(index, 1);
+            localStorage.setItem('bets', JSON.stringify(bets));
+
+            // Mettre à jour l'affichage
             displayBets();
         }
 
