@@ -69,3 +69,46 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveaway</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Giveaway</h1>
+    </header>
+
+    <main>
+        <div class="giveaway-container">
+            <h2 class="giveaway-title">GIVEAWAY</h2>
+            <form id="participation-form">
+                <label for="pseudo">Entrez votre pseudo :</label>
+                <input type="text" id="pseudo" name="pseudo" required>
+                <button type="submit">Participer</button>
+            </form>
+
+            <h3>Participants :</h3>
+            <table id="participants-table">
+                <thead>
+                    <tr>
+                        <th>Pseudo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les noms des participants seront affichés ici -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
