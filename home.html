@@ -5,11 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Paris Sportifs</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles pour les cartes de cryptomonnaies */
+        .crypto-prices {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .crypto-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+        }
+
+        .crypto-card h3 {
+            margin-bottom: 10px;
+            color: #343a40;
+        }
+
+        .crypto-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
     <!-- Menu principal -->
     <header>
-        <h1>Paris Sportifs</h1>
+        <h1>Paris Sportifs - Gambling - Crypto</h1>
         <nav>
             <ul>
                 <li><a href="home.html">Home</a></li>
@@ -46,6 +75,27 @@
             </table>
             <button onclick="updateBankroll()">+10 à la bankroll</button>
         </section>
+
+        <!-- Section des prix des cryptomonnaies -->
+        <section class="crypto-prices">
+            <div class="crypto-card">
+                <h3>Bitcoin (BTC)</h3>
+                <p id="btc-price">Chargement...</p>
+            </div>
+            <div class="crypto-card">
+                <h3>Ethereum (ETH)</h3>
+                <p id="eth-price">Chargement...</p>
+            </div>
+            <div class="crypto-card">
+                <h3>Solana (SOL)</h3>
+                <p id="sol-price">Chargement...</p>
+            </div>
+            <div class="crypto-card">
+                <h3>XRP (XRP)</h3>
+                <p id="xrp-price">Chargement...</p>
+            </div>
+        </section>
+
     </main>
 
     <!-- Pied de page -->
@@ -55,5 +105,32 @@
 
     <!-- Script externe -->
     <script src="script.js"></script>
+
+    <!-- Script pour les prix des cryptomonnaies -->
+    <script>
+        // Fonction pour obtenir les prix des cryptos en temps réel depuis CoinGecko
+        async function fetchCryptoPrices() {
+            const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur';
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                // Mettre à jour les prix des cryptomonnaies
+                document.getElementById('btc-price').textContent = `${data.bitcoin.eur} €`;
+                document.getElementById('eth-price').textContent = `${data.ethereum.eur} €`;
+                document.getElementById('sol-price').textContent = `${data.solana.eur} €`;
+                document.getElementById('xrp-price').textContent = `${data.ripple.eur} €`;
+            } catch (error) {
+                console.error('Erreur lors de la récupération des prix des cryptos:', error);
+            }
+        }
+
+        // Appeler la fonction pour obtenir les prix des cryptos
+        fetchCryptoPrices();
+
+        // Rafraîchir les prix toutes les 30 secondes
+        setInterval(fetchCryptoPrices, 30000);
+    </script>
 </body>
 </html>

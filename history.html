@@ -272,9 +272,66 @@
                     </td>
                 `;
             });
+
+            // Mettre à jour le graphique
+            updateChart();
         }
 
         // Ajouter un pari
         const betForm = document.getElementById('bet-form');
         betForm.addEventListener('submit', function(event) {
-            event.prevent
+            event.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const sport = document.getElementById('sport').value;
+            const bet = document.getElementById('bet').value;
+            const stake = parseFloat(document.getElementById('stake').value);
+            const odds = parseFloat(document.getElementById('odds').value);
+
+            // Ajouter le pari à l'historique
+            const newBet = {
+                date: date,
+                sport: sport,
+                bet: bet,
+                stake: stake,
+                odds: odds,
+                result: null  // Le pari est encore en attente
+            };
+            bets.push(newBet);
+            localStorage.setItem('bets', JSON.stringify(bets));
+
+            // Mettre à jour l'affichage
+            displayBets();
+        });
+
+        // Mettre à jour le résultat du pari
+        function updateResult(index, result) {
+            const bet = bets[index];
+            bet.result = result;
+
+            if (result === 'win') {
+                currentBankroll += bet.stake * bet.odds;  // Le gain est calculé comme mise * cote
+            } else if (result === 'lose') {
+                currentBankroll -= bet.stake;  // La mise est perdue
+            }
+
+            // Sauvegarder les données mises à jour
+            localStorage.setItem('bets', JSON.stringify(bets));
+
+            // Mettre à jour l'affichage et le graphique
+            displayBets();
+        }
+
+        // Mettre à jour le graphique
+        function updateChart() {
+            bankrollData.labels.push(new Date().toLocaleDateString()); // Ajouter la date au graphique
+            bankrollData.datasets[0].data.push(currentBankroll);
+
+            bankrollChart.update();
+        }
+
+        // Afficher les paris dès que la page est chargée
+        displayBets();
+    </script>
+</body>
+</html>
