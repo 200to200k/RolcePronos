@@ -136,3 +136,23 @@ function updateBankroll() {
 window.onload = function() {
     updateDate();
 };
+document.addEventListener('DOMContentLoaded', function() {
+    // Mettre à jour la date du jour
+    const dateCell = document.getElementById('current-date');
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    dateCell.textContent = today.toLocaleDateString('fr-FR', options);
+
+    // Mettre à jour le pourcentage de bankroll avec code couleur
+    const startBankroll = parseFloat(document.getElementById('start-bankroll').textContent);
+    const currentBankroll = parseFloat(document.getElementById('current-bankroll').textContent);
+    const percentageCell = document.getElementById('percentage');
+    const percentage = ((currentBankroll - startBankroll) / startBankroll) * 100;
+    percentageCell.textContent = percentage.toFixed(2) + '%';
+
+    if (percentage > 0) {
+        percentageCell.classList.add('positive');
+    } else if (percentage < 0) {
+        percentageCell.classList.add('negative');
+    }
+});

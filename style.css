@@ -1,9 +1,10 @@
+/* Styles globaux */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f4f4f9;
 }
 
 header {
@@ -12,400 +13,46 @@ header {
     padding: 20px 0;
 }
 
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #444;
+}
+
 main {
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
     flex-direction: column;
 }
 
-.access-code form {
-    margin-top: 20px;
-}
-
-.access-code input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 300px;
-    margin-right: 10px;
-}
-
-.access-code button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.access-code button:hover {
-    background-color: #218838;
-}
-
-#errorMessage {
-    margin-top: 10px;
-}
-/* Titre dynamique pour Giveaway */
-.giveaway-title {
-    font-size: 36px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #007bff; /* Bleu dynamique */
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: "Arial", sans-serif;
-    transform: skewX(-5deg); /* Inclinaison vers la droite */
-}
-
-/* Tableau pour la page Giveaway */
-.giveaway-table {
-    width: 70%;
-    margin: 0 auto; /* Centre le tableau */
-    border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.giveaway-table th, .giveaway-table td {
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 15px;
-}
-
-.giveaway-table th {
-    background-color: #007bff;
-    color: white;
-    font-size: 18px;
-}
-
-.giveaway-table td {
-    font-size: 16px;
-    background-color: #f9f9f9;
-}
-/* Bannière de prévention en bas de page */
-.banner {
-    background-color: #f44336; /* Couleur rouge */
-    color: white; /* Texte en blanc */
-    text-align: center; /* Centre le texte */
-    font-size: 18px; /* Taille du texte */
-    padding: 15px 0; /* Espacement vertical */
-    position: fixed; /* Fixe la bannière en bas */
-    bottom: 0; /* Positionne la bannière tout en bas de l'écran */
-    left: 0;
-    width: 100%; /* Prend toute la largeur de l'écran */
-    z-index: 9999; /* Garantit que la bannière est au-dessus des autres éléments */
-    font-family: Arial, sans-serif; /* Police simple et lisible */
-}
-
-/* Pour éviter que le contenu principal soit masqué par la bannière */
-main {
-    margin-bottom: 60px; /* Crée un espace en bas pour que le contenu ne soit pas masqué */
-}
-
-/* Style pour les liens du menu (ajouté pour ton menu) */
-nav ul {
-    display: flex; /* Affiche les liens horizontalement */
-    justify-content: center; /* Centre les liens */
-    gap: 20px; /* Espace entre les liens */
-    list-style: none; /* Enlève les puces */
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li a {
-    text-decoration: none; /* Supprime le soulignement */
-    color: white; /* Texte en blanc */
-    font-size: 18px; /* Taille de texte */
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: transparent; /* Fond transparent */
-    transition: background-color 0.3s; /* Transition pour un effet de survol */
-}
-
-nav ul li a:hover {
-    background-color: #444; /* Fond gris foncé au survol */
-}
-/* Général */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    text-align: center;
-    background-color: #444;
-    color: white;
-    padding: 20px;
-}
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-.giveaway-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    margin: 0 auto;
-}
-
-.giveaway-title {
-    font-size: 36px;
-    text-transform: uppercase;
-    font-style: italic;
-    color: #333;
-    margin-bottom: 30px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-form input {
-    padding: 10px;
-    margin: 10px 0;
-    width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-form button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-table {
-    width: 80%;
-    margin-top: 30px;
-    border-collapse: collapse;
-    margin: 0 auto;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #444;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-/* Général */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    text-align: center;
-    background-color: #444;
-    color: white;
-    padding: 20px;
-}
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-.history-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    margin: 0 auto;
-}
-
-.history-container h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-form input, form select, form button {
-    padding: 10px;
-    margin: 10px 0;
-    width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-form button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
-/* Style du tableau */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-tr.win {
-    background-color: #d4edda; /* Vert clair pour les gains */
-}
-
-tr.lose {
-    background-color: #f8d7da; /* Rouge clair pour les pertes */
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #444;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-/* Général */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    text-align: center;
-    background-color: #444;
-    color: white;
-    padding: 20px;
-}
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
-.affiliation-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 70%;
-    margin: 0 auto;
-}
-
-.affiliation-container h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.affiliation-container p {
-    font-size: 18px;
-    margin-bottom: 30px;
-}
-
-/* Style du lien pour supprimer le soulignement */
-#winamax-link {
-    text-decoration: none; /* Enlève le soulignement */
-}
-
-/* Style du logo */
-#winamax-logo {
-    width: 200px; /* Taille du logo */
-    margin: 0 auto;
-    display: block;
-}
-
-/* Style du footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #444;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-header {
     background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
+/* Styles spécifiques au tableau de suivi */
 .tracker {
     width: 80%;
     margin: 20px auto;
@@ -417,6 +64,7 @@ nav ul li a {
 h2 {
     text-align: center;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 table {
@@ -428,6 +76,7 @@ table {
 th, td {
     padding: 15px;
     text-align: center;
+    border: 1px solid #ddd;
 }
 
 th {
@@ -441,14 +90,20 @@ td {
     background-color: #f9f9f9;
 }
 
-#percentage.positive {
+/* Code couleur pour le pourcentage de bankroll */
+.percentage {
+    font-weight: bold;
+}
+
+.percentage.positive {
     color: green;
 }
 
-#percentage.negative {
+.percentage.negative {
     color: red;
 }
 
+/* Bouton */
 button {
     display: block;
     width: 200px;
@@ -459,8 +114,28 @@ button {
     border: none;
     cursor: pointer;
     text-transform: uppercase;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
     background-color: #555;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .tracker {
+        width: 90%;
+        padding: 10px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
