@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Paris Sportifs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Paris Sportifs</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#affiliation">Affiliation</a></li>
+                <li><a href="#giveaway">Giveaway</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="tracker">
+            <h2>Tableau de Suivi</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Start Bankroll</th>
+                        <th>Current Bankroll</th>
+                        <th>% Gagné</th>
+                        <th>Objectif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="start-bankroll">200</td>
+                        <td id="current-bankroll">200</td>
+                        <td id="percentage">0%</td>
+                        <td>200,000</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="updateBankroll()">+10 à la bankroll</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+

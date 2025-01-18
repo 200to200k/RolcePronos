@@ -1,28 +1,17 @@
-// Vérification du code
-const correctCode = "200to200k";
+// Code secret attendu
+const SECRET_CODE = "200to200k";
 
+// Fonction pour vérifier le code
 function checkCode() {
-    const inputCode = document.getElementById("codeInput").value;
-    const authDiv = document.getElementById("auth");
-    const mainContent = document.getElementById("main-content");
-    const errorMsg = document.getElementById("error");
+    const userInput = document.getElementById("codeInput").value; // Récupère la valeur entrée par l'utilisateur
+    const errorElement = document.getElementById("error"); // Message d'erreur
 
-    if (inputCode === correctCode) {
-        authDiv.classList.add("hidden");
-        mainContent.classList.remove("hidden");
+    // Vérifie si le code est correct
+    if (userInput === SECRET_CODE) {
+        // Redirige vers la page principale
+        window.location.href = "home.html";
     } else {
-        errorMsg.classList.remove("hidden");
+        // Affiche un message d'erreur si le code est incorrect
+        errorElement.classList.remove("hidden");
     }
-}
-
-// Mise à jour de la bankroll
-let startBankroll = 200;
-let currentBankroll = 200;
-
-function updateBankroll() {
-    currentBankroll += 10;
-    const percentage = ((currentBankroll - startBankroll) / startBankroll * 100).toFixed(2);
-
-    document.getElementById("current-bankroll").textContent = currentBankroll;
-    document.getElementById("percentage").textContent = `${percentage}%`;
 }
