@@ -46,6 +46,8 @@
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -56,7 +58,7 @@
         }
 
         form input, form button {
-            width: 100%;
+            width: 18%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ced4da;
@@ -92,7 +94,7 @@
         }
 
         table th {
-            background-color: #007bff;
+            background-color: #343a40;
             color: white;
             font-weight: bold;
         }
@@ -211,11 +213,49 @@
     </footer>
 
     <script>
-        const betForm = document.getElementById('bet-form');
-        const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
-        let bets = JSON.parse(localStorage.getItem('bets')) || []; 
+        // Initialisation du graphique
+        const ctx = document.getElementById('bankroll-chart').getContext('2d');
+        const bankrollData = {
+            labels: [],
+            datasets: [{
+                label: 'Évolution de la bankroll (€)',
+                data: [],
+                borderColor: '#f3a712',
+                backgroundColor: 'rgba(243, 167, 18, 0.2)',
+                borderWidth: 2,
+                fill: true
+            }]
+        };
 
+        const bankrollChart = new Chart(ctx, {
+            type: 'line',
+            data: bankrollData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Montant (€)'
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+
+        let bets = JSON.parse(localStorage.getItem('bets')) || []; 
+        let currentBankroll = 1000;  // Bankroll initiale
+
+        // Afficher les paris dans le tableau
         function displayBets() {
+            const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
             historyTable.innerHTML = '';
             bets.forEach((bet, index) => {
                 const newRow = historyTable.insertRow();
@@ -234,29 +274,7 @@
             });
         }
 
+        // Ajouter un pari
+        const betForm = document.getElementById('bet-form');
         betForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const newBet = {
-                date: document.getElementById('date').value,
-                sport: document.getElementById('sport').value,
-                bet: document.getElementById('bet').value,
-                stake: parseFloat(document.getElementById('stake').value),
-                odds: parseFloat(document.getElementById('odds').value),
-                result: null 
-            };
-            bets.push(newBet); 
-            localStorage.setItem('bets', JSON.stringify(bets)); 
-            displayBets(); 
-            betForm.reset();
-        });
-
-        function updateResult(index, result) {
-            bets[index].result = result === 'win' ? 'Gagné' : 'Perdu';
-            localStorage.setItem('bets', JSON.stringify(bets)); 
-            displayBets(); 
-        }
-
-        displayBets();
-    </script>
-</body>
-</html>
+            event.prevent
