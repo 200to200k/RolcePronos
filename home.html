@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Paris Sportifs</title>
+    <title>Accueil - Paris Sportifs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,16 +11,16 @@
         <h1>Paris Sportifs</h1>
         <nav>
             <ul>
-                <li><a href="home.html" class="active">Home</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="affiliation.html">Affiliation</a></li>
-                <li><a href="giveaway.html">Giveaway</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#affiliation">Affiliation</a></li>
+                <li><a href="#giveaway">Giveaway</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section class="tracker">
-            <h2>Tableau de suivi de la bankroll</h2>
+            <h2>Tableau de Suivi</h2>
             <table>
                 <thead>
                     <tr>
@@ -45,55 +45,7 @@
     <footer>
         <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
     </footer>
-    <script>
-        // Script pour mettre à jour la bankroll
-        let startBankroll = 200;
-        let currentBankroll = 200;
-
-        function updateBankroll() {
-            currentBankroll += 10;
-            const percentage = ((currentBankroll - startBankroll) / startBankroll) * 100;
-
-            // Mise à jour des valeurs dans le tableau
-            document.getElementById("current-bankroll").textContent = currentBankroll;
-            document.getElementById("percentage").textContent = percentage.toFixed(2) + "%";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Le reste de la page (header, main, etc.) -->
-    <header>
-        <h1>Bienvenue sur le site des paris sportifs</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="affiliation.html">Affiliation</a></li>
-                <li><a href="giveaway.html">Giveaway</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Tableau des informations</h2>
-        <!-- Ajoute ici ton contenu principal, par exemple un tableau ou des informations -->
-    </main>
 
-    <!-- Bannière de prévention en bas de page -->
-    <div class="banner">
-        Attention : Jouer comporte des risques. Jouez de manière responsable.
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
-    </footer>
-</body>
-</html>
