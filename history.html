@@ -39,48 +39,46 @@
             color: #343a40;
         }
 
-        /* Formulaire */
+        /* Formulaire sur une seule ligne */
         form {
             background-color: #fff;
             border: 1px solid #ced4da;
             border-radius: 8px;
-            padding: 20px;
+            padding: 10px;
             margin-bottom: 30px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;  /* Espace entre chaque champ */
+            justify-content: space-between;  /* Espacer les champs */
+            align-items: center;
+            flex-wrap: wrap;  /* Permet aux champs de se réorganiser sur une nouvelle ligne si l'écran est trop petit */
         }
 
         form label {
-            display: block;
             font-weight: bold;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 5px;
+            margin-right: 5px;
+            white-space: nowrap;
         }
 
         form input {
-            width: 48%;  /* Largeur à 48% pour que deux champs tiennent sur une ligne */
             padding: 8px;
-            margin-bottom: 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             font-size: 1rem;
+            width: 130px;
             box-sizing: border-box;
         }
 
         form button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            padding: 8px 20px;
             font-size: 1rem;
             background-color: #28a745;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            border: 1px solid #28a745;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
         }
 
@@ -287,7 +285,7 @@
                     <td class="result-buttons">
                         ${bet.result ? '' : `<button onclick="updateResult(${index}, 'win')" ${bet.result ? 'disabled' : ''}>Gagné</button>
                         <button onclick="updateResult(${index}, 'lose')" ${bet.result ? 'disabled' : ''}>Perdu</button>`}
-                        <button class="delete-btn" onclick="deleteBet(${index})">❌</button>
+                        <button onclick="deleteBet(${index})">❌</button>
                     </td>
                 `;
             });
