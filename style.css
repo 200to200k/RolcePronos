@@ -87,3 +87,46 @@ main {
     font-size: 16px;
     background-color: #f9f9f9;
 }
+/* Bannière de prévention en bas de page */
+.banner {
+    background-color: #f44336; /* Couleur rouge */
+    color: white; /* Texte en blanc */
+    text-align: center; /* Centre le texte */
+    font-size: 18px; /* Taille du texte */
+    padding: 15px 0; /* Espacement vertical */
+    position: fixed; /* Fixe la bannière en bas */
+    bottom: 0; /* Positionne la bannière tout en bas de l'écran */
+    left: 0;
+    width: 100%; /* Prend toute la largeur de l'écran */
+    z-index: 9999; /* Garantit que la bannière est au-dessus des autres éléments */
+    font-family: Arial, sans-serif; /* Police simple et lisible */
+}
+
+/* Pour éviter que le contenu principal soit masqué par la bannière */
+main {
+    margin-bottom: 60px; /* Crée un espace en bas pour que le contenu ne soit pas masqué */
+}
+
+/* Style pour les liens du menu (ajouté pour ton menu) */
+nav ul {
+    display: flex; /* Affiche les liens horizontalement */
+    justify-content: center; /* Centre les liens */
+    gap: 20px; /* Espace entre les liens */
+    list-style: none; /* Enlève les puces */
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none; /* Supprime le soulignement */
+    color: white; /* Texte en blanc */
+    font-size: 18px; /* Taille de texte */
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: transparent; /* Fond transparent */
+    transition: background-color 0.3s; /* Transition pour un effet de survol */
+}
+
+nav ul li a:hover {
+    background-color: #444; /* Fond gris foncé au survol */
+}
