@@ -46,29 +46,37 @@
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-gap: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;  /* Espace entre chaque champ */
         }
 
         form label {
             display: block;
             font-weight: bold;
-            text-align: right;
-            padding-right: 10px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 5px;
         }
 
-        form input, form button {
-            width: 100%;
+        form input {
+            width: 48%;  /* Largeur à 48% pour que deux champs tiennent sur une ligne */
             padding: 8px;
             margin-bottom: 15px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             font-size: 1rem;
+            box-sizing: border-box;
         }
 
         form button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
             background-color: #28a745;
             color: white;
             font-weight: bold;
@@ -178,11 +186,6 @@
         <div>
             <h2>Historique des Paris</h2>
 
-            <!-- Graphique -->
-            <div class="chart-container">
-                <canvas id="bankroll-chart"></canvas>
-            </div>
-
             <!-- Formulaire pour ajouter un pari -->
             <form id="bet-form">
                 <label for="date">Date :</label>
@@ -288,9 +291,6 @@
                     </td>
                 `;
             });
-
-            // Mettre à jour le graphique
-            updateChart();
         }
 
         // Ajouter un pari
@@ -345,14 +345,6 @@
 
             // Mettre à jour l'affichage
             displayBets();
-        }
-
-        // Mettre à jour le graphique
-        function updateChart() {
-            bankrollData.labels.push(new Date().toLocaleDateString()); // Ajouter la date au graphique
-            bankrollData.datasets[0].data.push(currentBankroll);
-
-            bankrollChart.update();
         }
 
         // Afficher les paris dès que la page est chargée
