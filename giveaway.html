@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giveaway - Paris Sportifs</title>
+    <title>Giveaway</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,11 +19,53 @@
         </nav>
     </header>
     <main>
-        <h2>Concours Giveaway</h2>
-        <p>Cette page contiendra des informations sur les concours et promotions.</p>
+        <h2 class="giveaway-title">GIVEAWAY</h2>
+        <table class="giveaway-table">
+            <thead>
+                <tr>
+                    <th>Montant du Giveaway</th>
+                    <th>Date du Giveaway</th>
+                    <th>Compte à Rebours</th>
+                    <th>Nombre de Participants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>500 €</td>
+                    <td>18 janvier 2025</td>
+                    <td id="countdown">Calcul...</td>
+                    <td>154</td>
+                </tr>
+            </tbody>
+        </table>
     </main>
     <footer>
         <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
     </footer>
+    <script>
+        // Compte à rebours dynamique
+        const countdownElement = document.getElementById("countdown");
+        const giveawayDate = new Date("2025-01-18T23:59:59"); // Date du giveaway
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = giveawayDate - now;
+
+            if (timeLeft <= 0) {
+                countdownElement.textContent = "Terminé";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownElement.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000); // Met à jour toutes les secondes
+    </script>
 </body>
 </html>
