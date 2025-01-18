@@ -229,50 +229,13 @@
     </footer>
 
     <script>
-        // Initialisation du graphique
-        const ctx = document.getElementById('bankroll-chart').getContext('2d');
-        const bankrollData = {
-            labels: [],
-            datasets: [{
-                label: 'Évolution de la bankroll (€)',
-                data: [],
-                borderColor: '#f3a712',
-                backgroundColor: 'rgba(243, 167, 18, 0.2)',
-                borderWidth: 2,
-                fill: true
-            }]
-        };
-
-        const bankrollChart = new Chart(ctx, {
-            type: 'line',
-            data: bankrollData,
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Montant (€)'
-                        },
-                        min: 0
-                    }
-                }
-            }
-        });
-
         let bets = JSON.parse(localStorage.getItem('bets')) || []; 
         let currentBankroll = 200;  // Bankroll initiale de 200 €
 
         // Fonction pour afficher les paris dans le tableau
         function displayBets() {
             const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
-            historyTable.innerHTML = '';
+            historyTable.innerHTML = '';  // Réinitialiser le tableau
             bets.forEach((bet, index) => {
                 const newRow = historyTable.insertRow();
                 newRow.innerHTML = `
@@ -282,9 +245,9 @@
                     <td>${parseFloat(bet.stake).toFixed(2)}</td>
                     <td>${parseFloat(bet.odds).toFixed(2)}</td>
                     <td>${bet.result || 'En attente'}</td>
-                    <td class="result-buttons">
-                        ${bet.result ? '' : `<button onclick="updateResult(${index}, 'win')" ${bet.result ? 'disabled' : ''}>Gagné</button>
-                        <button onclick="updateResult(${index}, 'lose')" ${bet.result ? 'disabled' : ''}>Perdu</button>`}
+                    <td>
+                        ${bet.result ? '' : `<button onclick="updateResult(${index}, 'win')">Gagné</button>
+                        <button onclick="updateResult(${index}, 'lose')">Perdu</button>`}
                         <button onclick="deleteBet(${index})">❌</button>
                     </td>
                 `;
@@ -332,7 +295,7 @@
             // Sauvegarder les données mises à jour
             localStorage.setItem('bets', JSON.stringify(bets));
 
-            // Mettre à jour l'affichage et le graphique
+            // Mettre à jour l'affichage
             displayBets();
         }
 
