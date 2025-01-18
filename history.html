@@ -16,7 +16,7 @@
         }
 
         header {
-            background-color: #007bff;
+            background-color: #343a40; /* Changer la couleur de fond en noir */
             color: #fff;
             padding: 10px 20px;
             text-align: center;
@@ -47,7 +47,7 @@
             padding: 20px;
             margin-bottom: 30px;
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap; /* Permet de mieux gérer l'affichage en réduisant la taille des champs */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -58,8 +58,8 @@
         }
 
         form input, form button {
-            width: 18%;
-            padding: 10px;
+            width: 15%; /* Réduire la taille des champs de formulaire */
+            padding: 8px; /* Réduire un peu l'espace de padding */
             margin-bottom: 15px;
             border: 1px solid #ced4da;
             border-radius: 4px;
@@ -277,71 +277,4 @@
         // Ajouter un pari
         const betForm = document.getElementById('bet-form');
         betForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const date = document.getElementById('date').value;
-            const sport = document.getElementById('sport').value;
-            const bet = document.getElementById('bet').value;
-            const stake = parseFloat(document.getElementById('stake').value);
-            const odds = parseFloat(document.getElementById('odds').value);
-
-            const newBet = {
-                date: date,
-                sport: sport,
-                bet: bet,
-                stake: stake,
-                odds: odds,
-                result: null // Résultat initialisé à "En attente"
-            };
-
-            bets.push(newBet);
-
-            // Sauvegarder les paris dans le localStorage
-            localStorage.setItem('bets', JSON.stringify(bets));
-
-            // Mettre à jour le tableau et le graphique
-            displayBets();
-            updateBankroll();
-
-            // Réinitialiser le formulaire
-            betForm.reset();
-        });
-
-        // Mettre à jour le résultat d'un pari
-        function updateResult(index, result) {
-            const bet = bets[index];
-            bet.result = result;
-
-            if (result === 'win') {
-                currentBankroll += bet.stake * (bet.odds - 1); // Gagner
-            } else if (result === 'lose') {
-                currentBankroll -= bet.stake; // Perdre
-            }
-
-            // Sauvegarder les paris et la bankroll dans localStorage
-            localStorage.setItem('bets', JSON.stringify(bets));
-
-            // Mettre à jour le tableau et le graphique
-            displayBets();
-            updateBankroll();
-        }
-
-        // Mettre à jour la bankroll et le graphique
-        function updateBankroll() {
-            const currentDate = new Date().toLocaleDateString();
-            bankrollData.labels.push(currentDate);
-            bankrollData.datasets[0].data.push(currentBankroll);
-
-            if (bankrollData.labels.length > 10) { // Limiter l'affichage à 10 points
-                bankrollData.labels.shift();
-                bankrollData.datasets[0].data.shift();
-            }
-
-            bankrollChart.update();
-        }
-
-        // Afficher les paris au chargement de la page
-        displayBets();
-        updateBankroll();
-    </script>
-</body>
-</html>
+            event.prevent
