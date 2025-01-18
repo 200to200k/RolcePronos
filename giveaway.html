@@ -55,6 +55,7 @@
                 <thead>
                     <tr>
                         <th>Pseudo</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,10 +106,33 @@
             const pseudo = pseudoInput.value.trim();
 
             if (pseudo) {
+                // Vérifie si le pseudo existe déjà
+                const existingRows = participantsTable.getElementsByTagName('tr');
+                for (let row of existingRows) {
+                    if (row.firstElementChild.textContent === pseudo) {
+                        alert("Ce pseudo est déjà inscrit !");
+                        pseudoInput.value = "";
+                        return;
+                    }
+                }
+
                 // Ajouter le pseudo à la liste des participants
                 const newRow = participantsTable.insertRow();
-                const newCell = newRow.insertCell(0);
-                newCell.textContent = pseudo;
+                const nameCell = newRow.insertCell(0);
+                const actionCell = newRow.insertCell(1);
+
+                nameCell.textContent = pseudo;
+
+                // Ajouter un bouton de désinscription
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Se désinscrire";
+                removeButton.className = "remove-btn";
+                removeButton.addEventListener("click", function() {
+                    participantsTable.deleteRow(newRow.rowIndex - 1); // Supprime la ligne
+                    participantsCount.textContent = parseInt(participantsCount.textContent) - 1; // Met à jour le compte
+                });
+
+                actionCell.appendChild(removeButton);
 
                 // Mettre à jour le nombre de participants
                 const currentCount = parseInt(participantsCount.textContent);
