@@ -4,33 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historique des Paris</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .result-buttons button {
             margin-right: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f3f3f3;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Paris Sportifs</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Accueil</a></li>
-                <li><a href="history.html" class="active">Historique</a></li>
-                <li><a href="affiliation.html">Affiliation</a></li>
-                <li><a href="giveaway.html">Concours</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <div class="history-container">
+        <div>
             <h2>Historique des Paris</h2>
 
             <!-- Graphique -->
-            <div class="chart-container">
+            <div>
                 <canvas id="bankroll-chart"></canvas>
             </div>
 
@@ -62,9 +67,7 @@
                         <th>Paris</th>
                         <th>Sport</th>
                         <th>Mise (€)</th>
-                        <th>Mise (% bankroll)</th>
                         <th>Cote</th>
-                        <th>Gain (€)</th>
                         <th>Résultat</th>
                         <th>Actions</th>
                     </tr>
@@ -81,109 +84,63 @@
     </footer>
 
     <script>
-        // Configuration initiale du graphique
-        const ctx = document.getElementById('bankroll-chart').getContext('2d');
-        const bankrollData = {
-            labels: [], // Les dates seront ajoutées dynamiquement
-            datasets: [{
-                label: 'Évolution de la bankroll (€)',
-                data: [], // Les valeurs de la bankroll seront ajoutées dynamiquement
-                borderColor: '#f3a712',
-                backgroundColor: 'rgba(243, 167, 18, 0.2)',
-                borderWidth: 2,
-                fill: true
-            }]
-        };
-
-        const bankrollChart = new Chart(ctx, {
-            type: 'line',
-            data: bankrollData,
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Montant (€)'
-                        },
-                        min: 0 // La bankroll ne devrait pas être négative
-                    }
-                }
-            }
-        });
-
-        // Gestion de l'ajout des paris et mise à jour du graphique
+        // Gestion des paris avec localStorage
         const betForm = document.getElementById('bet-form');
         const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
+        let bets = JSON.parse(localStorage.getItem('bets')) || []; // Charger les paris stockés
 
         // Initialisation de la bankroll
-        let currentBankroll = 1000; // Vous pouvez définir la bankroll initiale ici
+        let currentBankroll = 1000;
 
+        // Fonction pour afficher les paris dans le tableau
+        function displayBets() {
+            historyTable.innerHTML = ''; // Réinitialiser le tableau
+            bets.forEach((bet, index) => {
+                const newRow = historyTable.insertRow();
+                newRow.innerHTML = `
+                    <td>${bet.date}</td>
+                    <td>${bet.bet}</td>
+                    <td>${bet.sport}</td>
+                    <td>${parseFloat(bet.stake).toFixed(2)}</td>
+                    <td>${parseFloat(bet.odds).toFixed(2)}</td>
+                    <td>${bet.result || 'En attente'}</td>
+                    <td class="result-buttons">
+                        <button onclick="updateResult(${index}, 'win')">Gagné</button>
+                        <button onclick="updateResult(${index}, 'lose')">Perdu</button>
+                    </td>
+                `;
+            });
+        }
+
+        // Ajouter un pari
         betForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
             // Récupérer les valeurs du formulaire
-            const date = document.getElementById('date').value;
-            const sport = document.getElementById('sport').value;
-            const bet = document.getElementById('bet').value;
-            const stake = parseFloat(document.getElementById('stake').value);
-            const odds = parseFloat(document.getElementById('odds').value);
+            const newBet = {
+                date: document.getElementById('date').value,
+                sport: document.getElementById('sport').value,
+                bet: document.getElementById('bet').value,
+                stake: parseFloat(document.getElementById('stake').value),
+                odds: parseFloat(document.getElementById('odds').value),
+                result: null // Par défaut, le résultat est "En attente"
+            };
 
-            // Calculer la mise en pourcentage de la bankroll
-            const stakePercentage = ((stake / currentBankroll) * 100).toFixed(2);
-
-            // Ajouter une nouvelle ligne au tableau
-            const newRow = historyTable.insertRow();
-            newRow.innerHTML = `
-                <td>${date}</td>
-                <td>${bet}</td>
-                <td>${sport}</td>
-                <td>${stake.toFixed(2)}</td>
-                <td>${stakePercentage}%</td>
-                <td>${odds}</td>
-                <td>0.00</td>
-                <td>En attente</td>
-                <td class="result-buttons">
-                    <button onclick="updateResult(this, 'win')">Gagné</button>
-                    <button onclick="updateResult(this, 'lose')">Perdu</button>
-                </td>
-            `;
-
-            // Réinitialiser le formulaire
-            betForm.reset();
+            bets.push(newBet); // Ajouter le pari à la liste
+            localStorage.setItem('bets', JSON.stringify(bets)); // Sauvegarder dans localStorage
+            displayBets(); // Mettre à jour l'affichage
+            betForm.reset(); // Réinitialiser le formulaire
         });
 
-        function updateResult(button, result) {
-            const row = button.parentElement.parentElement;
-            const stake = parseFloat(row.cells[3].innerText);
-            const odds = parseFloat(row.cells[5].innerText);
-            let gain;
+        // Mettre à jour le résultat d'un pari
+        function updateResult(index, result) {
+            bets[index].result = result === 'win' ? 'Gagné' : 'Perdu';
+            localStorage.setItem('bets', JSON.stringify(bets)); // Sauvegarder dans localStorage
+            displayBets(); // Mettre à jour l'affichage
+        }
 
-            if (result === 'win') {
-                gain = (stake * (odds - 1)).toFixed(2);
-                currentBankroll += parseFloat(gain);
-                row.cells[7].innerText = 'Gagné';
-            } else {
-                gain = (-stake).toFixed(2);
-                currentBankroll -= stake;
-                row.cells[7].innerText = 'Perdu';
-            }
-
-            row.cells[6].innerText = gain;
-
-            // Mettre à jour le graphique
-            const date = row.cells[0].innerText;
-            bankrollData.labels.push(date);
-            bankrollData.datasets[0].data.push(currentBankroll.toFixed(2));
-            bankrollChart.update();
-
-            // Désactiver les boutons après mise à jour
-            const
-::contentReference[oaicite:0]{index=0}
- 
+        // Afficher les paris au chargement de la page
+        displayBets();
+    </script>
+</body>
+</html>
