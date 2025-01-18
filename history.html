@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>Historique des Paris</h1>
+        <h1>Paris Sportifs</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="history.html" class="active">History</a></li>
+                <li><a href="affiliation.html">Affiliation</a></li>
+                <li><a href="giveaway.html">Giveaway</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <div class="history-container">
             <h2>Historique des Paris</h2>
+
+            <!-- Graphique -->
+            <canvas id="bankroll-chart" width="800" height="400"></canvas>
 
             <!-- Formulaire pour ajouter un pari -->
             <form id="bet-form">
@@ -69,17 +81,85 @@
         <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Configuration initiale du graphique
+        const ctx = document.getElementById('bankroll-chart').getContext('2d');
+        const bankrollData = {
+            labels: [], // Les dates seront ajoutées dynamiquement
+            datasets: [{
+                label: 'Évolution de la bankroll (€)',
+                data: [], // Les valeurs de la bankroll seront ajoutées dynamiquement
+                borderColor: '#f3a712',
+                backgroundColor: 'rgba(243, 167, 18, 0.2)',
+                borderWidth: 2,
+                fill: true
+            }]
+        };
+
+        const bankrollChart = new Chart(ctx, {
+            type: 'line',
+            data: bankrollData,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Montant (€)'
+                        },
+                        min: -100
+                    }
+                }
+            }
+        });
+
+        // Gestion de l'ajout des paris et mise à jour du graphique
+        const betForm = document.getElementById('bet-form');
+        const historyTable = document.getElementById('history-table').getElementsByTagName('tbody')[0];
+
+        betForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Récupérer les valeurs du formulaire
+            const date = document.getElementById('date').value;
+            const sport = document.getElementById('sport').value;
+            const bet = document.getElementById('bet').value;
+            const stake = parseFloat(document.getElementById('stake').value);
+            const bankroll = parseFloat(document.getElementById('bankroll').value);
+            const odds = parseFloat(document.getElementById('odds').value);
+            const result = document.getElementById('result').value;
+
+            // Calculer le gain ou la perte
+            const gain = result === 'win' ? (stake * (odds - 1)).toFixed(2) : (-stake).toFixed(2);
+            const newBankroll = (bankroll + parseFloat(gain)).toFixed(2);
+
+            // Ajouter une nouvelle ligne au tableau
+            const newRow = historyTable.insertRow();
+            newRow.innerHTML = `
+                <td>${date}</td>
+                <td>${bet}</td>
+                <td>${sport}</td>
+                <td>${stake.toFixed(2)}</td>
+                <td>${((stake / bankroll) * 100).toFixed(2)}%</td>
+                <td>${odds}</td>
+                <td>${gain}</td>
+                <td>${result === 'win' ? 'Gagné' : 'Perdu'}</td>
+            `;
+
+            // Mettre à jour le graphique
+            bankrollData.labels.push(date);
+            bankrollData.datasets[0].data.push(newBankroll);
+            bankrollChart.update();
+
+            // Réinitialiser le formulaire
+            betForm.reset();
+        });
+    </script>
 </body>
 </html>
-<header>
-    <h1>Paris Sportifs</h1>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="affiliation.html">Affiliation</a></li>
-            <li><a href="giveaway.html">Giveaway</a></li>
-        </ul>
-    </nav>
-</header>
