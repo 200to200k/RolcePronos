@@ -31,16 +31,41 @@ const bankrollChart = new Chart(ctx, {
     }
 });
 
-// Mise à jour du graphique de la bankroll
-function updateBankrollChart() {
-    bankrollChart.update(); // Actualisation du graphique après chaque mise à jour
-}
+// Formulaire pour ajouter un pari
+document.getElementById('bet-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const date = document.getElementById('date').value;
+    const sport = document.getElementById('sport').value;
+    const bet = document.getElementById('bet').value;
+    const stake = parseFloat(document.getElementById('stake').value);
+    const odds = parseFloat(document.getElementById('odds').value);
+    const result = "Non défini";
+
+    // Vérification des champs
+    if (!date || !sport || !bet || !stake || !odds) {
+        document.getElementById('form-feedback').innerText = 'Veuillez remplir tous les champs.';
+        document.getElementById('form-feedback').style.color = 'red';
+        return;
+    }
+
+    // Ajout du pari au tableau local
+    bets.push({ date, sport, bet, stake, odds, result });
+    localStorage.setItem('bets', JSON.stringify(bets));
+
+    // Affichage du message de succès
+    document.getElementById('form-feedback').innerText = 'Pari ajouté avec succès !';
+    document.getElementById('form-feedback').style.color = 'green';
+
+    // Mise à jour du tableau des paris
+    updateBetHistory();
+});
 
 // Fonction pour afficher l'historique des paris
 function updateBetHistory() {
     const tableBody = document.getElementById('history-table').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = '';
-    bets.forEach((bet, index) => {
+    bets.forEach(bet => {
         const row = tableBody.insertRow();
         row.insertCell(0).innerText = bet.date;
         row.insertCell(1).innerText = bet.bet;
@@ -49,12 +74,12 @@ function updateBetHistory() {
         row.insertCell(4).innerText = bet.odds.toFixed(2);
         row.insertCell(5).innerText = bet.result;
 
-        // Ajouter les boutons d'action
+        // Ajouter les boutons d'action pour définir le résultat
         const actionsCell = row.insertCell(6);
         if (bet.result === "Non défini") {
             actionsCell.innerHTML = `
-                <button class="win-btn" onclick="setResult(${index}, 'win')">Gagné</button>
-                <button class="lose-btn" onclick="setResult(${index}, 'lose')">Perdu</button>
+                <button class="win-btn" onclick="setResult(${bets.indexOf(bet)}, 'win')">Gagné</button>
+                <button class="lose-btn" onclick="setResult(${bets.indexOf(bet)}, 'lose')">Perdu</button>
             `;
         }
     });
@@ -81,41 +106,19 @@ function setResult(index, result) {
     localStorage.setItem('bets', JSON.stringify(bets));
     localStorage.setItem('bankroll', currentBankroll);
 
-    // Mise à jour du graphique et de l'historique des paris
+    // Mise à jour du graphique
     updateBankrollChart();
-    updateBetHistory();
-}
-
-// Formulaire pour ajouter un pari
-document.getElementById('bet-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const date = document.getElementById('date').value;
-    const sport = document.getElementById('sport').value;
-    const bet = document.getElementById('bet').value;
-    const stake = parseFloat(document.getElementById('stake').value);
-    const odds = parseFloat(document.getElementById('odds').value);
-
-    if (!date || !sport || !bet || !stake || !odds) {
-        // Afficher un message d'erreur si des champs sont vides
-        document.getElementById('form-feedback').innerText = 'Veuillez remplir tous les champs.';
-        document.getElementById('form-feedback').style.color = 'red';
-        return;
-    }
-
-    // Ajout du pari au tableau local
-    bets.push({ date, sport, bet, stake, odds, result: "Non défini" });
-    localStorage.setItem('bets', JSON.stringify(bets));
-
-    // Affichage du message de succès
-    document.getElementById('form-feedback').innerText = 'Pari ajouté avec succès !';
-    document.getElementById('form-feedback').style.color = 'green';
 
     // Mise à jour de l'historique des paris
     updateBetHistory();
-});
+}
 
-// Charger l'historique des paris au chargement de la page
+// Mise à jour du graphique de la bankroll
+function updateBankrollChart() {
+    bankrollChart.update(); // Actualisation du graphique après chaque mise à jour
+}
+
+// Initialisation du tableau des paris au chargement
 document.addEventListener('DOMContentLoaded', function() {
     if (bets.length > 0) {
         updateBetHistory();

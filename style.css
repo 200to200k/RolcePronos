@@ -1,69 +1,77 @@
 /* Styles globaux */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;
+    font-family: 'Poppins', sans-serif; /* Typographie moderne */
+    background-color: #1f1f1f;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
+/* Titres */
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #f3a712;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
 }
 
 /* Conteneur principal */
 .container {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
+    flex-direction: column;
     gap: 40px;
-    padding: 40px;
+    padding: 30px;
+    width: 100%;
+    max-width: 1300px;
 }
 
-/* Colonnes */
-.left-column, .right-column {
-    width: 48%;
+/* Section des paris (formulaire + tableau) */
+.bets-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
 }
 
-/* Titres */
-h2 {
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-
-/* Formulaire de pari */
+/* Formulaire */
 .form-container {
-    background-color: #1f1f1f;
+    background-color: #2a2a2a;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    flex-basis: 48%; /* Formulaire sur 48% de la largeur */
 }
 
-form input, form button {
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button {
     padding: 12px;
     margin-bottom: 15px;
     width: 100%;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
-/* Styles spécifiques pour les éléments du formulaire */
-form input {
+input {
     background-color: #333;
-    color: white;
+    color: #e0e0e0;
     border: 1px solid #444;
 }
 
-form button {
+button {
     background-color: #f3a712;
     color: white;
     font-weight: bold;
@@ -72,29 +80,36 @@ form button {
     border: none;
 }
 
-form button:hover {
+button:hover {
     background-color: #d58f06;
 }
 
-/* Message de retour du formulaire */
-.feedback-message {
+p#form-feedback {
+    font-size: 1rem;
     color: #f3a712;
-    font-size: 1.2rem;
     margin-top: 10px;
 }
 
 /* Tableau des paris */
+.history-table-container {
+    flex-basis: 48%; /* Tableau sur 48% de la largeur */
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: #333;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 table th, table td {
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     border: 1px solid #444;
     font-size: 1.1rem;
@@ -113,14 +128,13 @@ table tbody tr:nth-child(even) {
     background-color: #333;
 }
 
-/* Boutons dans le tableau */
 table td button {
     background-color: #f3a712;
-    padding: 8px 15px;
+    padding: 8px 12px;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
@@ -129,14 +143,29 @@ table td button:hover {
     background-color: #d58f06;
 }
 
-/* Pied de page */
-footer {
-    background-color: #222;
-    color: #e0e0e0;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
+/* Colonne graphique */
+.right-column {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+.right-column canvas {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsivité : Ajustement pour petits écrans */
+@media (max-width: 768px) {
+    .bets-section {
+        flex-direction: column;
+    }
+
+    .form-container, .history-table-container {
+        flex-basis: 100%;
+    }
 }

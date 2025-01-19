@@ -5,46 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Paris - Paris Sportifs</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Belle typographie -->
     <link rel="stylesheet" href="styles.css"> <!-- Inclure le fichier CSS -->
 </head>
 <body>
     <div class="container">
-        <!-- Colonne de gauche avec formulaire pour ajouter des paris -->
-        <div class="left-column">
-            <h1>Bienvenue sur Paris Sportifs</h1>
+        <!-- Section des paris et du formulaire -->
+        <div class="bets-section">
+            <div class="form-container">
+                <h1>Bienvenue sur Paris Sportifs</h1>
 
-            <!-- Formulaire pour ajouter un pari -->
-            <form id="bet-form">
-                <h2>Ajouter un pari</h2>
-                <input type="date" id="date" required>
-                <input type="text" id="sport" placeholder="Sport" required>
-                <input type="text" id="bet" placeholder="Nom du pari" required>
-                <input type="number" id="stake" placeholder="Mise (€)" required min="1">
-                <input type="number" id="odds" placeholder="Cotes" required min="1" step="any">
-                <button type="submit">Ajouter le pari</button>
-            </form>
+                <form id="bet-form">
+                    <h2>Ajouter un pari</h2>
+                    <div class="input-group">
+                        <input type="date" id="date" required>
+                        <input type="text" id="sport" placeholder="Sport" required>
+                        <input type="text" id="bet" placeholder="Nom du pari" required>
+                        <input type="number" id="stake" placeholder="Mise (€)" required>
+                        <input type="number" id="odds" placeholder="Cotes" required>
+                        <button type="submit">Ajouter le pari</button>
+                        <p id="form-feedback"></p>
+                    </div>
+                </form>
+            </div>
 
-            <!-- Message d'alerte en cas d'erreur ou succès -->
-            <p id="form-feedback" class="feedback-message"></p>
-
-            <h2>Historique des paris</h2>
-            <table id="history-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Pari</th>
-                        <th>Sport</th>
-                        <th>Mise (€)</th>
-                        <th>Cotes</th>
-                        <th>Résultat</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <!-- Tableau des paris -->
+            <div class="history-table-container">
+                <h2>Historique des paris</h2>
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Pari</th>
+                            <th>Sport</th>
+                            <th>Mise (€)</th>
+                            <th>Cotes</th>
+                            <th>Résultat</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- Colonne de droite avec graphique de la bankroll -->
+        <!-- Section graphique avec la bankroll -->
         <div class="right-column">
             <h2>Évolution de la bankroll</h2>
             <canvas id="bankroll-chart" width="400" height="200"></canvas>
