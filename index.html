@@ -4,42 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code d'accès - Paris Sportifs</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1A1A1A;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .access-code {
+            text-align: center;
+            background-color: #222;
+            border-radius: 12px;
+            padding: 40px 60px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 30px;
+            border-radius: 8px;
+            background-color: #f3a712;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d58f06;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="access-code">
         <h1>Bienvenue sur Paris Sportifs</h1>
-    </header>
-    <main>
-        <section class="access-code">
-            <h2>Entrez le code secret pour accéder au site</h2>
-            <form id="codeForm">
-                <label for="accessCode">Code d'accès :</label>
-                <input type="password" id="accessCode" placeholder="Entrez le code ici" required>
-                <button type="submit">Valider</button>
-            </form>
-            <p id="errorMessage" style="color: red; display: none;" aria-live="assertive">Code incorrect. Veuillez réessayer.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
-    </footer>
+        <h2>Entrez le code secret pour accéder au site</h2>
+        <form id="codeForm">
+            <input type="password" id="accessCode" placeholder="Entrez le code ici" required>
+            <button type="submit">Valider</button>
+        </form>
+        <p id="errorMessage" class="error">Code incorrect. Veuillez réessayer.</p>
+    </div>
+
     <script>
-        // Script pour vérifier le code et rediriger
-        const correctCode = "200to200k"; // Code d'accès valide
+        const correctCode = "200to200k"; 
         const form = document.getElementById("codeForm");
         const errorMessage = document.getElementById("errorMessage");
 
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Empêche la soumission classique du formulaire
-
+            event.preventDefault();
             const enteredCode = document.getElementById("accessCode").value;
 
             if (enteredCode === correctCode) {
-                // Redirige vers la page "home.html" si le code est correct
-                window.location.href = "home.html";
+                window.location.href = "home.html"; 
             } else {
-                // Affiche un message d'erreur si le code est incorrect
                 errorMessage.style.display = "block";
             }
         });
