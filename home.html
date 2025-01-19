@@ -1,137 +1,56 @@
-/* Styles globaux */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Change align-items pour ne pas centrer verticalement sur toute la hauteur */
-    min-height: 100vh; /* Ajout pour éviter que le footer se superpose */
-    flex-direction: column;
-    text-align: center;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Paris - Paris Sportifs</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css"> <!-- Inclure le fichier CSS -->
+</head>
+<body>
+    <div class="container">
+        <!-- Colonne de gauche avec formulaire pour ajouter des paris -->
+        <div class="left-column">
+            <h1>Bienvenue sur Paris Sportifs</h1>
 
-h1 {
-    font-size: 2.5rem;
-    color: #f3a712;
-}
+            <!-- Formulaire pour ajouter un pari -->
+            <form id="bet-form">
+                <h2>Ajouter un pari</h2>
+                <input type="date" id="date" required>
+                <input type="text" id="sport" placeholder="Sport" required>
+                <input type="text" id="bet" placeholder="Nom du pari" required>
+                <input type="number" id="stake" placeholder="Mise (€)" required min="1">
+                <input type="number" id="odds" placeholder="Cotes" required min="1" step="any">
+                <button type="submit">Ajouter le pari</button>
+            </form>
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    gap: 40px;
-    padding: 40px;
-    flex-wrap: wrap; /* Permet de passer à la ligne sur des petits écrans */
-}
+            <!-- Message d'alerte en cas d'erreur ou succès -->
+            <p id="form-feedback" class="feedback-message"></p>
 
-.left-column, .right-column {
-    width: 48%;
-}
+            <h2>Historique des paris</h2>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Pari</th>
+                        <th>Sport</th>
+                        <th>Mise (€)</th>
+                        <th>Cotes</th>
+                        <th>Résultat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-h2 {
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
+        <!-- Colonne de droite avec graphique de la bankroll -->
+        <div class="right-column">
+            <h2>Évolution de la bankroll</h2>
+            <canvas id="bankroll-chart" width="400" height="200"></canvas>
+        </div>
+    </div>
 
-.form-container {
-    background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    margin-bottom: 20px;
-}
-
-input, button {
-    padding: 12px;
-    margin-bottom: 15px;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 1.1rem;
-}
-
-input {
-    background-color: #333;
-    color: white;
-    border: 1px solid #444;
-}
-
-button {
-    background-color: #f3a712;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: none;
-}
-
-button:hover {
-    background-color: #d58f06;
-}
-
-.chart-container {
-    background-color: #1f1f1f;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-/* Tableau des paris */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #333;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-table th, table td {
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #444;
-    font-size: 1.1rem;
-}
-
-table th {
-    background-color: #444;
-    color: #fff;
-}
-
-table tbody tr:nth-child(odd) {
-    background-color: #282828;
-}
-
-table tbody tr:nth-child(even) {
-    background-color: #333;
-}
-
-table td button {
-    background-color: #f3a712;
-    padding: 8px 15px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-table td button:hover {
-    background-color: #d58f06;
-}
-
-/* Pied de page */
-footer {
-    background-color: #222;
-    color: #e0e0e0;
-    text-align: center;
-    padding: 10px;
-    position: relative; /* Change pour ne pas superposer au contenu */
-    width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
+    <script src="script.js"></script> <!-- Inclure le fichier JavaScript -->
+</body>
+</html>

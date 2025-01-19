@@ -3,99 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code d'accès - Paris Sportifs</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1A1A1A;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .access-code {
-            text-align: center;
-            background-color: #222;
-            border-radius: 12px;
-            padding: 40px 60px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #ccc;
-        }
-
-        input {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #555;
-            background-color: #333;
-            color: white;
-            width: 100%;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        button {
-            padding: 10px 30px;
-            border-radius: 8px;
-            background-color: #f3a712;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #d58f06;
-        }
-
-        .error {
-            color: red;
-            margin-top: 20px;
-            display: none;
-        }
-    </style>
+    <title>Gestion des Paris - Paris Sportifs</title>
+    <!-- Inclusion de la bibliothèque Chart.js pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lien vers le fichier CSS pour les styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="access-code">
-        <h1>Bienvenue sur Paris Sportifs</h1>
-        <h2>Entrez le code secret pour accéder au site</h2>
-        <form id="codeForm">
-            <input type="password" id="accessCode" placeholder="Entrez le code ici" required>
-            <button type="submit">Valider</button>
-        </form>
-        <p id="errorMessage" class="error">Code incorrect. Veuillez réessayer.</p>
+    <div class="container">
+        <!-- Colonne de gauche avec le formulaire pour ajouter des paris -->
+        <div class="left-column">
+            <h1>Bienvenue sur Paris Sportifs</h1>
+
+            <!-- Formulaire pour ajouter un pari -->
+            <form id="bet-form">
+                <h2>Ajouter un pari</h2>
+                <input type="date" id="date" required>
+                <input type="text" id="sport" placeholder="Sport" required>
+                <input type="text" id="bet" placeholder="Nom du pari" required>
+                <input type="number" id="stake" placeholder="Mise (€)" required min="0">
+                <input type="number" id="odds" placeholder="Cotes" required min="1" step="any">
+                <button type="submit">Ajouter le pari</button>
+            </form>
+
+            <h2>Historique des paris</h2>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Pari</th>
+                        <th>Sport</th>
+                        <th>Mise (€)</th>
+                        <th>Cotes</th>
+                        <th>Résultat</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Colonne de droite avec graphique de la bankroll -->
+        <div class="right-column">
+            <h2>Évolution de la bankroll</h2>
+            <canvas id="bankroll-chart" width="400" height="200"></canvas>
+        </div>
     </div>
 
-    <script>
-        const correctCode = "200to200k"; 
-        const form = document.getElementById("codeForm");
-        const errorMessage = document.getElementById("errorMessage");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-            const enteredCode = document.getElementById("accessCode").value;
-
-            if (enteredCode === correctCode) {
-                window.location.href = "home.html"; 
-            } else {
-                errorMessage.style.display = "block";
-            }
-        });
-    </script>
+    <!-- Inclusion du fichier JavaScript pour la logique des paris -->
+    <script src="script.js"></script>
 </body>
 </html>
