@@ -39,8 +39,8 @@ h2 {
     background: #222;
     padding: 20px;
     margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .card h3 {
@@ -52,9 +52,21 @@ h2 {
     font-size: 20px;
 }
 
+.crypto {
+    background: #222;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.crypto h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
 .crypto ul {
     list-style: none;
-    margin-top: 10px;
 }
 
 .crypto li {
@@ -62,10 +74,14 @@ h2 {
     margin-bottom: 10px;
 }
 
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 10px;
-    background: #333;
-    color: white;
+.price {
+    font-weight: bold;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
 }

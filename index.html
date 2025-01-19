@@ -23,13 +23,48 @@
 
             <div class="crypto">
                 <h3>Cryptomonnaies</h3>
-                <ul>
-                    <li>Bitcoin: $35,000</li>
-                    <li>Ethereum: $2,000</li>
-                    <li>Solana: $150</li>
+                <ul id="crypto-list">
+                    <li id="bitcoin">Bitcoin: <span class="price"></span></li>
+                    <li id="ethereum">Ethereum: <span class="price"></span></li>
+                    <li id="solana">Solana: <span class="price"></span></li>
+                    <li id="xrp">XRP: <span class="price"></span></li>
+                    <li id="trumpcoin">Trump Coin: <span class="price"></span></li>
                 </ul>
             </div>
         </section>
     </div>
+
+    <script>
+        async function fetchCryptoPrices() {
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,trumpcoin&vs_currencies=usd&include_24hr_change=true');
+            const data = await response.json();
+            
+            updateCryptoPrice('bitcoin', data.bitcoin);
+            updateCryptoPrice('ethereum', data.ethereum);
+            updateCryptoPrice('solana', data.solana);
+            updateCryptoPrice('xrp', data.ripple);
+            updateCryptoPrice('trumpcoin', data.trumpcoin);
+        }
+
+        function updateCryptoPrice(id, data) {
+            const priceElement = document.querySelector(`#${id} .price`);
+            priceElement.textContent = `$${data.usd}`;
+            
+            const priceChange = data.usd_24h_change;
+            if (priceChange > 0) {
+                priceElement.classList.add('positive');
+                priceElement.classList.remove('negative');
+            } else {
+                priceElement.classList.add('negative');
+                priceElement.classList.remove('positive');
+            }
+        }
+
+        // Call the function on page load
+        fetchCryptoPrices();
+
+        // Update every minute
+        setInterval(fetchCryptoPrices, 60000);
+    </script>
 </body>
 </html>
