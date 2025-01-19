@@ -1,63 +1,71 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #1a1a1a;
-    color: #fff;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    margin: 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #333;
 }
 
 header {
-    background-color: #333;
-    padding: 20px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-size: 24px;
-}
-
-button {
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #444;
+    font-size: 48px;
     color: #fff;
-    border: none;
-    cursor: pointer;
+    margin-bottom: 10px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+h2 {
+    font-size: 32px;
     margin-top: 20px;
+    color: #eaeaea;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+.card {
+    background: #222;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.progress-bar {
-    width: 100%;
-    background-color: #ddd;
+.card p {
+    font-size: 20px;
+}
+
+.crypto ul {
+    list-style: none;
     margin-top: 10px;
-    height: 20px;
 }
 
-.progress {
-    height: 100%;
-    background-color: #4caf50; /* Vert */
+.crypto li {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
     text-align: center;
+    margin-top: 40px;
     padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background: #333;
+    color: white;
 }
