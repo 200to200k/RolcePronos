@@ -25,15 +25,18 @@ h1 {
 h2 {
     text-align: center;
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;  /* Augmenté pour plus d'espace */
 }
 
 .block {
     background-color: #333;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
     margin-bottom: 40px;
+    width: 80%; /* Réduit la largeur du bloc */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table {
@@ -41,10 +44,11 @@ table {
     border-collapse: collapse;
     margin: 0 auto;
     text-align: center;
+    font-size: 0.9rem; /* Réduit la taille de la police */
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px; /* Réduit l'espacement entre les cellules */
     border: 1px solid #555;
 }
 
