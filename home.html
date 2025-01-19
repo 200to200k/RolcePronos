@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur votre page d'accueil</h1>
+        <button onclick="toggleTheme()">Changer le thème</button>
+    </header>
+    
+    <!-- Tableau récapitulatif de la bankroll -->
+    <section>
+        <h2>Tableau de la Bankroll</h2>
+        <table>
+            <tr>
+                <th>Bankroll de départ</th>
+                <th>Bankroll actuelle</th>
+                <th>Pourcentage gagné</th>
+            </tr>
+            <tr>
+                <td>1000€</td> <!-- Exemple, à remplacer par les données réelles -->
+                <td>1200€</td>
+                <td>20%</td>
+            </tr>
+        </table>
+
+        <!-- Barre de progression -->
+        <div class="progress-bar">
+            <div class="progress" style="width: 20%;"></div>
+        </div>
+    </section>
+
+    <!-- Tableau des paris -->
+    <section>
+        <h2>Historique des Paris</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Sport</th>
+                <th>Equipe</th>
+                <th>Paris</th>
+                <th>Bankroll</th>
+                <th>Mise</th>
+                <th>Cote</th>
+                <th>Résultat</th>
+            </tr>
+            <tr>
+                <td>19/01/2025</td>
+                <td>Football</td>
+                <td>Équipe A vs Équipe B</td>
+                <td>Paris sur victoire</td>
+                <td>1200€</td>
+                <td>50€</td>
+                <td>1.5</td>
+                <td>✔️</td> <!-- Vous pouvez remplacer par une croix rouge pour une perte -->
+            </tr>
+        </table>
+    </section>
+
+    <!-- Cryptomonnaies -->
+    <section>
+        <h2>Cryptomonnaies</h2>
+        <ul>
+            <li>BTC: $35000</li>
+            <li>ETH: $2000</li>
+            <li>Solana: $150</li>
+            <li>XRP: $0.5</li>
+            <li>Trump Coin: $0.1</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Mon Blog de Paris</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
