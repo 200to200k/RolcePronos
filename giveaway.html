@@ -6,77 +6,34 @@
     <title>Giveaway</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Style dynamique pour le tableau */
-        .giveaway-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: #f9f9f9;
-            border: 2px solid #f3a712;
-        }
-
-        .giveaway-table th, .giveaway-table td {
-            border: 1px solid #f3a712;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .giveaway-table th {
-            background-color: #f3a712;
-            color: #fff;
-            font-size: 1.2em;
-        }
-
-        .giveaway-table td {
-            font-size: 1em;
-        }
-
-        .giveaway-table tr:hover {
-            background-color: #fff5e6;
-            cursor: pointer;
-        }
-
-        /* Espacement entre le tableau et le formulaire */
-        #participation-form {
-            margin-top: 30px;
-        }
-
-        /* Bouton "Se désinscrire" stylé */
-        .remove-btn {
-            background-color: #d9534f;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .remove-btn:hover {
-            background-color: #c9302c;
-        }
-
-        /* Style général */
+        /* Style pour la page Giveaway */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background: #f3a712;
+            background-color: #343a40;
             color: white;
-            padding: 15px 10px;
+            padding: 15px 20px;
             text-align: center;
         }
 
         header h1 {
             margin: 0;
+            font-size: 2.5rem;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
         }
 
         nav ul {
-            list-style: none;
+            list-style-type: none;
             padding: 0;
         }
 
@@ -86,121 +43,108 @@
         }
 
         nav ul li a {
-            color: white;
             text-decoration: none;
+            color: #f3a712;
+            font-size: 1.2rem;
             font-weight: bold;
         }
 
-        .giveaway-title {
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #343a40;
             text-align: center;
-            color: #f3a712;
-            font-size: 2em;
+            margin-bottom: 30px;
         }
 
-        button[type="submit"] {
-            background-color: #5cb85c;
+        .giveaway-info {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .giveaway-info h3 {
+            font-size: 1.5rem;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .giveaway-info p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button-container a {
+            background-color: #f3a712;
             color: white;
-            border: none;
             padding: 10px 20px;
-            font-size: 1em;
             border-radius: 5px;
-            cursor: pointer;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
-        button[type="submit"]:hover {
-            background-color: #4cae4c;
+        .button-container a:hover {
+            background-color: #d48e07;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Giveaway</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="affiliation.html">Affiliation</a></li>
-                <li><a href="giveaway.html" class="active">Giveaway</a></li>
-            </ul>
-        </nav>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="history.html">Historique</a></li>
+            <li><a href="affiliation.html">Affiliation</a></li>
+            <li><a href="giveaway.html" class="active">Giveaway</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <div class="giveaway-container">
-            <!-- Partie Giveaway avec Compte à Rebours -->
-            <h2 class="giveaway-title">GIVEAWAY</h2>
-            <table class="giveaway-table">
-                <thead>
-                    <tr>
-                        <th>Montant du Giveaway</th>
-                        <th>Date du Giveaway</th>
-                        <th>Compte à Rebours</th>
-                        <th>Nombre de Participants</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>500 €</td>
-                        <td>18 janvier 2025</td>
-                        <td id="countdown">Calcul...</td>
-                        <td id="participants-count">154</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2>Participez à notre Giveaway</h2>
 
-            <!-- Formulaire de participation -->
-            <form id="participation-form">
-                <label for="pseudo">Entrez votre pseudo :</label>
-                <input type="text" id="pseudo" name="pseudo" required>
-                <button type="submit">Participer</button>
-            </form>
+        <div class="giveaway-info">
+            <h3>Concours en cours</h3>
+            <p>Participez à notre giveaway pour avoir une chance de gagner des prix incroyables !</p>
+            <p>Les gagnants seront choisis parmi les participants actifs. Inscrivez-vous maintenant !</p>
+        </div>
 
-            <!-- Liste des Participants -->
-            <h3>Participants :</h3>
-            <table id="participants-table">
-                <thead>
-                    <tr>
-                        <th>Pseudo</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Les noms des participants seront affichés ici -->
-                </tbody>
-            </table>
+        <div class="button-container">
+            <a href="giveaway-entry.html">Participer</a>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
     </footer>
-
-    <script>
-        // Script de compte à rebours (inchangé)
-        const countdownElement = document.getElementById("countdown");
-        const giveawayDate = new Date("2025-01-18T23:59:59");
-
-        function updateCountdown() {
-            const now = new Date();
-            const timeLeft = giveawayDate - now;
-
-            if (timeLeft <= 0) {
-                countdownElement.textContent = "Terminé";
-                return;
-            }
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            countdownElement.textContent = `${days}j ${hours}h ${minutes}m ${seconds}s`;
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Script de participation (inchangé)
-    </script>
 </body>
 </html>

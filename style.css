@@ -1,162 +1,110 @@
-/* Styles globaux */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+/* Styles généraux */
+* {
     margin: 0;
     padding: 0;
-    text-align: center;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: #444;
-}
-
-main {
-    padding: 20px;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Fond sombre */
+    color: #E0E0E0; /* Texte clair */
+    line-height: 1.6;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    padding: 0;
+}
+
+header {
+    background-color: #1C1C1C;
+    color: #E0E0E0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+main {
+    width: 100%;
+    max-width: 400px;
+    background-color: #1E1E1E; /* Fond du formulaire */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.access-code h2 {
+    color: #E0E0E0;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
     flex-direction: column;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
+label {
+    color: #B0B0B0;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+input {
     background-color: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    color: #E0E0E0;
+    border: 1px solid #444;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-/* Styles spécifiques au tableau de suivi */
-.tracker {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+input:focus {
+    border-color: #FF5722;
+    outline: none;
 }
 
-h2 {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #333;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-td {
-    background-color: #f9f9f9;
-}
-
-/* Code couleur pour le pourcentage de bankroll */
-.percentage {
-    font-weight: bold;
-}
-
-.percentage.positive {
-    color: green;
-}
-
-.percentage.negative {
-    color: red;
-}
-
-/* Bouton */
 button {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
+    background-color: #FF5722; /* Accent orange */
+    color: white;
     border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 4px;
     cursor: pointer;
-    text-transform: uppercase;
-    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #FF3D00; /* Effet sur le survol */
 }
 
-/* Responsivité */
-@media (max-width: 768px) {
-    .tracker {
-        width: 90%;
-        padding: 10px;
-    }
-
-    table, th, td {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
+#errorMessage {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 20px;
 }
-/* Style général */
-body {
-    font-family: Arial, sans-serif;
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: #B0B0B0;
+    font-size: 1rem;
+    width: 100%;
+}
+
+footer p {
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
 }
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul
-::contentReference[oaicite:0]{index=0}
- 
-
