@@ -63,9 +63,19 @@ function updateBetHistory() {
         row.insertCell(3).innerText = bet.stake.toFixed(2);
         row.insertCell(4).innerText = bet.odds.toFixed(2);
         row.insertCell(5).innerText = bet.result;
-        row.insertCell(6).innerHTML = `<button class="edit-btn">Editer</button>`;
+
+        // Ajouter les boutons d'action
+        const actionsCell = row.insertCell(6);
+        if (bet.result === "Non défini") {
+            actionsCell.innerHTML = `
+                <button class="win-btn" onclick="setResult(${bets.indexOf(bet)}, 'win')">Gagné</button>
+                <button class="lose-btn" onclick="setResult(${bets.indexOf(bet)}, 'lose')">Perdu</button>
+            `;
+        }
     });
 }
 
-// Initialisation du tableau des paris
-updateBetHistory();
+// Fonction pour définir le résultat d'un pari
+function setResult(index, result) {
+    const bet = bets[index];
+    bet

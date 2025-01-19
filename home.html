@@ -1,228 +1,136 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris Sportifs - Accueil</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1A1A1A;
-            color: white;
-        }
+/* Styles globaux */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
 
-        header {
-            background-color: #222;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+h1 {
+    font-size: 2.5rem;
+    color: #f3a712;
+}
 
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 40px;
+    padding: 40px;
+}
 
-        main {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+.left-column, .right-column {
+    width: 48%;
+}
 
-        .form-container {
-            background-color: #333;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+h2 {
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
 
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
+.form-container {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
 
-        input, button {
-            padding: 10px;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid #555;
-        }
+input, button {
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
 
-        input {
-            background-color: #444;
-            color: white;
-        }
+input {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+}
 
-        button {
-            background-color: #f3a712;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+button {
+    background-color: #f3a712;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
 
-        button:hover {
-            background-color: #d58f06;
-        }
+button:hover {
+    background-color: #d58f06;
+}
 
-        table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-            background-color: #333;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+.chart-container {
+    background-color: #1f1f1f;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
 
-        table th, table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #444;
-        }
+/* Tableau des paris */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
 
-        table th {
-            background-color: #444;
-        }
+table th, table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #444;
+    font-size: 1.1rem;
+}
 
-        .chart-container {
-            margin-top: 40px;
-            background-color: #333;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+table th {
+    background-color: #444;
+    color: #fff;
+}
 
-        footer {
-            background-color: #222;
-            color: #ccc;
-            text-align: center;
-            padding: 10px;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Paris Sportifs</h1>
-    </header>
+table tbody tr:nth-child(odd) {
+    background-color: #282828;
+}
 
-    <main>
-        <!-- Formulaire d'ajout de pari -->
-        <div class="form-container">
-            <h2>Ajouter un Pari</h2>
-            <form id="bet-form">
-                <input type="date" id="date" name="date" required>
-                <input type="text" id="sport" name="sport" placeholder="Sport" required>
-                <input type="text" id="bet" name="bet" placeholder="Paris" required>
-                <input type="number" id="stake" name="stake" placeholder="Mise (€)" required>
-                <input type="number" id="odds" name="odds" placeholder="Cote" step="0.01" required>
-                <button type="submit">Ajouter le Pari</button>
-            </form>
-        </div>
+table tbody tr:nth-child(even) {
+    background-color: #333;
+}
 
-        <!-- Tableau des paris -->
-        <table id="history-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Paris</th>
-                    <th>Sport</th>
-                    <th>Mise (€)</th>
-                    <th>Cote</th>
-                    <th>Résultat</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Les paris seront ajoutés ici dynamiquement -->
-            </tbody>
-        </table>
+table td button {
+    background-color: #f3a712;
+    padding: 8px 15px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
-        <!-- Graphique de la bankroll -->
-        <div class="chart-container">
-            <canvas id="bankroll-chart" width="400" height="200"></canvas>
-        </div>
-    </main>
+table td button:hover {
+    background-color: #d58f06;
+}
 
-    <footer>
-        <p>&copy; 2025 Paris Sportifs. Tous droits réservés.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        let bets = JSON.parse(localStorage.getItem('bets')) || [];
-        let currentBankroll = 200;
-        let bankrollHistory = [currentBankroll];
-        let datesHistory = ['2025-01-18'];
-
-        // Graphique
-        const ctx = document.getElementById('bankroll-chart').getContext('2d');
-        const bankrollData = {
-            labels: datesHistory,
-            datasets: [{
-                label: 'Évolution de la bankroll (€)',
-                data: bankrollHistory,
-                borderColor: '#f3a712',
-                backgroundColor: 'rgba(243, 167, 18, 0.2)',
-                borderWidth: 2,
-                fill: true
-            }]
-        };
-        const bankrollChart = new Chart(ctx, {
-            type: 'line',
-            data: bankrollData,
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Formulaire pour ajouter un pari
-        document.getElementById('bet-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const date = document.getElementById('date').value;
-            const sport = document.getElementById('sport').value;
-            const bet = document.getElementById('bet').value;
-            const stake = parseFloat(document.getElementById('stake').value);
-            const odds = parseFloat(document.getElementById('odds').value);
-            const result = "Non défini";
-
-            // Ajout du pari au tableau local
-            bets.push({ date, sport, bet, stake, odds, result });
-            localStorage.setItem('bets', JSON.stringify(bets));
-
-            // Mise à jour du tableau des paris
-            updateBetHistory();
-        });
-
-        // Fonction pour afficher l'historique des paris
-        function updateBetHistory() {
-            const tableBody = document.getElementById('history-table').getElementsByTagName('tbody')[0];
-            tableBody.innerHTML = '';
-            bets.forEach(bet => {
-                const row = tableBody.insertRow();
-                row.insertCell(0).innerText = bet.date;
-                row.insertCell(1).innerText = bet.bet;
-                row.insertCell(2).innerText = bet.sport;
-                row.insertCell(3).innerText = bet.stake.toFixed(2);
-                row.insertCell(4).innerText = bet.odds.toFixed(2);
-                row.insertCell(5).innerText = bet.result;
-                row.insertCell(6).innerHTML = `<button class="edit-btn">Editer</button>`;
-            });
-        }
-
-        // Initialisation du tableau des paris
-        updateBetHistory();
-    </script>
-</body>
-</html>
+/* Pied de page */
+footer {
+    background-color: #222;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
