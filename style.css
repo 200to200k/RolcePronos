@@ -1,76 +1,72 @@
 /* Styles globaux */
 body {
-    font-family: 'Poppins', sans-serif; /* Typographie moderne */
-    background-color: #1f1f1f;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-/* Titres */
-h1 {
-    font-size: 2.8rem;
-    color: #f3a712;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 15px;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
 /* Conteneur principal */
 .container {
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 30px;
-    width: 100%;
-    max-width: 1300px;
-}
-
-/* Section des paris (formulaire + tableau) */
-.bets-section {
-    display: flex;
     justify-content: space-between;
-    gap: 20px;
     width: 100%;
+    max-width: 1200px;
+    gap: 40px;
+    padding: 40px;
+    box-sizing: border-box;
 }
 
-/* Formulaire */
+/* Colonnes */
+.left-column, .right-column {
+    width: 48%;
+}
+
+/* Titre principal */
+h1 {
+    font-size: 2.5rem;
+    color: #f3a712;
+    margin-bottom: 20px;
+}
+
+/* Titre secondaire */
+h2 {
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Formulaire de pari */
 .form-container {
-    background-color: #2a2a2a;
+    background-color: #1f1f1f;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    flex-basis: 48%; /* Formulaire sur 48% de la largeur */
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
 }
 
 input, button {
     padding: 12px;
     margin-bottom: 15px;
     width: 100%;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
 }
 
+/* Style des champs de formulaire */
 input {
     background-color: #333;
-    color: #e0e0e0;
+    color: white;
     border: 1px solid #444;
 }
 
+/* Bouton de soumission */
 button {
     background-color: #f3a712;
     color: white;
@@ -84,32 +80,27 @@ button:hover {
     background-color: #d58f06;
 }
 
-p#form-feedback {
-    font-size: 1rem;
-    color: #f3a712;
+/* Message de feedback */
+#form-feedback {
+    font-size: 1.2rem;
     margin-top: 10px;
 }
 
-/* Tableau des paris */
-.history-table-container {
-    flex-basis: 48%; /* Tableau sur 48% de la largeur */
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    overflow-x: auto;
+/* Historique des paris */
+.history-container {
+    margin-top: 30px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: #333;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
 table th, table td {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
     border: 1px solid #444;
     font-size: 1.1rem;
@@ -130,11 +121,11 @@ table tbody tr:nth-child(even) {
 
 table td button {
     background-color: #f3a712;
-    padding: 8px 12px;
+    padding: 8px 15px;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
@@ -143,29 +134,10 @@ table td button:hover {
     background-color: #d58f06;
 }
 
-/* Colonne graphique */
-.right-column {
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    width: 100%;
-    max-width: 900px;
-    margin-top: 30px;
-}
-
+/* Graphique de la bankroll */
 .right-column canvas {
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-}
-
-/* Responsivité : Ajustement pour petits écrans */
-@media (max-width: 768px) {
-    .bets-section {
-        flex-direction: column;
-    }
-
-    .form-container, .history-table-container {
-        flex-basis: 100%;
-    }
+    max-width: 100%;
+    height: auto;
+    background-color: #222;
+    border-radius: 15px;
 }
