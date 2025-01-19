@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Paris Sportifs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <button id="theme-toggle">Thème Clair</button>
+        <h1>Blog de Paris Sportifs</h1>
+    </header>
+
+    <div class="bankroll-info">
+        <h2>Bankroll Actuelle</h2>
+        <p>Bankroll de départ: 1000€</p>
+        <p>Bankroll actuelle: {{ bankroll }}€</p>
+    </div>
+
+    <div class="paris">
+        <h2>Historique des Paris</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Sport</th>
+                    <th>Équipe</th>
+                    <th>Paris</th>
+                    <th>Bankroll</th>
+                    <th>Mise</th>
+                    <th>Cote</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row['Date'] }}</td>
+                    <td>{{ row['Sport'] }}</td>
+                    <td>{{ row['Équipe'] }}</td>
+                    <td>{{ row['Paris'] }}</td>
+                    <td>{{ row['Bankroll'] }}</td>
+                    <td>{{ row['Mise'] }}</td>
+                    <td>{{ row['Cote'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
