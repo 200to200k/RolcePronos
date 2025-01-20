@@ -6,6 +6,10 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Placer tout au centre de l'écran */
 }
 
 /* Conteneur principal */
@@ -32,17 +36,20 @@ h1 {
     font-size: 2.5em;
     font-weight: bold;
     color: #ffffff;
+    text-align: center; /* S'assurer que le titre est centré */
 }
 
 h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
     color: #ffffff;
+    text-align: center; /* S'assurer que le titre est centré */
 }
 
 p {
     font-size: 1.2em;
     margin: 0;
+    text-align: center; /* Centrer le texte de la description */
 }
 
 /* Bloc de contenu */
@@ -53,10 +60,11 @@ p {
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     width: 90%; /* Ajuster la largeur des blocs pour qu'ils prennent toute la place disponible */
-    text-align: left;
+    text-align: center; /* Centrer le texte et les éléments dans le bloc */
     margin: 0 auto;
 }
 
+/* Bloc au survol */
 .block:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
 }
@@ -68,6 +76,7 @@ table {
     background-color: #222222;
     border-radius: 12px;
     overflow: hidden;
+    margin: 0 auto; /* Centrer le tableau */
 }
 
 th, td {
@@ -98,8 +107,10 @@ tr:hover {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    margin-top: 20px; /* Ajout d'un petit espace entre les éléments */
 }
 
+/* Item crypto */
 .crypto-item {
     display: flex;
     flex-direction: column;
@@ -112,6 +123,7 @@ tr:hover {
     background-color: #444444;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px; /* Ajouter un peu d'espace entre les éléments */
 }
 
 .crypto-item:hover {
