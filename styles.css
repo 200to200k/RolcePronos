@@ -1,8 +1,68 @@
-/* Section des Reels */
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section des titres */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Section de la crypto */
+.crypto-block, .block {
+    margin-bottom: 40px;
+}
+
+.crypto-block h2, .block h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
+/* Section des reels Instagram */
 .reels-section {
-    margin-top: 50px;
     background-color: #1f1f1f;
     padding: 30px;
+    margin-top: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -10,9 +70,11 @@
 
 .reels-section h2 {
     font-size: 2rem;
+    color: #fff;
     margin-bottom: 20px;
 }
 
+/* Conteneur des Reels */
 .reels-container {
     display: flex;
     justify-content: space-between;
@@ -20,6 +82,7 @@
     flex-wrap: wrap;
 }
 
+/* Left and right sections */
 .reels-left, .reels-right {
     width: 48%;
 }
@@ -37,12 +100,7 @@
 }
 
 .reel-item img:hover {
-    transform: scale(1.05); /* Effet de zoom au survol */
-}
-
-.reels-left .reel-item:nth-child(odd),
-.reels-right .reel-item:nth-child(odd) {
-    margin-bottom: 25px; /* Espacement plus grand pour alterner les images */
+    transform: scale(1.05);
 }
 
 /* Responsivité pour les petits écrans */
@@ -53,6 +111,6 @@
     }
 
     .reels-left, .reels-right {
-        width: 100%; /* Les deux blocs de reels prennent toute la largeur */
+        width: 100%;
     }
 }
