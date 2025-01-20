@@ -10,13 +10,13 @@ body {
 
 /* Conteneur principal */
 .main-container {
-    max-width: 1200px;
+    max-width: 1000px; /* Réduire la largeur maximale pour avoir un meilleur contrôle */
     margin: 0 auto;
-    padding: 40px;
+    padding: 20px; /* Réduire un peu l'espace intérieur pour qu'il soit plus compact */
     background-color: #1d1d1d; /* Fond du conteneur légèrement plus clair */
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    text-align: center; /* Texte centré dans le conteneur */
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,13 +47,13 @@ p {
 
 /* Bloc de contenu */
 .block {
-    margin-bottom: 40px; /* Espacement entre les blocs */
+    margin-bottom: 30px; /* Réduire l'espace entre les blocs */
     background-color: #333333; /* Fond sombre pour chaque bloc */
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    width: 80%;
-    text-align: center; /* Centrer le texte dans les blocs */
+    width: 90%; /* Ajuster la largeur des blocs pour qu'ils prennent toute la place disponible */
+    text-align: left;
     margin: 0 auto;
 }
 
@@ -62,24 +62,18 @@ p {
 }
 
 /* Tableaux */
-#bet-history-table {
-    max-width: 100%; /* Limiter la largeur du tableau */
-    overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
-}
-
 table {
-    width: 100%;
+    width: 100%; /* Utiliser 100% de la largeur du bloc */
     border-collapse: collapse;
     background-color: #222222;
     border-radius: 12px;
     overflow: hidden;
-    margin: 0 auto; /* Centrer le tableau */
 }
 
 th, td {
-    padding: 15px;
+    padding: 12px; /* Réduire un peu la taille de la cellule pour économiser de l'espace */
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1em; /* Réduire légèrement la taille de la police pour mieux s'adapter */
     border-bottom: 1px solid #444;
 }
 
