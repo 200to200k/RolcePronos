@@ -51,14 +51,8 @@ header p {
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ombre douce pour les blocs */
     text-align: center; /* Centrer le texte à l'intérieur des blocs */
-}
-
-.block {
-    max-width: 500px; /* Largeur max pour le bloc du tableau */
-}
-
-.crypto-block {
-    max-width: 700px; /* Largeur max pour le bloc des cryptos */
+    max-width: 600px; /* Empêcher le débordement du tableau */
+    width: 100%;
 }
 
 /* Tableaux */
@@ -66,6 +60,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+    table-layout: fixed; /* Evite le débordement horizontal */
 }
 
 table th,
@@ -73,6 +68,7 @@ table td {
     padding: 20px;
     text-align: center;
     border-bottom: 1px solid #444;
+    word-wrap: break-word; /* Permet de couper les mots trop longs */
 }
 
 table th {
