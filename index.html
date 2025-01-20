@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'Accueil</title>
+    <title>Page d'Accueil - Cryptomonnaies</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         async function fetchCryptoPrices() {
             try {
+                // Récupérer les données via l'API CoinGecko
                 const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur&include_24hr_change=true');
                 const data = await response.json();
 
@@ -19,7 +20,7 @@
                 ];
 
                 const cryptoContainer = document.getElementById('crypto-container');
-                cryptoContainer.innerHTML = ''; // Efface le contenu existant
+                cryptoContainer.innerHTML = ''; // Effacer les anciens éléments
 
                 cryptos.forEach(crypto => {
                     const price = data[crypto.id].eur;
@@ -29,11 +30,12 @@
                     div.className = 'crypto-item';
                     
                     const name = document.createElement('div');
+                    name.className = 'crypto-name';
                     name.textContent = crypto.name;
 
                     const priceSpan = document.createElement('span');
+                    priceSpan.className = 'crypto-price';
                     priceSpan.textContent = `${price} €`;
-                    priceSpan.className = change >= 0 ? 'price-up' : 'price-down';
 
                     const changeSpan = document.createElement('div');
                     changeSpan.textContent = `${change}%`;
@@ -51,7 +53,7 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             fetchCryptoPrices();
-            setInterval(fetchCryptoPrices, 60000); // Met à jour les prix toutes les 60 secondes
+            setInterval(fetchCryptoPrices, 60000); // Mettre à jour les prix toutes les 60 secondes
         });
     </script>
 </head>

@@ -1,136 +1,98 @@
-/* Définition de la police générale */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1e1e1e;  /* Fond sombre */
-    color: #fff;  /* Texte blanc */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Conteneur principal */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: white;
+}
+
 .main-container {
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 20px;
 }
 
-/* Entête */
 header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 header h1 {
-    font-size: 2.8em;
-    color: #f8f8f8;
-    margin-bottom: 10px;
+    font-size: 3rem;
+    color: #f1f1f1;
 }
 
 header p {
-    font-size: 1.2em;
-    color: #aaa;
+    font-size: 1.2rem;
+    color: #bbb;
 }
 
-/* Contenu principal avec flexbox pour deux colonnes */
 .content {
     display: flex;
     justify-content: space-between;
 }
 
-/* Colonnes avec espacements */
-.block,
-.crypto-block {
-    width: 48%;
+.block {
+    flex: 1;
+    margin: 0 20px;
+    background-color: #1f1f1f;
     padding: 20px;
-    background-color: #2c2c2c; /* Fond gris sombre */
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
 }
 
-.block:hover,
-.crypto-block:hover {
-    background-color: #383838; /* Survol avec un fond légèrement plus clair */
-}
-
-/* Styles pour le tableau */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-table th,
-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #444;
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
 }
 
 table th {
     background-color: #333;
-    color: #fff;
 }
 
-table tr:nth-child(even) {
-    background-color: #444;
+table td {
+    background-color: #222;
 }
 
-table tr:hover {
-    background-color: #555;
+.crypto-block {
+    flex: 2;
+    margin: 0 20px;
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-/* Style des items cryptos */
 .crypto-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #2c2c2c;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
 }
 
-.crypto-item:hover {
-    background-color: #383838;
-}
-
-.crypto-item div {
-    font-size: 1.2em;
-}
-
-.price-up {
-    color: green;
-}
-
-.price-down {
-    color: red;
-}
-
-/* Style de l'indice de crypto */
 .crypto-name {
-    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.crypto-price {
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
-.crypto-index {
-    font-size: 1.2em;
-    margin-left: 10px;
-    color: #aaa;
+.price-up {
+    color: #4CAF50;
 }
 
-/* Marges à gauche et droite pour espacement */
-@media (max-width: 768px) {
-    .content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .block,
-    .crypto-block {
-        width: 80%;
-        margin-bottom: 20px;
-    }
+.price-down {
+    color: #F44336;
 }
