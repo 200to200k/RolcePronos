@@ -1,3 +1,5 @@
+ChatGPT
+Vous avez dit :
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,6 +32,237 @@
                         <td>500,000 €</td>
                     </tr>
                 </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>  
+
+jh'aimerais que tu me fasse un autre bloc comme celui de tableau de suivi, independament de celui, le bloc sera pas haut horiztonal avec une belle crytpo, dans ce bloc il ya aura le cours des crypto en temps reel, btc eth sol xrp avec du rouge si baisse dernieres 24h et vert si hausse 
+ChatGPT a dit :
+ChatGPT
+Voici une mise à jour de votre code HTML avec un nouveau bloc horizontal pour afficher les cours des cryptomonnaies en temps réel. Le style et le comportement dynamique (comme les variations de couleur en fonction des hausses ou baisses) nécessitent une combinaison d'HTML, de CSS et de JavaScript :
+
+Crypto Tracker
+
+Répondre plutôt dans le chat
+Détails des ajouts :
+Bloc HTML :
+
+Un conteneur <div> avec l'ID crypto-container est ajouté pour afficher les cryptomonnaies.
+Styles CSS :
+
+Mise en place d'un design horizontal propre pour les éléments de cryptomonnaie.
+Couleurs vertes et rouges bas
+
+
+
+
+
+
+ChatGPT peut faire des erreurs. Envisagez de vérifier les informations importantes.
+?
+ChatGPT est toujours en train de générer une réponse...
+
+Crypto Tracker
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .crypto-block {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .crypto-item {
+            text-align: center;
+        }
+
+        .crypto-item span {
+            display: block;
+            font-size: 16px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .price-up {
+            color: green;
+        }
+
+        .price-down {
+            color: red;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cryptos = [
+                { name: "BTC", price: 43000, change: 2.5 },
+                { name: "ETH", price: 3100, change: -1.2 },
+                { name: "SOL", price: 150, change: 0.8 },
+                { name: "XRP", price: 0.95, change: -0.4 }
+            ];
+
+            const cryptoContainer = document.getElementById('crypto-container');
+
+            cryptos.forEach(crypto => {
+                const div = document.createElement('div');
+                div.className = 'crypto-item';
+                
+                const name = document.createElement('div');
+                name.textContent = crypto.name;
+
+                const price = document.createElement('span');
+                price.textContent = crypto.price + ' €';
+                price.className = crypto.change >= 0 ? 'price-up' : 'price-down';
+
+                div.appendChild(name);
+                div.appendChild(price);
+                cryptoContainer.appendChild(div);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>Bienvenue sur notre site</h1>
+            <p>Suivi de vos paris sportifs, casinos et cryptomonnaies.</p>
+        </header>
+
+        <section class="content">
+            <div class="block">
+                <h2>Tableau de suivi de la bankroll</h2>
+                <table>
+                    <tr>
+                        <th>START</th>
+                        <th>BANKROLL</th>
+                        <th>EVOLUTION</th>
+                        <th>OBJECTIF</th>
+                    </tr>
+                    <tr>
+                        <td>500 €</td>
+                        <td>500 €</td>
+                        <td>0%</td>
+                        <td>500,000 €</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="crypto-block" id="crypto-container">
+                <!-- Les données des cryptomonnaies seront insérées ici dynamiquement -->
             </div>
         </section>
     </div>
