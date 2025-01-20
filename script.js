@@ -2,30 +2,37 @@
 
 // Récupération des données des paris sportifs via Google Sheets
 async function fetchGoogleSheetData() {
-    const sheetUrl = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json";
+    // URL pour la première feuille (Tableau de suivi des paris sportifs)
+    const sheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%201";
+    // URL pour la deuxième feuille (Mes derniers paris)
+    const sheetUrl2 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%202";
+
     try {
-        const response = await fetch(sheetUrl);
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        const text = await response.text();
+        // Récupération des données de la première feuille
+        const response1 = await fetch(sheetUrl1);
+        if (!response1.ok) throw new Error(`HTTP error! Status: ${response1.status}`);
+        const text1 = await response1.text();
+        const json1 = JSON.parse(text1.substr(47).slice(0, -2));
+        const rows1 = json1.table.rows;
+        const cols1 = json1.table.cols;
 
-        // Extraction des données JSON de Google Sheets
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        const rows = json.table.rows;
-        const cols = json.table.cols;
-
-        // Cible pour afficher les données du tableau de suivi
+        // Affichage des données dans le tableau de suivi des paris sportifs
         const sportsBetTable = document.getElementById("sports-bet-table");
         sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
+        createTableFromSheetData(cols1, rows1, sportsBetTable);
 
-        // Cible pour afficher l'historique des paris
+        // Récupération des données de la deuxième feuille
+        const response2 = await fetch(sheetUrl2);
+        if (!response2.ok) throw new Error(`HTTP error! Status: ${response2.status}`);
+        const text2 = await response2.text();
+        const json2 = JSON.parse(text2.substr(47).slice(0, -2));
+        const rows2 = json2.table.rows;
+        const cols2 = json2.table.cols;
+
+        // Affichage des données dans l'historique des paris
         const betHistoryTable = document.getElementById("bet-history-table");
         betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
-
-        // Création du tableau pour "Tableau de suivi des paris sportifs"
-        createTableFromSheetData(cols, rows, sportsBetTable);
-
-        // Création du tableau pour "Mes derniers paris"
-        createTableFromSheetData(cols, rows, betHistoryTable);
+        createTableFromSheetData(cols2, rows2, betHistoryTable);
     } catch (error) {
         console.error("Erreur lors de la récupération des données Google Sheets :", error);
     }
@@ -93,7 +100,7 @@ async function fetchCryptoPrices() {
 
         cryptos.forEach(crypto => {
             const price = data[crypto.id].eur;
-            const change = data[crypto.id].eur_24h_change.toFixed(2);
+            const change = data[crypto.id].eur_24hr_change.toFixed(2);
 
             const div = document.createElement("div");
             div.className = "crypto-item";
