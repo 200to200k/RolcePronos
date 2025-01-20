@@ -1,26 +1,29 @@
+/* Styles de base */
 body {
     font-family: Arial, sans-serif;
+    background-color: #121212; /* Fond noir très sombre */
+    color: #ffffff; /* Texte blanc */
     margin: 0;
     padding: 0;
-    background-color: #0a0a0a; /* Fond noir très sombre */
-    color: #ffffff; /* Texte blanc pour un contraste élevé */
     line-height: 1.6;
 }
 
+/* Conteneur principal */
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
-    background-color: #1f1f1f; /* Fond légèrement plus clair que le fond global */
-    border-radius: 15px; /* Angles arrondis plus marqués */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
-    text-align: center; /* Centrage du texte dans le conteneur */
+    background-color: #1d1d1d; /* Fond du conteneur légèrement plus clair */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
 
+/* En-tête */
 .header {
     margin-bottom: 40px;
 }
@@ -42,25 +45,57 @@ p {
     margin: 0;
 }
 
-/* Bloc pour chaque section */
+/* Bloc de contenu */
 .block {
     margin-bottom: 40px;
-    background-color: #222222; /* Fond légèrement plus sombre pour les blocs */
+    background-color: #333333; /* Fond sombre pour chaque bloc */
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease-in-out;
-    width: 80%;  /* Largeur du bloc, ajustable selon besoin */
+    width: 80%;
+    text-align: left;
+    margin: 0 auto;
 }
 
 .block:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Ombre plus marquée au survol */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
 }
 
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #222222;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1em;
+    border-bottom: 1px solid #444;
+}
+
+th {
+    background-color: #444444;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+tr:hover {
+    background-color: #555555;
+}
+
+/* Conteneur des cryptomonnaies */
 .crypto-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 30px;
     flex-wrap: wrap;
 }
@@ -70,36 +105,35 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 1px solid #333; /* Bordure sombre */
+    border: 1px solid #444;
     border-radius: 12px;
     min-width: 150px;
     text-align: center;
-    background-color: #333333; /* Fond des éléments crypto encore plus sombre */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    background-color: #444444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
-    margin-bottom: 20px;
 }
 
 .crypto-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombre plus marquée au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .crypto-name {
     font-weight: bold;
     font-size: 1.3em;
     margin-bottom: 10px;
-    color: #ffffff; /* Texte des noms des cryptomonnaies en blanc */
+    color: #ffffff;
 }
 
 .crypto-price {
     font-size: 1.6em;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff; /* Texte des prix en blanc */
+    color: #ffffff;
 }
 
 .price-up {
-    color: #4CAF50; /* Vert clair pour les hausses */
+    color: #4CAF50; /* Vert pour les hausses */
 }
 
 .price-down {
@@ -110,43 +144,9 @@ p {
     color: #FFC107; /* Jaune pour les prix stables */
 }
 
-/* Amélioration des tableaux de paris sportifs et de l'historique */
-#sports-bet-table, #bet-history-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #222222;
-    border-radius: 12px;
-    overflow: hidden;
-    margin: 0 auto; /* Centrage du tableau */
-}
-
-#sports-bet-table th, #bet-history-table th, 
-#sports-bet-table td, #bet-history-table td {
-    padding: 15px;
-    text-align: center; /* Centrage du texte dans les cellules */
-    font-size: 1.1em;
-    border-bottom: 1px solid #333;
-}
-
-#sports-bet-table th, #bet-history-table th {
-    background-color: #333333;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-#sports-bet-table td, #bet-history-table td {
-    background-color: #2a2a2a;
-    color: #ffffff;
-}
-
-#sports-bet-table tr:hover, #bet-history-table tr:hover {
-    background-color: #444444; /* Survol des lignes pour un effet interactif */
-}
-
-/* Style du bouton "Charger plus" */
+/* Bouton charger plus */
 .load-more-btn {
-    background-color: #333;
+    background-color: #444;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -155,11 +155,11 @@ p {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    display: block;  /* Assurer que le bouton occupe une ligne */
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 .load-more-btn:hover {
-    background-color: #444;
+    background-color: #555;
 }
