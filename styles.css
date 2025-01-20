@@ -112,12 +112,13 @@ p {
     background-color: #222222;
     border-radius: 12px;
     overflow: hidden;
+    margin: 0 auto; /* Centrage du tableau */
 }
 
 #sports-bet-table th, #bet-history-table th, 
 #sports-bet-table td, #bet-history-table td {
     padding: 15px;
-    text-align: center;
+    text-align: center; /* Centrage du texte dans les cellules */
     font-size: 1.1em;
     border-bottom: 1px solid #333;
 }
