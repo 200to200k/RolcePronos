@@ -1,38 +1,23 @@
-// Script principal
-
 // Récupération des données des paris sportifs via Google Sheets
 async function fetchGoogleSheetData() {
-    // URL pour la première feuille (Tableau de suivi des paris sportifs)
-    const sheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%201";
-    // URL pour la deuxième feuille (Mes derniers paris)
-    const sheetUrl2 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%202";
-
+    const sheetUrl = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json";
     try {
-        // Récupération des données de la première feuille
-        const response1 = await fetch(sheetUrl1);
-        if (!response1.ok) throw new Error(`HTTP error! Status: ${response1.status}`);
-        const text1 = await response1.text();
-        const json1 = JSON.parse(text1.substr(47).slice(0, -2));
-        const rows1 = json1.table.rows;
-        const cols1 = json1.table.cols;
+        const response = await fetch(sheetUrl);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const text = await response.text();
 
-        // Affichage des données dans le tableau de suivi des paris sportifs
+        // Extraction des données JSON de Google Sheets
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+        const cols = json.table.cols;
+
         const sportsBetTable = document.getElementById("sports-bet-table");
-        sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
-        createTableFromSheetData(cols1, rows1, sportsBetTable);
-
-        // Récupération des données de la deuxième feuille
-        const response2 = await fetch(sheetUrl2);
-        if (!response2.ok) throw new Error(`HTTP error! Status: ${response2.status}`);
-        const text2 = await response2.text();
-        const json2 = JSON.parse(text2.substr(47).slice(0, -2));
-        const rows2 = json2.table.rows;
-        const cols2 = json2.table.cols;
-
-        // Affichage des données dans l'historique des paris
         const betHistoryTable = document.getElementById("bet-history-table");
+        sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
         betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
-        createTableFromSheetData(cols2, rows2, betHistoryTable);
+
+        createTableFromSheetData(cols, rows, sportsBetTable);
+        createTableFromSheetData(cols, rows, betHistoryTable);
     } catch (error) {
         console.error("Erreur lors de la récupération des données Google Sheets :", error);
     }
@@ -44,7 +29,6 @@ function createTableFromSheetData(cols, rows, container) {
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
 
-    // En-têtes : Ajouter uniquement les colonnes ayant un label
     const headerRow = document.createElement("tr");
     cols.forEach(col => {
         if (col.label) {
@@ -55,24 +39,14 @@ function createTableFromSheetData(cols, rows, container) {
     });
     thead.appendChild(headerRow);
 
-    // Lignes : Ajouter uniquement celles qui contiennent au moins une cellule non vide
     rows.forEach(row => {
         const tr = document.createElement("tr");
-        let hasTextContent = false;
-
         row.c.forEach(cell => {
-            if (cell && cell.v) {
-                const td = document.createElement("td");
-                td.textContent = cell.v;
-                tr.appendChild(td);
-                hasTextContent = true;
-            }
+            const td = document.createElement("td");
+            td.textContent = cell?.v || "";
+            tr.appendChild(td);
         });
-
-        // Ajouter la ligne uniquement si elle contient du contenu
-        if (hasTextContent) {
-            tbody.appendChild(tr);
-        }
+        tbody.appendChild(tr);
     });
 
     table.appendChild(thead);
@@ -100,7 +74,7 @@ async function fetchCryptoPrices() {
 
         cryptos.forEach(crypto => {
             const price = data[crypto.id].eur;
-            const change = data[crypto.id].eur_24hr_change.toFixed(2);
+            const change = data[crypto.id].eur_24h_change.toFixed(2);
 
             const div = document.createElement("div");
             div.className = "crypto-item";

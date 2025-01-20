@@ -1,85 +1,65 @@
-/* Thème sombre */
 body {
-    background-color: #121212;
-    color: #FFFFFF;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center; /* Centre globalement le texte */
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 .main-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 20px;
 }
 
-/* En-tête */
 .header {
     text-align: center;
-    padding: 20px;
-    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
 }
 
-/* Blocs de contenu */
 .block {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #1E1E1E;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center; /* Centre le texte dans chaque bloc */
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    margin-top: 0;
-    color: #FFFFFF; /* Blanc pour les titres */
-}
-
-/* Conteneurs pour les sections dynamiques */
-#crypto-container, #sports-bet-table {
-    margin-top: 20px;
-    overflow-x: auto;
-}
-
-/* Tableaux */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto; /* Centre les tableaux horizontalement */
-}
-
-th, td {
-    border: 1px solid #333;
-    padding: 10px;
-    text-align: center; /* Centre le texte dans les cellules */
-}
-
-th {
-    background-color: #333;
-    color: #FFFFFF; /* Blanc pour les en-têtes */
-}
-
-/* Reels Instagram */
-.reels-container {
+.crypto-container {
     display: flex;
     gap: 20px;
-    justify-content: center; /* Centre les Reels horizontalement */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Passe à la ligne si espace insuffisant */
 }
 
-.reels-item img {
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Lumière blanche subtile */
-    width: 300px;
-    height: 200px;
+.crypto-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 100px;
+    text-align: center;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Liens */
-a {
-    color: #CCCCCC; /* Gris clair pour les liens */
-    text-decoration: none;
+.crypto-name {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-a:hover {
-    text-decoration: underline;
+.crypto-price {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.price-up {
+    color: green;
+}
+
+.price-down {
+    color: red;
 }
