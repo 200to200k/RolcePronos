@@ -153,22 +153,51 @@ tr:hover {
     color: #FFC107; /* Jaune pour les prix stables */
 }
 
-/* Bouton charger plus */
-.load-more-btn {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    margin-top: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+/* Conteneur des "Mes derniers paris" avec effet d'ombrage */
+.table-container {
+    position: relative;
+    overflow: hidden; /* Masquer les lignes supplémentaires */
+    max-height: 300px; /* Hauteur maximale visible du tableau (ajustable) */
+    transition: max-height 0.3s ease-in-out;
 }
 
-.load-more-btn:hover {
+/* Ombre en bas pour indiquer qu'il y a du contenu caché */
+.table-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* État étendu (tableau complet visible) */
+.table-container.expanded {
+    max-height: none;
+}
+
+/* Bouton rond pour charger plus */
+.expand-btn {
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #444;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.expand-btn:hover {
     background-color: #555;
+    transform: scale(1.1);
 }

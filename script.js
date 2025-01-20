@@ -22,9 +22,9 @@ async function fetchGoogleSheetData() {
                 sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
                 createTableFromSheetData(cols, rows, sportsBetTable);
             } else {
-                const betHistoryTable = document.getElementById("bet-history-table");
-                betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
-                createTableFromSheetData(cols, rows, betHistoryTable);
+                const betHistoryContainer = document.getElementById("bet-history-container");
+                betHistoryContainer.innerHTML = ""; // Réinitialiser le contenu
+                createBetHistoryTable(cols, rows, betHistoryContainer);
             }
         }
     } catch (error) {
@@ -81,6 +81,79 @@ function createTableFromSheetData(cols, rows, container) {
     table.appendChild(thead);
     table.appendChild(tbody);
     container.appendChild(table);
+}
+
+// Fonction pour créer le tableau "Mes derniers paris" avec la fonctionnalité de masquage
+function createBetHistoryTable(cols, rows, container) {
+    const tableContainer = document.createElement("div");
+    tableContainer.className = "table-container";
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    // En-têtes
+    const headerRow = document.createElement("tr");
+    cols.forEach(col => {
+        if (col.label) {
+            const th = document.createElement("th");
+            th.textContent = col.label;
+            headerRow.appendChild(th);
+        }
+    });
+    thead.appendChild(headerRow);
+
+    // Lignes : Ajouter uniquement celles qui contiennent au moins une cellule non vide
+    rows.forEach((row, index) => {
+        const tr = document.createElement("tr");
+        let hasTextContent = false;
+
+        row.c.forEach(cell => {
+            if (cell && cell.v) {
+                const td = document.createElement("td");
+
+                // Vérifier si la valeur est numérique pour appliquer le formatage
+                td.textContent = isNaN(cell.v) ? cell.v : formatToTwoDecimals(cell.v);
+                tr.appendChild(td);
+                hasTextContent = true;
+            }
+        });
+
+        // Ajouter la ligne uniquement si elle contient du contenu
+        if (hasTextContent) {
+            // Masquer les lignes au-delà des 5 premières
+            if (index >= 5) {
+                tr.style.display = "none";
+                tr.classList.add("hidden-row");
+            }
+            tbody.appendChild(tr);
+        }
+    });
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    tableContainer.appendChild(table);
+
+    // Ajouter le bouton pour charger plus
+    const expandBtn = document.createElement("button");
+    expandBtn.className = "expand-btn";
+    expandBtn.textContent = "+";
+
+    expandBtn.addEventListener("click", () => {
+        const hiddenRows = table.querySelectorAll(".hidden-row");
+        hiddenRows.forEach(row => {
+            row.style.display = row.style.display === "none" ? "table-row" : "none";
+        });
+
+        // Basculer la classe pour changer l'état du tableau
+        tableContainer.classList.toggle("expanded");
+
+        // Mettre à jour le texte du bouton
+        expandBtn.textContent = tableContainer.classList.contains("expanded") ? "-" : "+";
+    });
+
+    container.appendChild(tableContainer);
+    container.appendChild(expandBtn);
 }
 
 // Récupération des cours des cryptomonnaies
