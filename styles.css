@@ -102,15 +102,3 @@ th {
 .reel-item img:hover {
     transform: scale(1.05);
 }
-
-/* Responsivité pour les petits écrans */
-@media (max-width: 768px) {
-    .reels-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .reels-left, .reels-right {
-        width: 100%;
-    }
-}
