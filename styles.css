@@ -15,6 +15,10 @@ body {
     border-radius: 15px; /* Angles arrondis plus marqués */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
     text-align: center; /* Centrage du texte dans le conteneur */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .header {
@@ -38,6 +42,7 @@ p {
     margin: 0;
 }
 
+/* Bloc pour chaque section */
 .block {
     margin-bottom: 40px;
     background-color: #222222; /* Fond légèrement plus sombre pour les blocs */
@@ -45,6 +50,7 @@ p {
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease-in-out;
+    width: 80%;  /* Largeur du bloc, ajustable selon besoin */
 }
 
 .block:hover {
@@ -137,6 +143,7 @@ p {
 #sports-bet-table tr:hover, #bet-history-table tr:hover {
     background-color: #444444; /* Survol des lignes pour un effet interactif */
 }
+
 /* Style du bouton "Charger plus" */
 .load-more-btn {
     background-color: #333;
@@ -155,136 +162,4 @@ p {
 
 .load-more-btn:hover {
     background-color: #444;
-}
-/* Styles généraux */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-
-/* Conteneur principal */
-.main-container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* En-tête */
-.header {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-.header p {
-    font-size: 1.2rem;
-    margin: 5px 0;
-}
-
-/* Section (bloc de contenu) */
-.block {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    padding: 20px;
-}
-
-.block h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-/* Tableau des paris sportifs et historique des paris */
-#sports-bet-table, #bet-history-table {
-    width: 100%;
-    overflow-x: auto;
-    margin: 0 auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f1f1f1;
-}
-
-td {
-    background-color: #fff;
-}
-
-button.load-more-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-button.load-more-btn:hover {
-    background-color: #45a049;
-}
-
-/* Cours des cryptomonnaies */
-.crypto-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.crypto-item {
-    background-color: #f9f9f9;
-    margin: 10px;
-    padding: 15px;
-    border-radius: 8px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.crypto-name {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.crypto-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.price-up {
-    color: green;
-}
-
-.price-down {
-    color: red;
-}
-
-.price-neutral {
-    color: gray;
 }
