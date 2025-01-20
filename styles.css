@@ -1,69 +1,69 @@
 body {
+    background-color: #121212;
+    color: #ffffff;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
-    margin: 0;
-    padding: 0;
 }
 
-.main-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 2.5rem;
-    color: #f0f0f0;
-}
-
-h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 30px;  /* Augmenté pour plus d'espace */
-}
-
-.block {
-    background-color: #333;
-    padding: 15px;
+.block, .crypto-block {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
-    margin-bottom: 40px;
-    width: 80%; /* Réduit la largeur du bloc */
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.crypto-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.crypto-item {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.crypto-item span {
+    display: block;
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.price-up {
+    color: #4caf50;
+}
+
+.price-down {
+    color: #f44336;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 0.9rem; /* Réduit la taille de la police */
-}
-
-th, td {
-    padding: 10px; /* Réduit l'espacement entre les cellules */
-    border: 1px solid #555;
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
 th {
-    background-color: #444;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #333;
 }
 
-td {
-    background-color: #222;
+th, td {
+    border: 1px solid #555;
+    padding: 8px;
+    text-align: center;
 }
 
 tr:nth-child(even) {
-    background-color: #444;
+    background-color: #2a2a2a;
 }
 
-tr:hover {
-    background-color: #555;
+tr:nth-child(odd) {
+    background-color: #1e1e1e;
 }
