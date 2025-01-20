@@ -137,3 +137,22 @@ p {
 #sports-bet-table tr:hover, #bet-history-table tr:hover {
     background-color: #444444; /* Survol des lignes pour un effet interactif */
 }
+/* Style du bouton "Charger plus" */
+.load-more-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;  /* Assurer que le bouton occupe une ligne */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.load-more-btn:hover {
+    background-color: #444;
+}

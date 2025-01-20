@@ -26,8 +26,22 @@
         <section class="block">
             <h2>Mes derniers paris</h2>
             <div id="bet-history-table">
-                <!-- Les données de l'historique des paris seront insérées ici dynamiquement -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>START</th>
+                            <th>BANKROLL</th>
+                            <th>EVOLUTION</th>
+                            <th>OBJECTIF</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bet-history-body">
+                        <!-- Les 6 premiers paris seront insérés ici via JavaScript -->
+                    </tbody>
+                </table>
+                <button id="load-more" class="load-more-btn">Charger plus</button>
             </div>
+        </section>
         </section>
 
         <!-- Cours des cryptomonnaies -->
@@ -52,3 +66,79 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Suivi des Paris Sportifs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>Tableau de suivi des paris sportifs</h1>
+            <h2>Mes derniers paris</h2>
+        </header>
+
+        <div id="sports-bet-table"></div> <!-- Tableau des paris sportifs -->
+        <div id="bet-history-table"></div> <!-- Tableau de l'historique des paris -->
+        <div id="crypto-container" class="crypto-container"></div> <!-- Informations sur les cryptos -->
+
+    </div>
+
+    <!-- Script JS intégré -->
+    <script>
+        // Script principal
+
+        // Récupération des données des paris sportifs via Google Sheets
+        async function fetchGoogleSheetData() {
+            // URL pour la première feuille (Tableau de suivi des paris sportifs)
+            const sheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%201";
+            // URL pour la deuxième feuille (Mes derniers paris)
+            const sheetUrl2 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%202";
+
+            try {
+                // Récupération des données de la première feuille
+                const response1 = await fetch(sheetUrl1);
+                if (!response1.ok) throw new Error(`HTTP error! Status: ${response1.status}`);
+                const text1 = await response1.text();
+                const json1 = JSON.parse(text1.substr(47).slice(0, -2));
+                const rows1 = json1.table.rows;
+                const cols1 = json1.table.cols;
+
+                // Affichage des données dans le tableau de suivi des paris sportifs
+                const sportsBetTable = document.getElementById("sports-bet-table");
+                sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
+                createTableFromSheetData(cols1, rows1, sportsBetTable);
+
+                // Récupération des données de la deuxième feuille
+                const response2 = await fetch(sheetUrl2);
+                if (!response2.ok) throw new Error(`HTTP error! Status: ${response2.status}`);
+                const text2 = await response2.text();
+                const json2 = JSON.parse(text2.substr(47).slice(0, -2));
+                const rows2 = json2.table.rows;
+                const cols2 = json2.table.cols;
+
+                // Affichage des données dans l'historique des paris
+                const betHistoryTable = document.getElementById("bet-history-table");
+                betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
+                createTableFromSheetData(cols2, rows2, betHistoryTable);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des données Google Sheets :", error);
+            }
+        }
+
+        // Fonction utilitaire pour générer un tableau HTML
+        function createTableFromSheetData(cols, rows, container) {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+
+            // En-têtes : Ajouter uniquement les colonnes ayant un label
+            const headerRow = document.createElement("tr");
+            cols.forEach(col => {
+                if (col.label) {
+                    const th = document.createElement("th");
+                    th.textContent = col.label;
+  
