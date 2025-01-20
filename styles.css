@@ -1,104 +1,67 @@
-/* Styles généraux */
+/* Thème sombre */
 body {
+    background-color: #121212;
+    color: #FFFFFF;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
-/* Conteneur principal */
 .main-container {
-    width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
 }
 
-/* Section des titres */
-header {
+.header {
     text-align: center;
-    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #333;
 }
 
-header h1 {
-    font-size: 2.5rem;
+.block {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #1E1E1E;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-header p {
-    font-size: 1.2rem;
+h2 {
+    margin-top: 0;
+    color: #FFD700;
 }
 
-/* Section de la crypto */
-.crypto-block, .block {
-    margin-bottom: 40px;
-}
-
-.crypto-block h2, .block h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+#crypto-container, #sports-bet-table {
+    margin-top: 20px;
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
 }
 
 th, td {
+    border: 1px solid #333;
     padding: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 th {
-    background-color: #f8f8f8;
+    background-color: #333;
+    color: #FFD700;
 }
 
-/* Section des reels Instagram */
-.reels-section {
-    background-color: #1f1f1f;
-    padding: 30px;
-    margin-top: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-.reels-section h2 {
-    font-size: 2rem;
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-/* Conteneur des Reels */
 .reels-container {
     display: flex;
-    justify-content: space-between;
     gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* Left and right sections */
-.reels-left, .reels-right {
-    width: 48%;
-}
-
-.reel-item {
-    margin-bottom: 15px;
-}
-
-.reel-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.reel-item img:hover {
-    transform: scale(1.05);
+.reels-item img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    width: 300px;
+    height: 200px;
 }
