@@ -1,5 +1,3 @@
-// Script principal
-
 // Fonction pour récupérer les données des paris sportifs via Google Sheets
 async function fetchGoogleSheetData() {
     const sheetUrls = [
@@ -34,6 +32,13 @@ async function fetchGoogleSheetData() {
     }
 }
 
+// Fonction utilitaire pour limiter les nombres à deux décimales
+function formatToTwoDecimals(value) {
+    const number = parseFloat(value);
+    if (isNaN(number)) return value; // Retourner la valeur brute si ce n'est pas un nombre
+    return number.toFixed(2); // Limiter à deux chiffres après la virgule
+}
+
 // Fonction utilitaire pour générer un tableau HTML à partir des données de la feuille
 function createTableFromSheetData(cols, rows, container) {
     const table = document.createElement("table");
@@ -59,7 +64,9 @@ function createTableFromSheetData(cols, rows, container) {
         row.c.forEach(cell => {
             if (cell && cell.v) {
                 const td = document.createElement("td");
-                td.textContent = cell.v;
+
+                // Vérifier si la valeur est numérique pour appliquer le formatage
+                td.textContent = isNaN(cell.v) ? cell.v : formatToTwoDecimals(cell.v);
                 tr.appendChild(td);
                 hasTextContent = true;
             }
