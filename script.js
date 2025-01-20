@@ -43,7 +43,13 @@ function createTableFromSheetData(cols, rows, container) {
         const tr = document.createElement("tr");
         row.c.forEach(cell => {
             const td = document.createElement("td");
-            td.textContent = cell?.v || "";
+
+            // Vérification si la cellule contient une valeur numérique
+            if (cell && typeof cell.v === "number") {
+                td.textContent = cell.v.toFixed(2); // Limiter à 2 chiffres après la virgule
+            } else {
+                td.textContent = cell?.v || ""; // Afficher la valeur ou vide
+            }
             tr.appendChild(td);
         });
         tbody.appendChild(tr);
@@ -73,7 +79,7 @@ async function fetchCryptoPrices() {
         cryptoContainer.innerHTML = ""; // Réinitialiser le contenu
 
         cryptos.forEach(crypto => {
-            const price = data[crypto.id].eur;
+            const price = data[crypto.id].eur.toFixed(2); // Formattage à 2 décimales
             const change = data[crypto.id].eur_24h_change.toFixed(2);
 
             const div = document.createElement("div");
