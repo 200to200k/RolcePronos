@@ -1,44 +1,40 @@
 // Script principal
 
-// Récupération des données des paris sportifs via Google Sheets
+// Fonction pour récupérer les données des paris sportifs via Google Sheets
 async function fetchGoogleSheetData() {
-    // URL pour la première feuille (Tableau de suivi des paris sportifs)
-    const sheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%201";
-    // URL pour la deuxième feuille (Mes derniers paris)
-    const sheetUrl2 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%202";
+    const sheetUrls = [
+        "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%201", // Tableau de suivi des paris sportifs
+        "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json&sheet=Feuille%202"  // Mes derniers paris
+    ];
 
     try {
-        // Récupération des données de la première feuille
-        const response1 = await fetch(sheetUrl1);
-        if (!response1.ok) throw new Error(`HTTP error! Status: ${response1.status}`);
-        const text1 = await response1.text();
-        const json1 = JSON.parse(text1.substr(47).slice(0, -2));
-        const rows1 = json1.table.rows;
-        const cols1 = json1.table.cols;
+        // Traitement pour chaque URL de feuille
+        for (let i = 0; i < sheetUrls.length; i++) {
+            const response = await fetch(sheetUrls[i]);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-        // Affichage des données dans le tableau de suivi des paris sportifs
-        const sportsBetTable = document.getElementById("sports-bet-table");
-        sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
-        createTableFromSheetData(cols1, rows1, sportsBetTable);
+            const text = await response.text();
+            const json = JSON.parse(text.substr(47).slice(0, -2));
+            const rows = json.table.rows;
+            const cols = json.table.cols;
 
-        // Récupération des données de la deuxième feuille
-        const response2 = await fetch(sheetUrl2);
-        if (!response2.ok) throw new Error(`HTTP error! Status: ${response2.status}`);
-        const text2 = await response2.text();
-        const json2 = JSON.parse(text2.substr(47).slice(0, -2));
-        const rows2 = json2.table.rows;
-        const cols2 = json2.table.cols;
-
-        // Affichage des données dans l'historique des paris
-        const betHistoryTable = document.getElementById("bet-history-table");
-        betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
-        createTableFromSheetData(cols2, rows2, betHistoryTable);
+            // Affichage des données dans les tables HTML correspondantes
+            if (i === 0) {
+                const sportsBetTable = document.getElementById("sports-bet-table");
+                sportsBetTable.innerHTML = ""; // Réinitialiser le contenu
+                createTableFromSheetData(cols, rows, sportsBetTable);
+            } else {
+                const betHistoryTable = document.getElementById("bet-history-table");
+                betHistoryTable.innerHTML = ""; // Réinitialiser le contenu
+                createTableFromSheetData(cols, rows, betHistoryTable);
+            }
+        }
     } catch (error) {
         console.error("Erreur lors de la récupération des données Google Sheets :", error);
     }
 }
 
-// Fonction utilitaire pour générer un tableau HTML
+// Fonction utilitaire pour générer un tableau HTML à partir des données de la feuille
 function createTableFromSheetData(cols, rows, container) {
     const table = document.createElement("table");
     const thead = document.createElement("thead");
