@@ -1,3 +1,4 @@
+/* Style général */
 * {
     margin: 0;
     padding: 0;
@@ -6,93 +7,120 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
+    background-color: #121212; /* Fond sombre */
     color: white;
+    line-height: 1.6;
 }
 
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
+/* Header */
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Taille du titre plus grande */
     color: #f1f1f1;
 }
 
 header p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #bbb;
 }
 
+/* Section Content */
 .content {
     display: flex;
     justify-content: space-between;
+    gap: 30px; /* Espace entre les blocs */
+    flex-wrap: wrap;
+}
+
+/* Blocs principaux */
+.block,
+.crypto-block {
+    flex: 1; /* Chaque bloc prend la même largeur */
+    background-color: #1f1f1f;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ombre douce pour les blocs */
+    text-align: center; /* Centrer le texte à l'intérieur des blocs */
 }
 
 .block {
-    flex: 1;
-    margin: 0 20px;
-    background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 10px;
+    max-width: 500px; /* Largeur max pour le bloc du tableau */
 }
 
+.crypto-block {
+    max-width: 700px; /* Largeur max pour le bloc des cryptos */
+}
+
+/* Tableaux */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
-table th, table td {
-    padding: 15px;
-    text-align: left;
+table th,
+table td {
+    padding: 20px;
+    text-align: center;
     border-bottom: 1px solid #444;
 }
 
 table th {
     background-color: #333;
+    font-size: 1.2rem;
 }
 
 table td {
     background-color: #222;
+    font-size: 1.1rem;
 }
 
-.crypto-block {
-    flex: 2;
-    margin: 0 20px;
-    background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 10px;
-}
-
+/* Style des éléments de cryptomonnaies */
 .crypto-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #444;
 }
 
 .crypto-name {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Taille du nom de la crypto */
+    font-weight: bold;
 }
 
 .crypto-price {
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Taille du prix des cryptos */
     font-weight: bold;
 }
 
 .price-up {
-    color: #4CAF50;
+    color: #4CAF50; /* Vert pour les hausses */
 }
 
 .price-down {
-    color: #F44336;
+    color: #F44336; /* Rouge pour les baisses */
+}
+
+/* Responsive - Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; /* Empile les blocs pour les écrans plus petits */
+        gap: 20px;
+    }
+
+    .block,
+    .crypto-block {
+        max-width: 100%; /* Les blocs prennent toute la largeur */
+    }
 }
