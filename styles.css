@@ -16,7 +16,7 @@ body {
     background-color: #1d1d1d; /* Fond du conteneur légèrement plus clair */
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    text-align: center;
+    text-align: center; /* Texte centré dans le conteneur */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,13 +47,13 @@ p {
 
 /* Bloc de contenu */
 .block {
-    margin-bottom: 40px;
+    margin-bottom: 40px; /* Espacement entre les blocs */
     background-color: #333333; /* Fond sombre pour chaque bloc */
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     width: 80%;
-    text-align: left;
+    text-align: center; /* Centrer le texte dans les blocs */
     margin: 0 auto;
 }
 
@@ -62,12 +62,18 @@ p {
 }
 
 /* Tableaux */
+#bet-history-table {
+    max-width: 100%; /* Limiter la largeur du tableau */
+    overflow-x: auto; /* Permettre le défilement horizontal si nécessaire */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: #222222;
     border-radius: 12px;
     overflow: hidden;
+    margin: 0 auto; /* Centrer le tableau */
 }
 
 th, td {
