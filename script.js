@@ -1,30 +1,29 @@
-async function fetchCryptoPrices() {
-    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,trumpcoin&vs_currencies=usd&include_24hr_change=true');
-    const data = await response.json();
+cryptos.forEach(crypto => {
+    const price = data[crypto.id].eur;
+    const change = data[crypto.id].eur_24h_change.toFixed(2);
+
+    const div = document.createElement('div');
+    div.className = 'crypto-item';
     
-    updateCryptoPrice('bitcoin', data.bitcoin);
-    updateCryptoPrice('ethereum', data.ethereum);
-    updateCryptoPrice('solana', data.solana);
-    updateCryptoPrice('xrp', data.ripple);
-    updateCryptoPrice('trumpcoin', data.trumpcoin);
-}
+    const name = document.createElement('div');
+    name.className = 'crypto-name';
+    name.textContent = crypto.name;
 
-function updateCryptoPrice(id, data) {
-    const priceElement = document.querySelector(`#${id} .price`);
-    priceElement.textContent = `$${data.usd}`;
+    const index = document.createElement('span');
+    index.className = 'crypto-index';
+    index.textContent = crypto.name === "BTC" ? "BTC" : crypto.name === "ETH" ? "ETH" : crypto.name === "SOL" ? "SOL" : "XRP";
     
-    const priceChange = data.usd_24h_change;
-    if (priceChange > 0) {
-        priceElement.classList.add('positive');
-        priceElement.classList.remove('negative');
-    } else {
-        priceElement.classList.add('negative');
-        priceElement.classList.remove('positive');
-    }
-}
+    const priceSpan = document.createElement('span');
+    priceSpan.textContent = `${price} €`;
+    priceSpan.className = change >= 0 ? 'price-up' : 'price-down';
 
-// Call the function on page load
-fetchCryptoPrices();
+    const changeSpan = document.createElement('div');
+    changeSpan.textContent = `${change}%`;
+    changeSpan.className = change >= 0 ? 'price-up' : 'price-down';
 
-// Update every minute
-setInterval(fetchCryptoPrices, 60000);
+    div.appendChild(name);
+    name.appendChild(index); // Ajout de l'indice à droite du nom
+    div.appendChild(priceSpan);
+    div.appendChild(changeSpan);
+    cryptoContainer.appendChild(div);
+});
