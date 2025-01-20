@@ -19,20 +19,30 @@ async function fetchGoogleSheetData() {
         const headerRow = document.createElement("tr");
         json.table.cols.forEach(col => {
             const th = document.createElement("th");
-            th.textContent = col.label;
-            headerRow.appendChild(th);
+            if (col.label) { // Ajouter uniquement si l'en-tête contient du texte
+                th.textContent = col.label;
+                headerRow.appendChild(th);
+            }
         });
         thead.appendChild(headerRow);
 
         // Ajouter les lignes
         rows.forEach(row => {
             const tr = document.createElement("tr");
+            let hasTextContent = false; // Vérifie si la ligne contient du contenu
+
             row.c.forEach(cell => {
-                const td = document.createElement("td");
-                td.textContent = cell?.v || "";
-                tr.appendChild(td);
+                if (cell?.v) { // Vérifier si la cellule contient une valeur
+                    const td = document.createElement("td");
+                    td.textContent = cell.v;
+                    tr.appendChild(td);
+                    hasTextContent = true; // Indique qu'il y a du contenu dans cette ligne
+                }
             });
-            tbody.appendChild(tr);
+
+            if (hasTextContent) { // Ajouter la ligne uniquement si elle contient du texte
+                tbody.appendChild(tr);
+            }
         });
 
         table.appendChild(thead);
