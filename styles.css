@@ -5,6 +5,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center; /* Centre globalement le texte */
 }
 
 .main-container {
@@ -13,55 +14,72 @@ body {
     padding: 20px;
 }
 
+/* En-tête */
 .header {
     text-align: center;
     padding: 20px;
     border-bottom: 1px solid #333;
 }
 
+/* Blocs de contenu */
 .block {
     margin: 20px 0;
     padding: 20px;
     background-color: #1E1E1E;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Centre le texte dans chaque bloc */
 }
 
 h2 {
     margin-top: 0;
-    color: #FFD700;
+    color: #FFFFFF; /* Blanc pour les titres */
 }
 
+/* Conteneurs pour les sections dynamiques */
 #crypto-container, #sports-bet-table {
     margin-top: 20px;
     overflow-x: auto;
 }
 
+/* Tableaux */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0 auto; /* Centre les tableaux horizontalement */
 }
 
 th, td {
     border: 1px solid #333;
     padding: 10px;
-    text-align: left;
+    text-align: center; /* Centre le texte dans les cellules */
 }
 
 th {
     background-color: #333;
-    color: #FFD700;
+    color: #FFFFFF; /* Blanc pour les en-têtes */
 }
 
+/* Reels Instagram */
 .reels-container {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: center; /* Centre les Reels horizontalement */
 }
 
 .reels-item img {
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Lumière blanche subtile */
     width: 300px;
     height: 200px;
+}
+
+/* Liens */
+a {
+    color: #CCCCCC; /* Gris clair pour les liens */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
