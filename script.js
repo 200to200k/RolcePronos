@@ -3,44 +3,50 @@ async function fetchGoogleSheetData() {
     const sheetUrl = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:json";
     try {
         const response = await fetch(sheetUrl);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const text = await response.text();
+
+        // Extraction des données JSON de Google Sheets
         const json = JSON.parse(text.substr(47).slice(0, -2));
         const rows = json.table.rows;
+        const cols = json.table.cols;
 
+        // Cible pour afficher les données
         const tableContainer = document.getElementById("sports-bet-table");
         tableContainer.innerHTML = ""; // Réinitialiser le contenu
 
-        // Créer un tableau HTML
+        // Création du tableau HTML
         const table = document.createElement("table");
         const thead = document.createElement("thead");
         const tbody = document.createElement("tbody");
 
-        // Créer les en-têtes
+        // En-têtes : Ajouter uniquement les colonnes ayant un label
         const headerRow = document.createElement("tr");
-        json.table.cols.forEach(col => {
-            const th = document.createElement("th");
-            if (col.label) { // Ajouter uniquement si l'en-tête contient du texte
+        cols.forEach(col => {
+            if (col.label) {
+                const th = document.createElement("th");
                 th.textContent = col.label;
                 headerRow.appendChild(th);
             }
         });
         thead.appendChild(headerRow);
 
-        // Ajouter les lignes
+        // Lignes : Ajouter uniquement celles qui contiennent au moins une cellule non vide
         rows.forEach(row => {
             const tr = document.createElement("tr");
-            let hasTextContent = false; // Vérifie si la ligne contient du contenu
+            let hasTextContent = false;
 
             row.c.forEach(cell => {
-                if (cell?.v) { // Vérifier si la cellule contient une valeur
+                if (cell && cell.v) {
                     const td = document.createElement("td");
                     td.textContent = cell.v;
                     tr.appendChild(td);
-                    hasTextContent = true; // Indique qu'il y a du contenu dans cette ligne
+                    hasTextContent = true;
                 }
             });
 
-            if (hasTextContent) { // Ajouter la ligne uniquement si elle contient du texte
+            // Ajouter la ligne uniquement si elle contient du contenu
+            if (hasTextContent) {
                 tbody.appendChild(tr);
             }
         });
@@ -53,32 +59,8 @@ async function fetchGoogleSheetData() {
     }
 }
 
-// Récupération des cours des cryptomonnaies via CoinGecko
-async function fetchCryptoPrices() {
-    const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur&include_24hr_change=true";
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        const cryptoContainer = document.getElementById("crypto-container");
-        cryptoContainer.innerHTML = ""; // Réinitialiser le contenu
-
-        Object.entries(data).forEach(([key, value]) => {
-            const div = document.createElement("div");
-            div.innerHTML = `
-                <strong>${key.toUpperCase()}</strong>: ${value.eur} € (${value.eur_24h_change.toFixed(2)}%)
-            `;
-            cryptoContainer.appendChild(div);
-        });
-    } catch (error) {
-        console.error("Erreur lors de la récupération des cryptos :", error);
-    }
-}
-
-// Initialisation
+// Initialisation : Ajouter un gestionnaire d'événements pour charger les données
 document.addEventListener("DOMContentLoaded", () => {
     fetchGoogleSheetData();
-    fetchCryptoPrices();
     setInterval(fetchGoogleSheetData, 60000); // Actualiser toutes les 60 secondes
-    setInterval(fetchCryptoPrices, 60000);
 });
