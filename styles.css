@@ -2,64 +2,84 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #121212; /* Fond sombre */
+    color: #f1f1f1; /* Texte clair pour contraste */
 }
 
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
+    background-color: #1f1f1f; /* Fond de contenu plus clair que l'arrière-plan */
+    border-radius: 12px; /* Angles arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus marquée pour un effet de profondeur */
 }
 
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .block {
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    background-color: #1a1a1a; /* Fond sombre avec une légère variation */
+    border-radius: 12px; /* Angles arrondis */
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus intense */
+    transition: box-shadow 0.3s ease-in-out; /* Animation sur l'ombre au survol */
+}
+
+.block:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Ombre plus grande au survol */
 }
 
 .crypto-container {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Passe à la ligne si espace insuffisant */
+    flex-wrap: wrap;
 }
 
 .crypto-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    min-width: 100px;
+    padding: 20px;
+    border: 1px solid #333; /* Bordure sombre */
+    border-radius: 12px;
+    min-width: 120px;
     text-align: center;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #2a2a2a; /* Fond des éléments sombre */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.crypto-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Ombre plus marquée au survol */
 }
 
 .crypto-name {
     font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
 .crypto-price {
-    font-size: 1.2em;
-    margin-bottom: 5px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .price-up {
-    color: green;
+    color: #4CAF50; /* Vert clair pour les hausses */
 }
 
 .price-down {
-    color: red;
+    color: #F44336; /* Rouge pour les baisses */
 }
+
+.price-neutral {
+    color: #FFC107; /* Jaune pour les prix stables */
+}
+
