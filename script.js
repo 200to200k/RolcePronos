@@ -156,22 +156,22 @@ function createBetHistoryTable(cols, rows, container) {
     container.appendChild(expandBtn);
 }
 
-// Récupération des cours des cryptomonnaies
-async function fetchCryptoPrices() {
+// Récupération en temps réel des cours des cryptomonnaies
+async function fetchCryptoPricesRealtime() {
+    const cryptoContainer = document.getElementById("crypto-container");
+    const cryptos = [
+        { name: "BTC", id: "bitcoin" },
+        { name: "ETH", id: "ethereum" },
+        { name: "SOL", id: "solana" },
+        { name: "XRP", id: "ripple" },
+    ];
+
     try {
         const response = await fetch(
             "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur&include_24hr_change=true"
         );
         const data = await response.json();
 
-        const cryptos = [
-            { name: "BTC", id: "bitcoin" },
-            { name: "ETH", id: "ethereum" },
-            { name: "SOL", id: "solana" },
-            { name: "XRP", id: "ripple" },
-        ];
-
-        const cryptoContainer = document.getElementById("crypto-container");
         cryptoContainer.innerHTML = ""; // Réinitialiser le contenu
 
         cryptos.forEach(crypto => {
@@ -202,12 +202,14 @@ async function fetchCryptoPrices() {
     } catch (error) {
         console.error("Erreur lors de la récupération des données des cryptomonnaies :", error);
     }
+
+    // Rappel pour une actualisation rapide
+    setTimeout(fetchCryptoPricesRealtime, 5000); // Met à jour toutes les 5 secondes
 }
 
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
     fetchGoogleSheetData();
-    fetchCryptoPrices();
+    fetchCryptoPricesRealtime(); // Initialisation en temps réel
     setInterval(fetchGoogleSheetData, 60000); // Actualiser les paris toutes les 60 secondes
-    setInterval(fetchCryptoPrices, 60000); // Actualiser les cryptos toutes les 60 secondes
 });
