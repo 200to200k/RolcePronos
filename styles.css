@@ -13,58 +13,6 @@ body {
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
 
-/* Barre en haut de la page */
-.header-bar {
-    width: 100%;
-    background-color: #1d1d1d; /* Fond identique à tes blocs */
-    color: #ffffff;
-    padding: 50px 60px; /* Augmente la hauteur de la barre (padding vertical augmenté) */
-    position: fixed; /* Reste en haut, même au défilement */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Toujours au-dessus du contenu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 2em; /* Taille réduite des textes dans la barre */
-    height: auto; /* Ajuste la hauteur en fonction du contenu */
-}
-
-/* Liens de navigation dans la barre */
-.header-bar a {
-    color: #ffffff; /* Liens en blanc */
-    text-decoration: none;
-    margin: 0 60px; /* Augmente l'espace à droite et entre les liens */
-    font-size: 1.8em; /* Réduction de la taille des liens */
-    text-transform: uppercase; /* Texte en majuscules */
-    transition: color 0.3s ease;
-}
-
-.header-bar a:hover {
-    color: #4CAF50; /* Couleur au survol */
-}
-
-/* Logo aligné à gauche */
-.header-bar .logo {
-    font-weight: bold;
-    font-size: 2.5em; /* Taille réduite du logo */
-    margin-right: auto;
-}
-
-/* Conteneur des liens */
-.header-bar .nav-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 40px; /* Ajoute un espace supplémentaire à droite des menus */
-}
-
-/* Espacement sous la barre pour éviter le chevauchement du contenu */
-.main-container {
-    margin-top: 160px; /* Double la marge pour correspondre à la taille de la barre */
-}
-
 /* Conteneur principal */
 .main-container {
     width: 100%; /* Prendre toute la largeur disponible */
@@ -77,7 +25,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 80px; /* Ajout pour laisser de l'espace sous la barre */
 }
 
 /* En-tête */
@@ -150,18 +97,6 @@ td {
 
 tr:hover {
     background-color: #555555;
-}
-
-/* Fond vert pour les paris gagnants */
-tr.win {
-    background-color: #4CAF50; /* Vert pour les gains */
-    color: #ffffff;
-}
-
-/* Fond rouge pour les paris perdants */
-tr.loss {
-    background-color: #F44336; /* Rouge pour les pertes */
-    color: #ffffff;
 }
 
 /* Conteneur des cryptomonnaies */
