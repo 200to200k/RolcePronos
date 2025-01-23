@@ -1,4 +1,4 @@
-/* Styles de base */ 
+/* Styles de base */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212; /* Fond noir très sombre */
@@ -13,72 +13,18 @@ body {
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
 
-/* Barre en haut de la page */
-.header-bar {
-    width: 100%;
-    background-color: #1d1d1d; /* Fond identique à tes blocs */
-    color: #ffffff;
-    padding: 30px 40px; /* Réduction du padding (espacement) pour une taille plus compacte */
-    position: fixed; /* Reste en haut, même au défilement */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Toujours au-dessus du contenu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.8em; /* Taille ajustée des textes dans la barre */
-    height: auto; /* Ajuste la hauteur en fonction du contenu */
-}
-
-/* Liens de navigation dans la barre */
-.header-bar a {
-    color: #ffffff; /* Liens en blanc */
-    text-decoration: none;
-    margin: 0 40px; /* Réduction de l'espace entre les liens */
-    font-size: 1.4em; /* Réduction de la taille des liens */
-    text-transform: uppercase; /* Texte en majuscules */
-    transition: color 0.3s ease;
-}
-
-.header-bar a:hover {
-    color: #4CAF50; /* Couleur au survol */
-}
-
-/* Logo aligné à gauche */
-.header-bar .logo {
-    font-weight: bold;
-    font-size: 2.2em; /* Taille réduite du logo */
-    margin-right: auto;
-}
-
-/* Conteneur des liens */
-.header-bar .nav-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 40px; /* Ajoute un espace supplémentaire à droite des menus */
-}
-
-/* Espacement sous la barre pour éviter le chevauchement du contenu */
-.main-container {
-    margin-top: 140px; /* Décalage pour ne pas être masqué par la barre */
-    padding: 0 15px; /* Réduction de l'espace latéral */
-}
-
 /* Conteneur principal */
 .main-container {
     width: 100%; /* Prendre toute la largeur disponible */
     max-width: 1200px; /* Limiter la largeur à 1200px pour un contenu centré */
     margin: 20px auto; /* Ajouter un peu d'espace au-dessus et en dessous */
     padding: 20px;
-    background-color: #1d1d1d; /* Fond du conteneur légèrement plus clair */
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    background-color: #1d1d1d; /* Fond sombre */
+    border-radius: 20px; /* Bordures arrondies */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); /* Ombre subtile */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 80px; /* Ajout pour laisser de l'espace sous la barre */
 }
 
 /* En-tête */
@@ -125,7 +71,7 @@ p {
 table {
     width: 100%; /* Utiliser 100% de la largeur du bloc */
     border-collapse: collapse;
-    background-color: #222222;
+    background-color: #222222; /* Fond sombre pour le tableau */
     border-radius: 12px;
     overflow: hidden;
     margin: 0 auto; /* Centrer le tableau horizontalement */
@@ -263,4 +209,7 @@ tr.loss {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.expand-btn
+.expand-btn:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
