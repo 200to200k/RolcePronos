@@ -1,4 +1,4 @@
-/* Styles de base */
+/* Styles de base */ 
 body {
     font-family: Arial, sans-serif;
     background-color: #121212; /* Fond noir très sombre */
@@ -13,10 +13,63 @@ body {
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
 
+/* Barre en haut de la page */
+.header-bar {
+    width: 100%;
+    background-color: #1d1d1d; /* Fond identique à tes blocs */
+    color: #ffffff;
+    padding: 30px 40px; /* Réduction du padding (espacement) pour une taille plus compacte */
+    position: fixed; /* Reste en haut, même au défilement */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Toujours au-dessus du contenu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.8em; /* Taille ajustée des textes dans la barre */
+    height: auto; /* Ajuste la hauteur en fonction du contenu */
+}
+
+/* Liens de navigation dans la barre */
+.header-bar a {
+    color: #ffffff; /* Liens en blanc */
+    text-decoration: none;
+    margin: 0 40px; /* Réduction de l'espace entre les liens */
+    font-size: 1.4em; /* Réduction de la taille des liens */
+    text-transform: uppercase; /* Texte en majuscules */
+    transition: color 0.3s ease;
+}
+
+.header-bar a:hover {
+    color: #4CAF50; /* Couleur au survol */
+}
+
+/* Logo aligné à gauche */
+.header-bar .logo {
+    font-weight: bold;
+    font-size: 2.2em; /* Taille réduite du logo */
+    margin-right: auto;
+}
+
+/* Conteneur des liens */
+.header-bar .nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px; /* Ajoute un espace supplémentaire à droite des menus */
+}
+
+/* Espacement sous la barre pour éviter le chevauchement du contenu */
+.main-container {
+    margin-top: 140px; /* Décalage pour ne pas être masqué par la barre */
+    padding: 0 15px; /* Réduction de l'espace latéral */
+}
+
 /* Conteneur principal */
 .main-container {
     width: 100%; /* Prendre toute la largeur disponible */
-    max-width: 1000px; /* Limiter la largeur à 1000px pour un contenu centré */
+    max-width: 1200px; /* Limiter la largeur à 1200px pour un contenu centré */
     margin: 20px auto; /* Ajouter un peu d'espace au-dessus et en dessous */
     padding: 20px;
     background-color: #1d1d1d; /* Fond du conteneur légèrement plus clair */
@@ -25,6 +78,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 80px; /* Ajout pour laisser de l'espace sous la barre */
 }
 
 /* En-tête */
@@ -34,13 +88,13 @@ body {
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 3em;
     font-weight: bold;
     color: #ffffff;
 }
 
 h2 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     margin-bottom: 20px;
     color: #ffffff;
 }
@@ -55,7 +109,7 @@ p {
 .block {
     background-color: #333333; /* Fond sombre pour chaque bloc */
     border-radius: 15px;
-    padding: 20px; /* Espacement interne */
+    padding: 30px; /* Augmentation du padding pour agrandir le bloc */
     margin-bottom: 30px; /* Espacement externe entre les blocs */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     width: 100%; /* S'étend pour utiliser tout l'espace du conteneur principal */
@@ -78,9 +132,9 @@ table {
 }
 
 th, td {
-    padding: 12px; /* Taille des cellules */
+    padding: 20px; /* Augmentation du padding dans les cellules */
     text-align: center; /* Centrer le texte */
-    font-size: 1em;
+    font-size: 1.2em; /* Augmentation de la taille de la police */
     border-bottom: 1px solid #444;
 }
 
@@ -99,28 +153,40 @@ tr:hover {
     background-color: #555555;
 }
 
+/* Fond vert pour les paris gagnants */
+tr.win {
+    background-color: #4CAF50; /* Vert pour les gains */
+    color: #ffffff;
+}
+
+/* Fond rouge pour les paris perdants */
+tr.loss {
+    background-color: #F44336; /* Rouge pour les pertes */
+    color: #ffffff;
+}
+
 /* Conteneur des cryptomonnaies */
 .crypto-container {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Ajuster l'espacement entre les items */
+    gap: 30px; /* Augmentation de l'espace entre les items */
     flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
-    margin-top: 20px;
+    margin-top: 30px; /* Espace supérieur augmenté */
 }
 
 .crypto-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 25px; /* Augmentation du padding dans les éléments */
     border: 1px solid #444;
     border-radius: 12px;
-    min-width: 150px;
+    min-width: 180px; /* Agrandissement de la taille minimale */
     text-align: center;
     background-color: #444444;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Espacement entre les éléments augmenté */
 }
 
 .crypto-item:hover {
@@ -129,15 +195,15 @@ tr:hover {
 
 .crypto-name {
     font-weight: bold;
-    font-size: 1.3em;
-    margin-bottom: 10px;
+    font-size: 1.5em; /* Taille de la police augmentée */
+    margin-bottom: 12px;
     color: #ffffff;
 }
 
 .crypto-price {
-    font-size: 1.6em;
+    font-size: 1.8em; /* Augmentation de la taille de la police */
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: #ffffff;
 }
 
@@ -157,7 +223,7 @@ tr:hover {
 .table-container {
     position: relative;
     overflow: hidden; /* Masquer les lignes supplémentaires */
-    max-height: 300px; /* Hauteur maximale visible du tableau (ajustable) */
+    max-height: 350px; /* Hauteur maximale visible du tableau (ajustable) */
     transition: max-height 0.3s ease-in-out;
 }
 
@@ -185,19 +251,16 @@ tr:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background-color: #444;
     border: none;
     border-radius: 50%;
     color: white;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.6em; /* Augmentation de la taille du bouton */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.expand-btn:hover {
-    background-color: #555;
-    transform: scale(1.1);
-}
+.expand-btn
