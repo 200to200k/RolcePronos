@@ -17,7 +17,7 @@ body {
     width: 100%;
     background-color: #1d1d1d; /* Fond identique à tes blocs */
     color: #ffffff;
-    padding: 40px 60px; /* Espacement interne x2 */
+    padding: 50px 60px; /* Augmente la hauteur de la barre (padding vertical augmenté) */
     position: fixed; /* Reste en haut, même au défilement */
     top: 0;
     left: 0;
@@ -26,7 +26,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 3em; /* Texte x2 */
+    font-size: 2em; /* Taille réduite des textes dans la barre */
     height: auto; /* Ajuste la hauteur en fonction du contenu */
 }
 
@@ -34,8 +34,8 @@ body {
 .header-bar a {
     color: #ffffff; /* Liens en blanc */
     text-decoration: none;
-    margin: 0 40px; /* Espacement entre les liens x2 */
-    font-size: 2.4em; /* Police des liens x2 */
+    margin: 0 60px; /* Augmente l'espace à droite et entre les liens */
+    font-size: 1.8em; /* Réduction de la taille des liens */
     text-transform: uppercase; /* Texte en majuscules */
     transition: color 0.3s ease;
 }
@@ -47,7 +47,7 @@ body {
 /* Logo aligné à gauche */
 .header-bar .logo {
     font-weight: bold;
-    font-size: 3.6em; /* Police du logo x2 */
+    font-size: 2.5em; /* Taille réduite du logo */
     margin-right: auto;
 }
 
@@ -56,6 +56,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 40px; /* Ajoute un espace supplémentaire à droite des menus */
+}
+
 }
 
 /* Espacement sous la barre pour éviter le chevauchement du contenu */
