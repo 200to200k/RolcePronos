@@ -88,11 +88,39 @@
         .price-down {
             color: #c0392b; /* Rouge pour les baisses */
         }
+
+        /* Style pour le tableau des paris */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Styles pour colorier les lignes en fonction du gain ou de la perte */
+        .gain {
+            background-color: #27ae60; /* Vert pour gain */
+            color: white;
+        }
+
+        .perte {
+            background-color: #c0392b; /* Rouge pour perte */
+            color: white;
+        }
     </style>
 </head>
 <body>
     <!-- Barre en haut -->
-    <<div class="header-bar">
+    <div class="header-bar">
         <div class="logo">LOGO</div>
         <div class="nav-links">
             <a href="index.html">HOME</a>
@@ -115,6 +143,18 @@
             <h2>Tableau de suivi des paris sportifs</h2>
             <div id="sports-bet-table">
                 <!-- Les données du Google Sheet seront insérées ici dynamiquement -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Paris</th>
+                            <th>Gain/Perte (€)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bet-table-body">
+                        <!-- Les lignes seront ajoutées ici dynamiquement -->
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -181,10 +221,43 @@
                     }
                 }
 
+                // Fonction pour ajouter des paris dans le tableau
+                function addBetRow(date, paris, gainPerte) {
+                    const tbody = document.getElementById("bet-table-body");
+
+                    const tr = document.createElement("tr");
+
+                    const tdDate = document.createElement("td");
+                    tdDate.textContent = date;
+                    tr.appendChild(tdDate);
+
+                    const tdParis = document.createElement("td");
+                    tdParis.textContent = paris;
+                    tr.appendChild(tdParis);
+
+                    const tdGainPerte = document.createElement("td");
+                    tdGainPerte.textContent = gainPerte + " €";
+                    tr.appendChild(tdGainPerte);
+
+                    // Ajouter une classe en fonction du gain ou perte
+                    if (gainPerte > 0) {
+                        tr.classList.add("gain");
+                    } else if (gainPerte < 0) {
+                        tr.classList.add("perte");
+                    }
+
+                    tbody.appendChild(tr);
+                }
+
                 // Initialisation
                 document.addEventListener("DOMContentLoaded", () => {
                     fetchCryptoPrices();
                     setInterval(fetchCryptoPrices, 60000); // Actualiser les cryptos toutes les 60 secondes
+
+                    // Exemples de paris ajoutés pour le test
+                    addBetRow("2025-01-22", "Paris 1", 100);
+                    addBetRow("2025-01-23", "Paris 2", -50);
+                    addBetRow("2025-01-24", "Paris 3", 200);
                 });
             </script>
         </section>
