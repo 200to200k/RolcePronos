@@ -12,6 +12,7 @@ body {
     flex-direction: column; /* Empile les blocs verticalement */
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
+
 /* Barre en haut de la page */
 .header-bar {
     width: 100%;
@@ -59,13 +60,9 @@ body {
     margin-right: 40px; /* Ajoute un espace supplémentaire à droite des menus */
 }
 
-}
-
 /* Espacement sous la barre pour éviter le chevauchement du contenu */
 .main-container {
     margin-top: 160px; /* Double la marge pour correspondre à la taille de la barre */
-}
-
 }
 
 /* Conteneur principal */
@@ -153,6 +150,18 @@ td {
 
 tr:hover {
     background-color: #555555;
+}
+
+/* Fond vert pour les paris gagnants */
+tr.win {
+    background-color: #4CAF50; /* Vert pour les gains */
+    color: #ffffff;
+}
+
+/* Fond rouge pour les paris perdants */
+tr.loss {
+    background-color: #F44336; /* Rouge pour les pertes */
+    color: #ffffff;
 }
 
 /* Conteneur des cryptomonnaies */
