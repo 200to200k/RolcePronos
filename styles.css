@@ -13,6 +13,37 @@ body {
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
 
+/* Barre en haut de la page */
+.header-bar {
+    width: 100%;
+    background-color: #1d1d1d; /* Fond identique à tes blocs */
+    color: #ffffff;
+    padding: 15px 20px; /* Espacement interne */
+    position: fixed; /* Reste en haut, même au défilement */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Toujours au-dessus du contenu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-bar a {
+    color: #ffffff; /* Liens en blanc */
+    text-decoration: none;
+    margin: 0 15px; /* Espacement entre les liens */
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.header-bar a:hover {
+    color: #4CAF50; /* Couleur au survol */
+}
+
+.header-bar .logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-right: auto;
+}
+
 /* Conteneur principal */
 .main-container {
     width: 100%; /* Prendre toute la largeur disponible */
@@ -25,6 +56,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 80px; /* Ajout pour laisser de l'espace sous la barre */
 }
 
 /* En-tête */
