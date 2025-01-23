@@ -7,44 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <style>
-        /* Styles pour la barre en haut */
-        .header-bar {
-            width: 100%;
-            background-color: #1d1d1d; /* Couleur sombre */
-            color: #ffffff; /* Texte blanc */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            position: fixed; /* Toujours en haut */
-            top: 0;
-            left: 0;
-            z-index: 1000; /* Toujours au-dessus */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour la barre */
-        }
-
-        .header-bar .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .header-bar a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 1em;
-            transition: color 0.3s ease;
-        }
-
-        .header-bar a:hover {
-            color: #4caf50; /* Vert au survol */
-        }
-
-        /* Ajustement pour le contenu principal (éviter qu'il passe sous la barre) */
-        .main-container {
-            margin-top: 70px; /* Décalage pour éviter le chevauchement */
-        }
-
         /* Styles pour centrer et styliser les bulles des cryptomonnaies */
         .crypto-container {
             display: flex;
@@ -88,54 +50,13 @@
         .price-down {
             color: #c0392b; /* Rouge pour les baisses */
         }
-
-        /* Style pour le tableau des paris */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        /* Styles pour colorier les lignes en fonction du gain ou de la perte */
-        .gain {
-            background-color: #27ae60; /* Vert pour gain */
-            color: white;
-        }
-
-        .perte {
-            background-color: #c0392b; /* Rouge pour perte */
-            color: white;
-        }
     </style>
 </head>
 <body>
-    <!-- Barre en haut -->
-    <div class="header-bar">
-        <div class="logo">LOGO</div>
-        <div class="nav-links">
-            <a href="index.html">HOME</a>
-            <a href="bonushunt.html">BONUSHUNT</a>
-            <a href="bonus.html">BONUS</a>
-            <a href="about.html">ABOUT</a>
-        </div>
-    </div>
-    
-
-    <!-- Contenu principal -->
     <div class="main-container">
         <header class="header">
-            <h1>200TO200K</h1>
-            <p>IN A YEAR .</p>
+            <h1>Bienvenue</h1>
+            <p>Suivez vos paris sportifs, cryptomonnaies et plus encore.</p>
         </header>
 
         <!-- Tableau des paris sportifs -->
@@ -143,18 +64,6 @@
             <h2>Tableau de suivi des paris sportifs</h2>
             <div id="sports-bet-table">
                 <!-- Les données du Google Sheet seront insérées ici dynamiquement -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Paris</th>
-                            <th>Gain/Perte (€)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bet-table-body">
-                        <!-- Les lignes seront ajoutées ici dynamiquement -->
-                    </tbody>
-                </table>
             </div>
         </section>
 
@@ -172,95 +81,63 @@
             <div id="crypto-container" class="crypto-container">
                 <!-- Les éléments de cryptomonnaies seront ajoutés dynamiquement ici -->
             </div>
-            <script>
-                // Récupération des cours des cryptomonnaies
-                async function fetchCryptoPrices() {
-                    try {
-                        const response = await fetch(
-                            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur&include_24hr_change=true"
-                        );
-                        const data = await response.json();
-
-                        const cryptos = [
-                            { name: "BTC", id: "bitcoin" },
-                            { name: "ETH", id: "ethereum" },
-                            { name: "SOL", id: "solana" },
-                            { name: "XRP", id: "ripple" },
-                        ];
-
-                        const cryptoContainer = document.getElementById("crypto-container");
-                        cryptoContainer.innerHTML = ""; // Réinitialiser le contenu
-
-                        cryptos.forEach(crypto => {
-                            const price = data[crypto.id].eur;
-                            const change = data[crypto.id].eur_24hr_change.toFixed(2);
-
-                            const div = document.createElement("div");
-                            div.className = "crypto-item";
-
-                            const name = document.createElement("div");
-                            name.className = "crypto-name";
-                            name.textContent = crypto.name;
-
-                            const priceSpan = document.createElement("span");
-                            priceSpan.className = "crypto-price";
-                            priceSpan.textContent = `${price} €`;
-
-                            const changeSpan = document.createElement("div");
-                            changeSpan.textContent = `${change}%`;
-                            changeSpan.className = change >= 0 ? "price-up" : "price-down";
-
-                            div.appendChild(name);
-                            div.appendChild(priceSpan);
-                            div.appendChild(changeSpan);
-
-                            cryptoContainer.appendChild(div);
-                        });
-                    } catch (error) {
-                        console.error("Erreur lors de la récupération des données des cryptomonnaies :", error);
-                    }
-                }
-
-                // Fonction pour ajouter des paris dans le tableau
-                function addBetRow(date, paris, gainPerte) {
-                    const tbody = document.getElementById("bet-table-body");
-
-                    const tr = document.createElement("tr");
-
-                    const tdDate = document.createElement("td");
-                    tdDate.textContent = date;
-                    tr.appendChild(tdDate);
-
-                    const tdParis = document.createElement("td");
-                    tdParis.textContent = paris;
-                    tr.appendChild(tdParis);
-
-                    const tdGainPerte = document.createElement("td");
-                    tdGainPerte.textContent = gainPerte + " €";
-                    tr.appendChild(tdGainPerte);
-
-                    // Ajouter une classe en fonction du gain ou perte
-                    if (gainPerte > 0) {
-                        tr.classList.add("gain");
-                    } else if (gainPerte < 0) {
-                        tr.classList.add("perte");
-                    }
-
-                    tbody.appendChild(tr);
-                }
-
-                // Initialisation
-                document.addEventListener("DOMContentLoaded", () => {
-                    fetchCryptoPrices();
-                    setInterval(fetchCryptoPrices, 60000); // Actualiser les cryptos toutes les 60 secondes
-
-                    // Exemples de paris ajoutés pour le test
-                    addBetRow("2025-01-22", "Paris 1", 100);
-                    addBetRow("2025-01-23", "Paris 2", -50);
-                    addBetRow("2025-01-24", "Paris 3", 200);
-                });
-            </script>
         </section>
     </div>
+
+    <script>
+        // Récupération des cours des cryptomonnaies
+        async function fetchCryptoPrices() {
+            try {
+                const response = await fetch(
+                    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=eur&include_24hr_change=true"
+                );
+                const data = await response.json();
+
+                const cryptos = [
+                    { name: "BTC", id: "bitcoin" },
+                    { name: "ETH", id: "ethereum" },
+                    { name: "SOL", id: "solana" },
+                    { name: "XRP", id: "ripple" },
+                ];
+
+                const cryptoContainer = document.getElementById("crypto-container");
+                cryptoContainer.innerHTML = ""; // Réinitialiser le contenu
+
+                cryptos.forEach(crypto => {
+                    const price = data[crypto.id].eur;
+                    const change = data[crypto.id].eur_24hr_change.toFixed(2);
+
+                    const div = document.createElement("div");
+                    div.className = "crypto-item";
+
+                    const name = document.createElement("div");
+                    name.className = "crypto-name";
+                    name.textContent = crypto.name;
+
+                    const priceSpan = document.createElement("span");
+                    priceSpan.className = "crypto-price";
+                    priceSpan.textContent = `${price} €`;
+
+                    const changeSpan = document.createElement("div");
+                    changeSpan.textContent = `${change}%`;
+                    changeSpan.className = change >= 0 ? "price-up" : "price-down";
+
+                    div.appendChild(name);
+                    div.appendChild(priceSpan);
+                    div.appendChild(changeSpan);
+
+                    cryptoContainer.appendChild(div);
+                });
+            } catch (error) {
+                console.error("Erreur lors de la récupération des données des cryptomonnaies :", error);
+            }
+        }
+
+        // Initialisation
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchCryptoPrices();
+            setInterval(fetchCryptoPrices, 60000); // Actualiser les cryptos toutes les 60 secondes
+        });
+    </script>
 </body>
 </html>
