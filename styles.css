@@ -18,19 +18,25 @@ body {
     width: 100%;
     background-color: #1d1d1d; /* Fond identique à tes blocs */
     color: #ffffff;
-    padding: 15px 20px; /* Espacement interne */
+    padding: 20px 30px; /* Augmenter l'espacement interne */
     position: fixed; /* Reste en haut, même au défilement */
     top: 0;
     left: 0;
     z-index: 1000; /* Toujours au-dessus du contenu */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5em; /* Texte plus grand */
 }
 
+/* Liens de navigation dans la barre */
 .header-bar a {
     color: #ffffff; /* Liens en blanc */
     text-decoration: none;
-    margin: 0 15px; /* Espacement entre les liens */
+    margin: 0 20px; /* Espacement entre les liens */
     font-size: 1.2em;
+    text-transform: uppercase; /* Texte en majuscules */
     transition: color 0.3s ease;
 }
 
@@ -38,10 +44,18 @@ body {
     color: #4CAF50; /* Couleur au survol */
 }
 
+/* Logo aligné à gauche */
 .header-bar .logo {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.8em; /* Plus grand pour correspondre à la barre élargie */
     margin-right: auto;
+}
+
+/* Conteneur des liens */
+.header-bar .nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Conteneur principal */
