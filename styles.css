@@ -12,13 +12,12 @@ body {
     flex-direction: column; /* Empile les blocs verticalement */
     min-height: 100vh; /* Placer tout au centre de l'écran */
 }
-
 /* Barre en haut de la page */
 .header-bar {
     width: 100%;
     background-color: #1d1d1d; /* Fond identique à tes blocs */
     color: #ffffff;
-    padding: 20px 30px; /* Augmenter l'espacement interne */
+    padding: 40px 60px; /* Espacement interne x2 */
     position: fixed; /* Reste en haut, même au défilement */
     top: 0;
     left: 0;
@@ -27,15 +26,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.5em; /* Texte plus grand */
+    font-size: 3em; /* Texte x2 */
+    height: auto; /* Ajuste la hauteur en fonction du contenu */
 }
 
 /* Liens de navigation dans la barre */
 .header-bar a {
     color: #ffffff; /* Liens en blanc */
     text-decoration: none;
-    margin: 0 20px; /* Espacement entre les liens */
-    font-size: 1.2em;
+    margin: 0 40px; /* Espacement entre les liens x2 */
+    font-size: 2.4em; /* Police des liens x2 */
     text-transform: uppercase; /* Texte en majuscules */
     transition: color 0.3s ease;
 }
@@ -47,7 +47,7 @@ body {
 /* Logo aligné à gauche */
 .header-bar .logo {
     font-weight: bold;
-    font-size: 1.8em; /* Plus grand pour correspondre à la barre élargie */
+    font-size: 3.6em; /* Police du logo x2 */
     margin-right: auto;
 }
 
@@ -56,6 +56,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Espacement sous la barre pour éviter le chevauchement du contenu */
+.main-container {
+    margin-top: 160px; /* Double la marge pour correspondre à la taille de la barre */
+}
+
 }
 
 /* Conteneur principal */
