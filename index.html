@@ -13,8 +13,9 @@
 
   <main class="main-content">
     <section class="block">
-      <h2>Premier Block</h2>
-      <p>Ceci est un exemple de contenu.</p>
+      <h2>BANKROLL</h2>
+      <!-- Conteneur pour le tableau -->
+      <div id="table-container">Chargement des données...</div>
     </section>
     <section class="block">
       <h2>Deuxième Block</h2>
@@ -26,6 +27,74 @@
     <p>&copy; 2025 Mon Site Sombre</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Script JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableContainer = document.getElementById("table-container");
+      
+      // URL publique en format JSON
+      const googleSheetUrl =
+        "https://spreadsheets.google.com/feeds/cells/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/1/public/full?alt=json";
+
+      // Fonction pour récupérer et afficher les données
+      async function fetchTableData() {
+        try {
+          const response = await fetch(googleSheetUrl);
+          const data = await response.json();
+
+          // Extraire les cellules du tableau
+          const entries = data.feed.entry;
+          if (!entries || entries.length === 0) {
+            tableContainer.innerHTML = "Aucune donnée disponible.";
+            return;
+          }
+
+          // Construction du tableau HTML
+          const table = document.createElement("table");
+          table.style.margin = "0 auto"; // Centrage du tableau
+          table.style.borderCollapse = "collapse"; // Style compact
+          table.style.width = "80%";
+
+          // Initialisation des variables pour la structure
+          let currentRowNumber = 1;
+          let currentRow = table.insertRow();
+
+          entries.forEach((entry) => {
+            const cellValue = entry.content.$t.trim(); // Récupérer la valeur de la cellule
+            const rowNumber = parseInt(entry.gs$cell.row, 10);
+            const colNumber = parseInt(entry.gs$cell.col, 10);
+
+            // Ignorer les cellules vides
+            if (cellValue) {
+              // Nouvelle ligne si nécessaire
+              if (rowNumber !== currentRowNumber) {
+                currentRow = table.insertRow();
+                currentRowNumber = rowNumber;
+              }
+
+              const cell = currentRow.insertCell(colNumber - 1);
+              cell.textContent = cellValue;
+
+              // Appliquer le style aux cellules
+              cell.style.border = "1px solid white";
+              cell.style.padding = "10px";
+              cell.style.textAlign = "center";
+            }
+          });
+
+          // Affichage du tableau dans le conteneur
+          tableContainer.innerHTML = ""; // Supprimer le message de chargement
+          tableContainer.appendChild(table);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des données :", error);
+          tableContainer.innerHTML =
+            "Erreur lors du chargement des données. Veuillez réessayer.";
+        }
+      }
+
+      // Charger les données au démarrage
+      fetchTableData();
+    });
+  </script>
 </body>
 </html>
