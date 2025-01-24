@@ -74,7 +74,7 @@
                 if (cells.length > 1) { // Skip empty rows
                     const tr = document.createElement('tr');
                     cells.forEach(cell => {
-                        const td = document.createElement(index === 0 ? 'th' : 'td');
+                        const td = document.createElement(index === 0 ? 'th' : 'td'); // Header for the first row
                         td.textContent = cell.trim();
                         tr.appendChild(td);
                     });
@@ -84,8 +84,8 @@
         }
 
         // URLs for Bankroll and Suivi des paris
-        const BANKROLL_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=0&single=true&output=csv'; // Feuille 1
-        const PARIS_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=123456789&single=true&output=csv'; // Feuille 2
+        const BANKROLL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=0&single=true&output=csv'; // Tableau Bankroll
+        const PARIS_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=123456789&single=true&output=csv'; // Tableau Suivi des paris (mettez votre lien)
 
         // Load the bankroll data (CSV file)
         function loadBankroll() {
