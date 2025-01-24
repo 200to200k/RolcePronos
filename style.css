@@ -1,4 +1,4 @@
-/* Global reset */
+/* Global reset */ 
 * {
     margin: 0;
     padding: 0;
@@ -48,23 +48,10 @@ h1, h2, h3 {
     color: #fff;
 }
 
-/* Main section (image and blocks) */
+/* Main section (blocks only) */
 .main-section {
     margin-top: 80px; /* Espace pour la topbar */
     padding: 40px;
-}
-
-.main-section .image {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Ombre */
-    transition: transform 0.3s ease-in-out;
-}
-
-.main-section .image:hover {
-    transform: scale(1.05); /* Effet d'agrandissement */
 }
 
 .block {
