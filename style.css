@@ -11,19 +11,10 @@ body {
     color: #fff; /* Texte en blanc */
     line-height: 1.6;
     text-align: center;
+    margin: 0 20px; /* Ajouter un peu d'espace sur les côtés du body */
 }
 
-a {
-    color: inherit; /* Pas de couleur pour les liens */
-    text-decoration: none; /* Pas de soulignement */
-}
-
-h1, h2, h3 {
-    color: #fff; /* Titres en blanc */
-    margin-bottom: 20px;
-}
-
-/* Topbar */
+/* Modifier la topbar pour garder un espace sur les côtés */
 .topbar {
     width: 100%;
     background-color: #333;
@@ -52,8 +43,12 @@ h1, h2, h3 {
 .main-section {
     margin-top: 80px; /* Espace pour la topbar */
     padding: 40px;
+    max-width: 1200px; /* Limiter la largeur maximale */
+    margin-left: auto; /* Centrer horizontalement */
+    margin-right: auto; /* Centrer horizontalement */
 }
 
+/* Blocks: Ajuster les blocs */
 .block {
     background-color: #222; /* Fond sombre des blocs */
     border-radius: 10px;
@@ -62,6 +57,7 @@ h1, h2, h3 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Ombres des blocs */
 }
 
+/* Tableau */
 .tableau {
     width: 100%;
     border-collapse: collapse;
@@ -109,6 +105,10 @@ h1, h2, h3 {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    body {
+        margin: 0 10px; /* Réduire l'espace sur les côtés sur petits écrans */
+    }
+
     .topbar {
         flex-direction: column;
         padding: 20px 5%;
@@ -120,6 +120,8 @@ h1, h2, h3 {
 
     .main-section {
         padding: 20px;
+        margin-left: 0; /* Enlever le centrage automatique sur petits écrans */
+        margin-right: 0; /* Enlever le centrage automatique sur petits écrans */
     }
 
     .tableau {
