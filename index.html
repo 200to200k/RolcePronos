@@ -20,11 +20,6 @@
 
     <!-- Main content -->
     <div class="main-section">
-        <!-- Image with shadow -->
-        <div class="image-container">
-            <img src="image.jpg" alt="Image principale" class="image">
-        </div>
-
         <!-- First block: Bankroll -->
         <div class="block">
             <h2>Bankroll</h2>
@@ -47,16 +42,7 @@
 
     <!-- Scripts -->
     <script>
-        // Parallax effect for the image
-        document.addEventListener('scroll', function() {
-            let scrollPosition = window.scrollY;
-            const image = document.querySelector('.image');
-            if (image) {
-                image.style.transform = 'translateY(' + scrollPosition * 0.3 + 'px)';
-            }
-        });
-
-        // Function to load a CSV file and convert it to HTML table
+        // Fonction pour charger un fichier CSV et le convertir en tableau HTML
         function loadCSV(url, callback) {
             fetch(url)
                 .then(response => response.text())
@@ -64,7 +50,7 @@
                 .catch(error => console.error('Error loading CSV:', error));
         }
 
-        // Function to convert CSV data into an HTML table
+        // Fonction pour convertir les données CSV en tableau HTML
         function csvToTable(csvData, tableId) {
             const rows = csvData.split('\n');
             let table = document.getElementById(tableId);
@@ -83,19 +69,19 @@
             });
         }
 
-        // URLs for Bankroll and Suivi des paris
+        // URLs pour Bankroll et Suivi des paris
         const BANKROLL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=0&single=true&output=csv'; // Tableau Bankroll
         const PARIS_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=123456789&single=true&output=csv'; // Tableau Suivi des paris (mettez votre lien)
 
-        // Load the bankroll data (CSV file)
+        // Charger les données de la bankroll (fichier CSV)
         function loadBankroll() {
             loadCSV(BANKROLL_URL, (csvData) => {
                 csvToTable(csvData, 'bankroll');
             });
         }
 
-        // Load the last bets (limited to `parisLimit`) (CSV file)
-        let parisLimit = 5; // Initial limit of bets
+        // Charger les derniers paris (limités à `parisLimit`) (fichier CSV)
+        let parisLimit = 5; // Limite initiale des paris
         function loadLastBets() {
             loadCSV(PARIS_URL, (csvData) => {
                 const rows = csvData.split('\n').slice(0, parisLimit);
@@ -116,13 +102,13 @@
             });
         }
 
-        // Load more bets when the button is clicked
+        // Charger plus de paris lorsque le bouton est cliqué
         function loadMoreBets() {
-            parisLimit += 5; // Increase the limit by 5
+            parisLimit += 5; // Augmenter la limite de 5
             loadLastBets();
         }
 
-        // Load data on page load
+        // Charger les données au chargement de la page
         window.onload = function() {
             loadBankroll();   // Charger les données de la bankroll
             loadLastBets();   // Charger les données du suivi des paris
