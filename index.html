@@ -1,118 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'accueil</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Sombre</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Topbar -->
-    <div class="topbar">
-        <div class="logo">Mon Logo</div>
-        <nav>
-            <a href="home.html">Accueil</a>
-            <a href="bankroll.html">Bankroll</a>
-            <a href="bonushunt.html">Bonushunt</a>
-            <a href="bonus.html">Bonus</a>
-        </nav>
-    </div>
+  <header class="header">
+    <h1 class="title">Bienvenue sur Mon Site Sombre</h1>
+  </header>
 
-    <!-- Main content -->
-    <div class="main-section">
-        <!-- First block: Bankroll -->
-        <div class="block">
-            <h2>Bankroll</h2>
-            <!-- Tableau Bankroll -->
-            <table id="bankroll" class="tableau">
-                <!-- Le tableau sera rempli par le script -->
-            </table>
-        </div>
+  <main class="main-content">
+    <section class="block">
+      <h2>Premier Block</h2>
+      <p>Ceci est un exemple de contenu.</p>
+    </section>
+    <section class="block">
+      <h2>Deuxième Block</h2>
+      <p>Ajoutez votre contenu ici.</p>
+    </section>
+  </main>
 
-        <!-- Second block: Suivi des paris -->
-        <div class="block">
-            <h2>Suivi des paris</h2>
-            <!-- Tableau des paris -->
-            <table id="suivi-des-paris" class="tableau">
-                <!-- Le tableau sera rempli par le script -->
-            </table>
-            <button class="btn-plus" onclick="loadMoreBets()">+ Afficher plus de paris</button>
-        </div>
-    </div>
+  <footer class="footer">
+    <p>&copy; 2025 Mon Site Sombre</p>
+  </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Fonction pour charger un fichier CSV et le convertir en tableau HTML
-        function loadCSV(url, callback) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => callback(data))
-                .catch(error => console.error('Error loading CSV:', error));
-        }
-
-        // Fonction pour convertir les données CSV en tableau HTML
-        function csvToTable(csvData, tableId) {
-            const rows = csvData.split('\n');
-            let table = document.getElementById(tableId);
-            table.innerHTML = ''; // Clear the table before adding rows
-            rows.forEach((row, index) => {
-                const cells = row.split(',');
-                if (cells.length > 1) { // Skip empty rows
-                    const tr = document.createElement('tr');
-                    cells.forEach(cell => {
-                        const td = document.createElement(index === 0 ? 'th' : 'td'); // Header for the first row
-                        td.textContent = cell.trim();
-                        tr.appendChild(td);
-                    });
-                    table.appendChild(tr);
-                }
-            });
-        }
-
-        // URLs pour Bankroll et Suivi des paris
-        const BANKROLL_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=0&single=true&output=csv'; // Tableau Bankroll
-        const PARIS_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=123456789&single=true&output=csv'; // Tableau Suivi des paris (mettez votre lien)
-
-        // Charger les données de la bankroll (fichier CSV)
-        function loadBankroll() {
-            loadCSV(BANKROLL_URL, (csvData) => {
-                csvToTable(csvData, 'bankroll');
-            });
-        }
-
-        // Charger les derniers paris (limités à `parisLimit`) (fichier CSV)
-        let parisLimit = 5; // Limite initiale des paris
-        function loadLastBets() {
-            loadCSV(PARIS_URL, (csvData) => {
-                const rows = csvData.split('\n').slice(0, parisLimit);
-                const table = document.getElementById('suivi-des-paris');
-                table.innerHTML = ''; // Clear the table
-                rows.forEach((row, index) => {
-                    const cells = row.split(',');
-                    if (cells.length > 1) {
-                        const tr = document.createElement('tr');
-                        cells.forEach((cell, i) => {
-                            const td = document.createElement(index === 0 ? 'th' : 'td');
-                            td.textContent = cell.trim();
-                            tr.appendChild(td);
-                        });
-                        table.appendChild(tr);
-                    }
-                });
-            });
-        }
-
-        // Charger plus de paris lorsque le bouton est cliqué
-        function loadMoreBets() {
-            parisLimit += 5; // Augmenter la limite de 5
-            loadLastBets();
-        }
-
-        // Charger les données au chargement de la page
-        window.onload = function() {
-            loadBankroll();   // Charger les données de la bankroll
-            loadLastBets();   // Charger les données du suivi des paris
-        };
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
