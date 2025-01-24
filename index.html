@@ -74,7 +74,7 @@
                 if (cells.length > 1) { // Skip empty rows
                     const tr = document.createElement('tr');
                     cells.forEach(cell => {
-                        const td = document.createElement('td');
+                        const td = document.createElement(index === 0 ? 'th' : 'td');
                         td.textContent = cell.trim();
                         tr.appendChild(td);
                     });
@@ -83,37 +83,30 @@
             });
         }
 
+        // URLs for Bankroll and Suivi des paris
+        const BANKROLL_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=0&single=true&output=csv'; // Feuille 1
+        const PARIS_URL = 'https://docs.google.com/spreadsheets/d/e/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/pub?gid=123456789&single=true&output=csv'; // Feuille 2
+
         // Load the bankroll data (CSV file)
         function loadBankroll() {
-            const bankrollURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
-            loadCSV(bankrollURL, (csvData) => {
+            loadCSV(BANKROLL_URL, (csvData) => {
                 csvToTable(csvData, 'bankroll');
             });
         }
 
-        // Load the last 5 bets (CSV file)
-        function loadLastBets() {
-            const sheetURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
-            loadCSV(sheetURL, (csvData) => {
-                csvToTable(csvData, 'suivi-des-paris');
-            });
-        }
-
-        // Load more bets when the button is clicked
+        // Load the last bets (limited to `parisLimit`) (CSV file)
         let parisLimit = 5; // Initial limit of bets
-        function loadMoreBets() {
-            parisLimit += 5; // Increase the limit by 5
-            const sheetURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
-            loadCSV(sheetURL, (csvData) => {
-                const rows = csvData.split('\n');
-                let table = document.getElementById('suivi-des-paris');
+        function loadLastBets() {
+            loadCSV(PARIS_URL, (csvData) => {
+                const rows = csvData.split('\n').slice(0, parisLimit);
+                const table = document.getElementById('suivi-des-paris');
                 table.innerHTML = ''; // Clear the table
-                rows.slice(0, parisLimit).forEach((row) => {
+                rows.forEach((row, index) => {
                     const cells = row.split(',');
                     if (cells.length > 1) {
                         const tr = document.createElement('tr');
-                        cells.forEach((cell) => {
-                            const td = document.createElement('td');
+                        cells.forEach((cell, i) => {
+                            const td = document.createElement(index === 0 ? 'th' : 'td');
                             td.textContent = cell.trim();
                             tr.appendChild(td);
                         });
@@ -123,10 +116,16 @@
             });
         }
 
+        // Load more bets when the button is clicked
+        function loadMoreBets() {
+            parisLimit += 5; // Increase the limit by 5
+            loadLastBets();
+        }
+
         // Load data on page load
         window.onload = function() {
-            loadLastBets();
-            loadBankroll();
+            loadBankroll();   // Charger les données de la bankroll
+            loadLastBets();   // Charger les données du suivi des paris
         };
     </script>
 </body>
