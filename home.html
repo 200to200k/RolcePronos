@@ -85,7 +85,7 @@
 
         // Load the bankroll data (CSV file)
         function loadBankroll() {
-            const bankrollURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
+            const bankrollURL = 'https://example.com/path-to-your-bankroll-sheet-csv'; // Replace with your CSV URL
             loadCSV(bankrollURL, (csvData) => {
                 csvToTable(csvData, 'bankroll');
             });
@@ -93,7 +93,7 @@
 
         // Load the last 5 bets (CSV file)
         function loadLastBets() {
-            const sheetURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
+            const sheetURL = 'https://example.com/path-to-your-google-sheet-csv'; // Replace with your CSV URL
             loadCSV(sheetURL, (csvData) => {
                 csvToTable(csvData, 'suivi-des-paris');
             });
@@ -103,7 +103,7 @@
         let parisLimit = 5; // Initial limit of bets
         function loadMoreBets() {
             parisLimit += 5; // Increase the limit by 5
-            const sheetURL = 'https://docs.google.com/spreadsheets/d/e/ID_DE_VOTRE_FEUILLE/pub?output=csv'; // Replace with your CSV URL
+            const sheetURL = 'https://example.com/path-to-your-google-sheet-csv'; // Replace with your CSV URL
             loadCSV(sheetURL, (csvData) => {
                 const rows = csvData.split('\n');
                 let table = document.getElementById('suivi-des-paris');
