@@ -134,11 +134,11 @@
 
             cols.forEach((col, colIndex) => {
               const cellValue = col.replace(/"/g, "").trim();
-              if (cellValue) { // Ajouter la cellule uniquement si elle n'est pas vide
-                const cell =
-                  rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
-                cell.textContent = cellValue || ""; // Assurez-vous que les titres restent visibles
-              }
+              const cell =
+                rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
+
+              // Ne pas insérer de cellule vide, mais permettre de laisser la place pour les cellules vides
+              cell.textContent = cellValue || ""; // Si la cellule est vide, la laisser vide
             });
           });
 
