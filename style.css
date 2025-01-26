@@ -1,99 +1,167 @@
-/* Configuration de base */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: white;
-  text-align: center;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Sombre</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Configuration de base */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      text-align: center;
+    }
 
-header, footer {
-  padding: 20px;
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  margin: 10px auto;
-  width: 90%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-}
+    header, footer {
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      margin: 10px auto;
+      width: 90%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
 
-/* Titre principal */
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-}
+    /* Titre principal */
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
 
-/* Section principale */
-.main-content {
-  padding: 20px;
-}
+    /* Section principale */
+    .main-content {
+      padding: 20px;
+    }
 
-/* Blocks de contenu */
-.block {
-  background-color: #1e1e1e;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-}
+    /* Blocks de contenu */
+    .block {
+      background-color: #1e1e1e;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    }
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+    h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-p {
-  font-size: 1rem;
-}
+    p {
+      font-size: 1rem;
+    }
 
-/* Pied de page */
-.footer {
-  font-size: 0.9rem;
-}
+    /* Pied de page */
+    .footer {
+      font-size: 0.9rem;
+    }
 
-/* Styles pour le tableau */
-table {
-  color: white;
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-  margin: 20px auto;
-  width: 90%;
-  border-collapse: collapse; /* Supprime les lignes blanches */
-}
+    /* Styles pour le tableau */
+    table {
+      margin: 20px auto; /* Centre le tableau */
+      border-collapse: collapse; /* Élimine les lignes blanches */
+      width: 80%;
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-table th, table td {
-  border: none; /* Suppression des bordures */
-  padding: 12px; /* Espacement légèrement augmenté pour un alignement propre */
-  text-align: center;
-  vertical-align: middle; /* Centre verticalement */
-}
+    table th, table td {
+      border: 1px solid transparent; /* Suppression des lignes blanches */
+      padding: 10px;
+    }
 
-table th {
-  background-color: #333;
-  font-weight: bold;
-  font-size: 1rem;
-}
+    table th {
+      background-color: #333;
+      color: white;
+    }
 
-table tr:nth-child(even) {
-  background-color: #2a2a2a; /* Couleur alternative pour les lignes paires */
-}
+    table tr:nth-child(even) {
+      background-color: #2a2a2a; /* Couleur alternative pour les lignes paires */
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 class="title">Bienvenue sur Mon Site Sombre</h1>
+  </header>
 
-table tr:hover {
-  background-color: #444; /* Met en surbrillance une ligne survolée */
-}
+  <main class="main-content">
+    <section class="block">
+      <h2>BANKROLL</h2>
+      <!-- Conteneur pour le tableau de la première feuille -->
+      <div id="table-container-1">Chargement des données...</div>
+    </section>
+    <section class="block">
+      <h2>Deuxième Block</h2>
+      <!-- Conteneur pour le tableau de la deuxième feuille -->
+      <div id="table-container-2">Chargement des données...</div>
+    </section>
+  </main>
 
-/* Ajustement des colonnes pour l'alignement des données */
-table td {
-  white-space: nowrap; /* Empêche les retours à la ligne inutiles */
-  text-overflow: ellipsis; /* Ajoute des points de suspension pour le contenu trop long */
-  overflow: hidden; /* Empêche le dépassement du contenu */
-}
+  <footer class="footer">
+    <p>&copy; 2025 ROLCEPRONOS</p>
+  </footer>
 
-/* Centrage complet pour le conteneur de tableau */
-#table-container-1, #table-container-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableContainer1 = document.getElementById("table-container-1");
+      const tableContainer2 = document.getElementById("table-container-2");
+
+      // URL publiques pour les deux feuilles du Google Sheet
+      const googleSheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
+      const googleSheetUrl2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=474886906&single=true&output=csv";
+
+      // Fonction générique pour récupérer et afficher les données depuis une URL CSV
+      async function fetchTableDataFromCSV(url, container) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Erreur HTTP : ${response.status}`);
+          }
+          const csvText = await response.text();
+
+          // Convertir le CSV en tableau HTML
+          const rows = csvText.split("\n").filter(row => row.trim() !== ""); // Filtrer les lignes vides
+          const table = document.createElement("table");
+
+          rows.forEach((row, rowIndex) => {
+            const cols = row.split(",");
+            const tableRow = table.insertRow();
+
+            cols.forEach((col, colIndex) => {
+              const cellValue = col.replace(/"/g, "").trim();
+              if (cellValue) { // Ajouter la cellule uniquement si elle n'est pas vide
+                const cell =
+                  rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
+                cell.textContent = cellValue || ""; // Assurez-vous que les titres restent visibles
+              }
+            });
+          });
+
+          // Style et affichage
+          container.innerHTML = ""; // Supprimer le message de chargement
+          container.appendChild(table);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des données :", error);
+          container.innerHTML =
+            "Erreur lors du chargement des données. Veuillez réessayer.";
+        }
+      }
+
+      // Charger les données au démarrage pour les deux feuilles
+      fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
+      fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
+
+      // Mise à jour en temps réel toutes les 30 secondes
+      setInterval(() => {
+        fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
+        fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
+      }, 30000);
+    });
+  </script>
+</body>
+</html>
