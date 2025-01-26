@@ -48,61 +48,60 @@
     <p>&copy; 2025 ROLCEPRONOS</p>
   </footer>
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const tableContainer1 = document.getElementById("table-container-1");
-    const tableContainer2 = document.getElementById("table-container-2");
-  
-    // URL publiques pour les deux feuilles du Google Sheet
-    const googleSheetUrl1 =
-      "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
-    const googleSheetUrl2 =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=474886906&single=true&output=csv";
-  
-    // Fonction générique pour récupérer et afficher les données depuis une URL CSV
-    async function fetchTableDataFromCSV(url, container) {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP : ${response.status}`);
-        }
-        const csvText = await response.text();
-  
-        // Convertir le CSV en tableau HTML
-        const rows = csvText.split("\n").filter(row => row.trim() !== ""); // Filtrer les lignes vides
-        const table = document.createElement("table");
-  
-        rows.forEach((row, rowIndex) => {
-          const cols = row.split(",");
-          const tableRow = table.insertRow();
-  
-          cols.forEach((col, colIndex) => {
-            const cellValue = col.replace(/"/g, "").trim();
-            const cell =
-              rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
-            cell.textContent = cellValue || ""; // Assurez-vous que les titres restent visibles
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableContainer1 = document.getElementById("table-container-1");
+      const tableContainer2 = document.getElementById("table-container-2");
+
+      // URL publiques pour les deux feuilles du Google Sheet
+      const googleSheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
+      const googleSheetUrl2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=474886906&single=true&output=csv";
+
+      // Fonction générique pour récupérer et afficher les données depuis une URL CSV
+      async function fetchTableDataFromCSV(url, container) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Erreur HTTP : ${response.status}`);
+          }
+          const csvText = await response.text();
+
+          // Convertir le CSV en tableau HTML
+          const rows = csvText.split("\n").filter(row => row.trim() !== ""); // Filtrer les lignes vides
+          const table = document.createElement("table");
+
+          rows.forEach((row, rowIndex) => {
+            const cols = row.split(",");
+            const tableRow = table.insertRow();
+
+            cols.forEach((col, colIndex) => {
+              const cellValue = col.replace(/"/g, "").trim();
+              const cell =
+                rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
+              cell.textContent = cellValue || ""; // Assurez-vous que les titres restent visibles
+            });
           });
-        });
-  
-        // Style et affichage
-        container.innerHTML = ""; // Supprimer le message de chargement
-        container.appendChild(table);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données :", error);
-        container.innerHTML =
-          "Erreur lors du chargement des données. Veuillez réessayer.";
+
+          // Style et affichage
+          container.innerHTML = ""; // Supprimer le message de chargement
+          container.appendChild(table);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des données :", error);
+          container.innerHTML =
+            "Erreur lors du chargement des données. Veuillez réessayer.";
+        }
       }
-    }
-  
-    // Charger les données au démarrage pour les deux feuilles
-    fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
-    fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
-  
-    // Mise à jour en temps réel toutes les 30 secondes
-    setInterval(() => {
+
+      // Charger les données au démarrage pour les deux feuilles
       fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
       fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
-    }, 30000);
-  });
-  
+
+      // Mise à jour en temps réel toutes les 30 secondes
+      setInterval(() => {
+        fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
+        fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
+      }, 30000);
+    });
+  </script>
 </body>
 </html>
