@@ -31,8 +31,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const tableContainer = document.getElementById("table-container");
-      
-      // URL publique de votre fichier Google Sheet au format CSV
       const googleSheetUrl = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
 
       // Fonction pour récupérer et afficher les données depuis l'URL CSV
@@ -47,20 +45,24 @@
           // Convertir le CSV en tableau HTML
           const rows = csvText.split("\n");
           const table = document.createElement("table");
-          table.style.margin = "0 auto"; // Centrer le tableau
-          table.style.borderCollapse = "collapse"; // Compact
+          table.style.margin = "0 auto";
+          table.style.borderCollapse = "collapse";
           table.style.width = "80%";
+          table.style.textAlign = "center";
 
           rows.forEach((row, rowIndex) => {
             const cols = row.split(",");
             const tableRow = table.insertRow();
 
             cols.forEach((col) => {
-              const cell = rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
-              cell.textContent = col.replace(/"/g, "").trim(); // Supprimer les guillemets et les espaces
-              cell.style.border = "1px solid white";
-              cell.style.padding = "10px";
-              cell.style.textAlign = "center";
+              const cellValue = col.replace(/"/g, "").trim();
+              if (cellValue) { // Inclure uniquement les cellules non vides
+                const cell = rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
+                cell.textContent = cellValue;
+                cell.style.border = "1px solid white";
+                cell.style.padding = "10px";
+                cell.style.textAlign = "center";
+              }
             });
           });
 
@@ -73,8 +75,9 @@
         }
       }
 
-      // Charger les données au démarrage
+      // Mise à jour en temps réel toutes les 30 secondes
       fetchTableDataFromCSV();
+      setInterval(fetchTableDataFromCSV, 30000);
     });
   </script>
 </body>
