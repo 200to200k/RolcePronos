@@ -8,7 +8,7 @@
   <style>
     table {
       margin: 0 auto;
-      border-collapse: collapse;
+      border-collapse: collapse; /* Élimine les lignes blanches */
       width: 80%;
       text-align: center;
       border-radius: 10px;
@@ -16,7 +16,7 @@
     }
 
     th, td {
-      border: 1px solid white;
+      border: 1px solid transparent; /* Suppression des lignes blanches */
       padding: 10px;
     }
 
@@ -55,7 +55,7 @@
 
       // URL publiques pour les deux feuilles du Google Sheet
       const googleSheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
-      const googleSheetUrl2 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille2";
+      const googleSheetUrl2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=474886906&single=true&output=csv";
 
       // Fonction générique pour récupérer et afficher les données depuis une URL CSV
       async function fetchTableDataFromCSV(url, container) {
