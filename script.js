@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tableContainer = document.getElementById("table-container");
 
   // URL publique de votre fichier Google Sheet au format CSV
-  const googleSheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=0&single=true&output=csv";
+  const googleSheetUrl = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
 
   // Fonction pour récupérer et afficher les données depuis l'URL CSV
   async function fetchTableDataFromCSV() {
