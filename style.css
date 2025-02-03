@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -62,16 +62,17 @@
     /* Styles pour le tableau */
     table {
       margin: 20px auto; /* Centre le tableau */
-      border-collapse: collapse; /* Élimine les lignes blanches */
+      border-collapse: collapse;
       width: 80%;
-      text-align: center;
+      max-width: 800px; /* Évite l'étirement du tableau */
       border-radius: 10px;
       overflow: hidden;
     }
 
     table th, table td {
-      border: 1px solid transparent; /* Suppression des lignes blanches */
+      border: 1px solid white;
       padding: 10px;
+      text-align: center;
     }
 
     table th {
@@ -80,7 +81,7 @@
     }
 
     table tr:nth-child(even) {
-      background-color: #2a2a2a; /* Couleur alternative pour les lignes paires */
+      background-color: #2a2a2a;
     }
   </style>
 </head>
@@ -92,12 +93,10 @@
   <main class="main-content">
     <section class="block">
       <h2>BANKROLL</h2>
-      <!-- Conteneur pour le tableau de la première feuille -->
       <div id="table-container-1">Chargement des données...</div>
     </section>
     <section class="block">
       <h2>Deuxième Block</h2>
-      <!-- Conteneur pour le tableau de la deuxième feuille -->
       <div id="table-container-2">Chargement des données...</div>
     </section>
   </main>
@@ -111,11 +110,9 @@
       const tableContainer1 = document.getElementById("table-container-1");
       const tableContainer2 = document.getElementById("table-container-2");
 
-      // URL publiques pour les deux feuilles du Google Sheet
       const googleSheetUrl1 = "https://docs.google.com/spreadsheets/d/1l_k_jNZZ38XiOeKbwI79xffMb0F8IfOGy9se9ugtkgU/gviz/tq?tqx=out:csv&sheet=Feuille1";
       const googleSheetUrl2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRLKMNFqQpf8K5ftVNp6E09gHTq1s7us_lB_Bh37hnWRf3OUAidGXZqfkiLBEL5MIKqrFtzr-1uEUr/pub?gid=474886906&single=true&output=csv";
 
-      // Fonction générique pour récupérer et afficher les données depuis une URL CSV
       async function fetchTableDataFromCSV(url, container) {
         try {
           const response = await fetch(url);
@@ -124,39 +121,45 @@
           }
           const csvText = await response.text();
 
-          // Convertir le CSV en tableau HTML
-          const rows = csvText.split("\n").filter(row => row.trim() !== ""); // Filtrer les lignes vides
+          const rows = csvText.split("\n").map(row => row.split(",").map(col => col.replace(/"/g, "").trim()));
+
+          // Filtrer les lignes entièrement vides
+          const filteredRows = rows.filter(row => row.some(cell => cell !== ""));
+
+          if (filteredRows.length === 0) {
+            container.innerHTML = "<p>Aucune donnée disponible</p>";
+            return;
+          }
+
           const table = document.createElement("table");
+          table.style.margin = "20px auto";
+          table.style.borderCollapse = "collapse";
+          table.style.width = "80%";
+          table.style.maxWidth = "800px";
 
-          rows.forEach((row, rowIndex) => {
-            const cols = row.split(",");
+          filteredRows.forEach((row, rowIndex) => {
             const tableRow = table.insertRow();
-
-            cols.forEach((col, colIndex) => {
-              const cellValue = col.replace(/"/g, "").trim();
-              const cell =
-                rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
-
-              // Ne pas insérer de cellule vide, mais permettre de laisser la place pour les cellules vides
-              cell.textContent = cellValue || ""; // Si la cellule est vide, la laisser vide
+            row.forEach(col => {
+              const cell = rowIndex === 0 ? document.createElement("th") : tableRow.insertCell();
+              cell.textContent = col;
+              cell.style.border = "1px solid white";
+              cell.style.padding = "10px";
+              cell.style.textAlign = "center";
+              if (rowIndex === 0) cell.style.backgroundColor = "#333";
             });
           });
 
-          // Style et affichage
-          container.innerHTML = ""; // Supprimer le message de chargement
+          container.innerHTML = "";
           container.appendChild(table);
         } catch (error) {
           console.error("Erreur lors de la récupération des données :", error);
-          container.innerHTML =
-            "Erreur lors du chargement des données. Veuillez réessayer.";
+          container.innerHTML = "Erreur lors du chargement des données.";
         }
       }
 
-      // Charger les données au démarrage pour les deux feuilles
       fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
       fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
 
-      // Mise à jour en temps réel toutes les 30 secondes
       setInterval(() => {
         fetchTableDataFromCSV(googleSheetUrl1, tableContainer1);
         fetchTableDataFromCSV(googleSheetUrl2, tableContainer2);
